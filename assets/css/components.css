@@ -1,0 +1,4 @@
+/* Composants : boutons, cartes, blocs d'étape, éditeur, quiz, illustrations. */
+.btn { font: inherit; font-weight: 700; border: 1px solid var(--c-border); background: var(--c-surface);
+  color: var(--c-text); padding: 8px 14px; border-radius: var(--radius-sm); cursor: pointer; }
+.btn-primary { background: var(--c-primary); color: #fff; border-color: var(--c-primary); }

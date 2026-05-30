@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tableau de bord des villes — Parcours</title>
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <button class="btn burger" id="burger" aria-label="Menu">☰</button>
+      <span class="brand">🌍 <span data-i18n="brand">Tableau de bord des villes</span></span>
+      <div class="controls">
+        <select id="lang" aria-label="Langue"><option value="fr">FR</option><option value="en">EN</option></select>
+        <button class="btn" id="theme-toggle" aria-label="Thème">🌙</button>
+      </div>
+    </header>
+    <nav class="sidebar" id="sidebar"></nav>
+    <main class="content"><div class="content-inner" id="content"></div></main>
+  </div>
+  <script type="module" src="assets/js/main.js"></script>
+</body>
+</html>
