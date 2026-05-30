@@ -10,3 +10,16 @@
 .step-link.current { background: var(--c-primary-soft); font-weight: 700; }
 .step-link.locked { opacity: .5; pointer-events: none; }
 .step-link .state { margin-right: 6px; }
+
+.editor { border: 1px solid var(--c-border); border-radius: var(--radius); overflow: hidden; display: grid;
+  grid-template-columns: 1fr 1fr; grid-template-rows: auto 220px 80px; }
+.editor-tabs { grid-column: 1 / -1; display: flex; gap: 4px; padding: 6px; background: var(--c-bg-soft); }
+.etab { font: inherit; border: 0; background: transparent; padding: 4px 10px; border-radius: 6px; cursor: pointer; color: var(--c-text-soft); }
+.etab.active { background: var(--c-primary); color: #fff; }
+.editor-area { font-family: var(--font-mono); font-size: 13px; border: 0; padding: 10px; resize: none;
+  background: #0f172a; color: #e2e8f0; outline: none; }
+.editor-preview { border: 0; border-left: 1px solid var(--c-border); background: #fff; }
+.editor-console { grid-column: 1 / -1; font-family: var(--font-mono); font-size: 12px; padding: 6px 10px;
+  background: #0b1220; color: #cbd5e1; overflow: auto; }
+.editor-console .error { color: #fca5a5; }
+@media (max-width: 700px) { .editor { grid-template-columns: 1fr; grid-template-rows: auto 180px 180px 70px; } }
