@@ -45,3 +45,5 @@
 .code { background: #0f172a; color: #e2e8f0; padding: 12px; border-radius: var(--radius-sm); overflow: auto; font-family: var(--font-mono); font-size: 13px; }
 .hint { font-size: 13px; color: var(--c-text-soft); }
 .step-nav { display: flex; justify-content: space-between; margin-top: 24px; }
+.preview-card { margin-top: 10px; padding: 14px; border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--c-card-grad-a), var(--c-card-grad-b)); color: #fff; font-size: 18px; }
