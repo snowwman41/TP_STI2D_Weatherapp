@@ -1,0 +1,44 @@
+:root {
+  /* Palette « bleu sobre documentation » */
+  --c-bg: #ffffff;
+  --c-bg-soft: #f6f9fc;
+  --c-surface: #ffffff;
+  --c-border: #e2e8f0;
+  --c-text: #0f172a;
+  --c-text-soft: #475569;
+  --c-primary: #0284c7;
+  --c-primary-soft: #e0f2fe;
+  --c-accent: #0369a1;
+  --c-success: #16a34a;
+  --c-danger: #dc2626;
+  --c-card-grad-a: #0ea5e9;
+  --c-card-grad-b: #2563eb;
+
+  --radius: 12px;
+  --radius-sm: 8px;
+  --gap: 16px;
+  --shadow: 0 6px 20px rgba(2, 132, 199, .12);
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-head: Georgia, "Times New Roman", serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --maxw-content: 820px;
+}
+
+[data-theme="dark"] {
+  --c-bg: #0b1220;
+  --c-bg-soft: #0f1a2e;
+  --c-surface: #111c30;
+  --c-border: #1e3a5f;
+  --c-text: #dbeafe;
+  --c-text-soft: #93b4d8;
+  --c-primary: #38bdf8;
+  --c-primary-soft: #0c2740;
+  --c-accent: #7dd3fc;
+  --c-card-grad-a: #0369a1;
+  --c-card-grad-b: #1e40af;
+  --shadow: 0 6px 20px rgba(0, 0, 0, .4);
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--c-bg); color: var(--c-text); font-family: var(--font-body); }
+h1, h2, h3 { font-family: var(--font-head); }
