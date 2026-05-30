@@ -28,14 +28,26 @@ export function assertTrue(cond, msg) {
 }
 
 export function render() {
-  const root = document.getElementById("results");
   const passed = results.filter(r => r.ok).length;
-  root.innerHTML =
-    `<h1>${passed}/${results.length} tests passés</h1>` +
-    results.map(r =>
-      `<div style="color:${r.ok ? "green" : "red"}">` +
-      `${r.ok ? "✓" : "✗"} [${r.suite}] ${r.name}` +
-      (r.ok ? "" : `<br><small>${r.message}</small>`) + `</div>`
-    ).join("");
-  document.title = passed === results.length ? "TESTS OK" : "TESTS FAIL";
+  const allOk = passed === results.length;
+
+  // Mode navigateur : rendu HTML dans #results.
+  if (typeof document !== "undefined") {
+    const root = document.getElementById("results");
+    root.innerHTML =
+      `<h1>${passed}/${results.length} tests passés</h1>` +
+      results.map(r =>
+        `<div style="color:${r.ok ? "green" : "red"}">` +
+        `${r.ok ? "✓" : "✗"} [${r.suite}] ${r.name}` +
+        (r.ok ? "" : `<br><small>${r.message}</small>`) + `</div>`
+      ).join("");
+    document.title = allOk ? "TESTS OK" : "TESTS FAIL";
+    return;
+  }
+
+  // Mode node : sortie console + code de sortie (permet la vérification headless).
+  results.forEach(r =>
+    console.log(`${r.ok ? "✓" : "✗"} [${r.suite}] ${r.name}` + (r.ok ? "" : ` — ${r.message}`)));
+  console.log(`${passed}/${results.length} tests passés`);
+  if (typeof process !== "undefined") process.exitCode = allOk ? 0 : 1;
 }
