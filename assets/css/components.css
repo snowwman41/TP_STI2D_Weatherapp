@@ -23,3 +23,11 @@
   background: #0b1220; color: #cbd5e1; overflow: auto; }
 .editor-console .error { color: #fca5a5; }
 @media (max-width: 700px) { .editor { grid-template-columns: 1fr; grid-template-rows: auto 180px 180px 70px; } }
+
+.quiz { border: 1px solid var(--c-border); border-radius: var(--radius); padding: 16px; background: var(--c-bg-soft); }
+.qz { margin-bottom: 12px; }
+.qz-opts label { display: block; padding: 4px 0; cursor: pointer; }
+.qz-explain { font-size: 13px; color: var(--c-text-soft); border-left: 3px solid var(--c-primary); padding-left: 8px; }
+.qz-result.ok { color: var(--c-success); font-weight: 700; }
+.qz-result.ko { color: var(--c-danger); font-weight: 700; }
+.qz-input { font: inherit; padding: 6px 8px; border: 1px solid var(--c-border); border-radius: 6px; }
