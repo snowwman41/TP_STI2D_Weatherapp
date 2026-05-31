@@ -3,6 +3,7 @@ import { richText } from "./sanitize.js";
 import { getIllustration } from "./illustrations.js";
 import { createEditor } from "./editor.js";
 import { renderQuiz } from "./quiz.js";
+import { verifyExercise } from "./verify.js";
 
 let currentEditor = null;
 
@@ -12,9 +13,12 @@ function block(labelKey, icon, inner) {
 }
 
 export function renderStep(container, step, ctx) {
-  // ctx = { onComplete: fn(score), gotoNext: fn, gotoPrev: fn, globalIndex }
+  // ctx = { onComplete: fn(score), gotoNext, gotoPrev, globalIndex, teacher }
   if (currentEditor) { currentEditor.destroy(); currentEditor = null; }
   const ex = step.exercice;
+  const exGates = !!(ex && ex.verification && ex.verification.length);   // exercice à valider
+  const quizGates = !!(step.quiz && step.quiz.length);                    // quiz à réussir
+
   container.innerHTML = `
     <article class="step">
       <h2>${richText(pick(step.titre))}</h2>
@@ -26,45 +30,91 @@ export function renderStep(container, step, ctx) {
       ${ex ? `<section class="step-block"><h3>✏️ ${t("blockExercise")}</h3>
         <p>${richText(pick(ex.enonce))}</p>
         <div class="exo-editor"></div>
-        <button class="btn show-sol">${t("showSolution")}</button>
+        <div class="exo-actions"></div>
+        <div class="exo-feedback" hidden></div>
         <div class="solution" hidden></div></section>` : ""}
       ${block("blockApply", "🚀", step.application ? `<div>${richText(pick(step.application))}</div>` : "")}
       ${step.defiOptionnel ? `<section class="step-block challenge"><h3>⭐ ${t("optionalChallenge")}</h3><div>${richText(pick(step.defiOptionnel))}</div></section>` : ""}
-      ${step.quiz && step.quiz.length ? `<section class="step-block"><h3>✅ ${t("blockQuiz")}</h3><div class="quiz-host"></div></section>` : ""}
+      ${quizGates ? `<section class="step-block"><h3>✅ ${t("blockQuiz")}</h3><div class="quiz-host"></div></section>` : ""}
       <nav class="step-nav">
         <button class="btn nav-prev">${t("prev")}</button>
-        <button class="btn btn-primary nav-next" ${step.quiz && step.quiz.length ? "disabled" : ""}>${t("next")}</button>
+        <button class="btn btn-primary nav-next">${t("next")}</button>
       </nav>
     </article>`;
 
-  // Éditeur d'exercice
+  const nextBtn = container.querySelector(".nav-next");
+
+  // Déblocage combiné : l'étape suivante s'ouvre quand exercice ET quiz sont validés.
+  let exOK = !exGates;
+  let quizOK = !quizGates;
+  let quizRatio = 1;
+  let completed = false;
+  function refreshGate() {
+    const open = ctx.teacher || (exOK && quizOK);
+    nextBtn.disabled = !open;
+    if (open && !completed) { completed = true; ctx.onComplete(quizRatio); }
+  }
+
+  // Exercice
   if (ex) {
-    currentEditor = createEditor(container.querySelector(".exo-editor"), ex.fichiers);
-    const solBtn = container.querySelector(".show-sol");
+    const editor = createEditor(container.querySelector(".exo-editor"), ex.fichiers);
+    currentEditor = editor;
+    const actions = container.querySelector(".exo-actions");
+    const fb = container.querySelector(".exo-feedback");
     const solBox = container.querySelector(".solution");
-    let shown = false;
-    solBtn.addEventListener("click", () => {
-      shown = !shown;
-      solBox.hidden = !shown;
-      solBtn.textContent = shown ? t("hideSolution") : t("showSolution");
-      if (shown) solBox.innerHTML = Object.entries(ex.correction)
-        .map(([k, v]) => `<p class="hint">${k.toUpperCase()}</p><pre class="code"><code>${escapeHtml(v)}</code></pre>`).join("");
+    const correctionHtml = () => Object.entries(ex.correction || {})
+      .map(([k, v]) => `<p class="hint">${k.toUpperCase()}</p><pre class="code"><code>${escapeHtml(v)}</code></pre>`).join("");
+
+    if (exGates) {
+      const checkBtn = document.createElement("button");
+      checkBtn.className = "btn btn-primary exo-check";
+      checkBtn.textContent = t("checkExercise");
+      actions.appendChild(checkBtn);
+      checkBtn.addEventListener("click", () => {
+        const { passed, results } = verifyExercise(ex.verification, editor.getCode());
+        fb.hidden = false;
+        fb.className = "exo-feedback " + (passed ? "ok" : "ko");
+        fb.innerHTML = passed
+          ? `<div class="ok">✓ ${t("exercisePassed")}</div>`
+          : results.map(r => `<div class="${r.ok ? "ok" : "ko"}">${r.ok ? "✓" : "✗"} ${richText(pick(r.message))}</div>`).join("");
+        if (passed) {
+          checkBtn.disabled = true;
+          exOK = true;
+          refreshGate();
+        } else {
+          // La correction n'apparaît qu'en cas d'erreur, comme une aide.
+          solBox.hidden = false;
+          solBox.innerHTML = `<p class="hint">${t("solutionHelp")}</p>${correctionHtml()}`;
+        }
+      });
+    } else {
+      // Exercice sans règles de vérification : repli sur l'affichage de la correction.
+      const solBtn = document.createElement("button");
+      solBtn.className = "btn show-sol";
+      solBtn.textContent = t("showSolution");
+      actions.appendChild(solBtn);
+      let shown = false;
+      solBtn.addEventListener("click", () => {
+        shown = !shown;
+        solBox.hidden = !shown;
+        solBtn.textContent = shown ? t("hideSolution") : t("showSolution");
+        if (shown && !solBox.innerHTML) solBox.innerHTML = correctionHtml();
+      });
+    }
+  }
+
+  // Quiz
+  if (quizGates) {
+    renderQuiz(container.querySelector(".quiz-host"), step.quiz, step.scoreMinimal ?? 1, (ratio) => {
+      quizOK = true;
+      quizRatio = ratio;
+      refreshGate();
     });
   }
 
-  // Quiz bloquant
-  const nextBtn = container.querySelector(".nav-next");
-  if (step.quiz && step.quiz.length) {
-    renderQuiz(container.querySelector(".quiz-host"), step.quiz, step.scoreMinimal ?? 1, (ratio) => {
-      nextBtn.disabled = false;
-      ctx.onComplete(ratio);
-    });
-    if (ctx.teacher) nextBtn.disabled = false;
-  } else {
-    nextBtn.addEventListener("click", () => ctx.onComplete(1));
-  }
   nextBtn.addEventListener("click", ctx.gotoNext);
   container.querySelector(".nav-prev").addEventListener("click", ctx.gotoPrev);
+  refreshGate();   // état initial (et complète d'emblée les étapes sans porte)
 }
 
 function escapeHtml(s) {

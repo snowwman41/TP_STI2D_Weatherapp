@@ -47,3 +47,11 @@
 .step-nav { display: flex; justify-content: space-between; margin-top: 24px; }
 .preview-card { margin-top: 10px; padding: 14px; border-radius: var(--radius);
   background: linear-gradient(135deg, var(--c-card-grad-a), var(--c-card-grad-b)); color: #fff; font-size: 18px; }
+
+/* Validation d'exercice */
+.exo-actions { margin-top: 10px; }
+.exo-feedback { margin-top: 10px; padding: 10px 12px; border-radius: var(--radius-sm); font-size: 14px; }
+.exo-feedback.ok { background: rgba(22, 163, 74, .12); }
+.exo-feedback.ko { background: rgba(220, 38, 38, .10); }
+.exo-feedback .ok { color: var(--c-success); font-weight: 700; }
+.exo-feedback .ko { color: var(--c-danger); }

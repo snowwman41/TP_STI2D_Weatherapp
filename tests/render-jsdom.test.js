@@ -43,4 +43,31 @@ if (!JSDOM) {
     it("chaque étape à quiz expose son bouton Valider", () =>
       assertTrue(missingBtn.length === 0, "bouton avalé sur → " + missingBtn.join("  |  ")));
   });
+
+  // Verrouillage combiné exercice + quiz (étape « Les 3 fichiers du web » = M0/E1).
+  const step2 = flatSteps.find(s => s.module === 0 && s.etape === 1);
+  const host = dom.window.document.createElement("div");
+  renderStep(host, step2, { globalIndex: 1, teacher: false, onComplete() {}, gotoNext() {}, gotoPrev() {} });
+  const next = host.querySelector(".nav-next");
+  const check = host.querySelector(".exo-check");
+  const area = host.querySelector(".editor-area");      // onglet HTML actif par défaut
+  const solution = host.querySelector(".solution");
+
+  const disabledInitial = next.disabled;
+  // 1) échec : le starter n'a ni <link> ni <script>
+  check.click();
+  const failShowsHelp = !solution.hidden;
+  const stillLockedAfterFail = next.disabled;
+  // 2) on corrige le HTML, on revérifie → exercice OK mais quiz pas encore fait
+  area.value = step2.exercice.correction.html;
+  area.dispatchEvent(new dom.window.Event("input"));
+  check.click();
+  const stillLockedQuizPending = next.disabled;
+
+  describe("render (jsdom) — verrouillage exercice+quiz", () => {
+    it("Suivant désactivé au départ", () => assertTrue(disabledInitial));
+    it("échec → la correction s'affiche en aide", () => assertTrue(failShowsHelp));
+    it("échec → Suivant reste verrouillé", () => assertTrue(stillLockedAfterFail));
+    it("exercice réussi mais quiz à faire → Suivant reste verrouillé", () => assertTrue(stillLockedQuizPending));
+  });
 }
