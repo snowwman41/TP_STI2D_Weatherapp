@@ -1,16 +1,17 @@
 const KEY = "tbv:theme";
+const hasLS = typeof localStorage !== "undefined";
 
 export function nextTheme(current) {
   return current === "dark" ? "light" : "dark";
 }
 
 export function getTheme() {
-  return localStorage.getItem(KEY) || "light";
+  return (hasLS && localStorage.getItem(KEY)) || "light";
 }
 
 export function applyTheme(theme) {
   document.documentElement.setAttribute("data-theme", theme);
-  localStorage.setItem(KEY, theme);
+  if (hasLS) localStorage.setItem(KEY, theme);
 }
 
 export function initTheme(toggleBtn) {

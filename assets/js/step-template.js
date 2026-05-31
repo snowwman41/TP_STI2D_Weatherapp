@@ -3,6 +3,8 @@ import { getIllustration } from "./illustrations.js";
 import { createEditor } from "./editor.js";
 import { renderQuiz } from "./quiz.js";
 
+let currentEditor = null;
+
 function block(labelKey, icon, inner) {
   if (!inner) return "";
   return `<section class="step-block"><h3>${icon} ${t(labelKey)}</h3>${inner}</section>`;
@@ -10,6 +12,7 @@ function block(labelKey, icon, inner) {
 
 export function renderStep(container, step, ctx) {
   // ctx = { onComplete: fn(score), gotoNext: fn, gotoPrev: fn, globalIndex }
+  if (currentEditor) { currentEditor.destroy(); currentEditor = null; }
   const ex = step.exercice;
   container.innerHTML = `
     <article class="step">
@@ -35,7 +38,7 @@ export function renderStep(container, step, ctx) {
 
   // Éditeur d'exercice
   if (ex) {
-    createEditor(container.querySelector(".exo-editor"), ex.fichiers);
+    currentEditor = createEditor(container.querySelector(".exo-editor"), ex.fichiers);
     const solBtn = container.querySelector(".show-sol");
     const solBox = container.querySelector(".solution");
     let shown = false;
@@ -55,6 +58,7 @@ export function renderStep(container, step, ctx) {
       nextBtn.disabled = false;
       ctx.onComplete(ratio);
     });
+    if (ctx.teacher) nextBtn.disabled = false;
   } else {
     nextBtn.addEventListener("click", () => ctx.onComplete(1));
   }

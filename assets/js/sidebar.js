@@ -16,8 +16,8 @@ export function renderSidebar(current) {
       const isCur = current && current.module === mi && current.etape === ei;
       const state = isCompleted(gi) ? "✓" : unlocked ? "▸" : "🔒";
       const cls = ["step-link", isCur ? "current" : "", unlocked ? "" : "locked"].join(" ");
-      const href = unlocked ? buildHash(mi, ei) : "#";
-      html += `<a class="${cls}" href="${href}"><span class="state">${state}</span>${pick(step.titre)}</a>`;
+      const attrs = unlocked ? `href="${buildHash(mi, ei)}"` : `href="#" tabindex="-1" aria-disabled="true"`;
+      html += `<a class="${cls}" ${attrs}><span class="state">${state}</span>${pick(step.titre)}</a>`;
     });
     html += `</div>`;
   });

@@ -29,15 +29,17 @@ export function renderQuiz(container, questions, seuil, onPass) {
       inp.addEventListener("input", () => { answers[i] = readVal(questions[i], inp); }));
   });
 
-  container.querySelector(".qz-validate").addEventListener("click", () => {
+  const validateBtn = container.querySelector(".qz-validate");
+  let passed = false;
+  validateBtn.addEventListener("click", () => {
     const score = scoreQuiz(questions, answers);
-    const passed = score.ratio >= seuil;
+    const didPass = score.ratio >= seuil;
     container.querySelectorAll(".qz-explain").forEach(e => e.hidden = false);
     const res = container.querySelector(".qz-result");
     res.hidden = false;
-    res.textContent = `${score.good}/${score.total} — ` + (passed ? t("quizPassed") : t("quizFailed"));
-    res.className = "qz-result " + (passed ? "ok" : "ko");
-    if (passed) onPass(score.ratio);
+    res.textContent = `${score.good}/${score.total} — ` + (didPass ? t("quizPassed") : t("quizFailed"));
+    res.className = "qz-result " + (didPass ? "ok" : "ko");
+    if (didPass && !passed) { passed = true; validateBtn.disabled = true; onPass(score.ratio); }
   });
 }
 

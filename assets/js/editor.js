@@ -39,6 +39,7 @@ export function createEditor(container, initial, opts = {}) {
   const refresh = () => { cons.innerHTML = ""; frame.srcdoc = buildPreviewDoc(files.html, files.css, files.js); };
   area.addEventListener("input", () => { files[active] = area.value; clearTimeout(timer); timer = setTimeout(refresh, 400); });
 
+  const controller = new AbortController();
   window.addEventListener("message", e => {
     if (e.data && e.data.__preview) {
       const line = document.createElement("div");
@@ -46,9 +47,9 @@ export function createEditor(container, initial, opts = {}) {
       line.textContent = (e.data.type === "error" ? "⛔ " : "› ") + e.data.text;
       cons.appendChild(line);
     }
-  });
+  }, { signal: controller.signal });
 
   setActive(active);
   refresh();
-  return { getCode: () => ({ ...files }), setCode: (f) => { Object.assign(files, f); setActive(active); refresh(); } };
+  return { getCode: () => ({ ...files }), setCode: (f) => { Object.assign(files, f); setActive(active); refresh(); }, destroy: () => controller.abort() };
 }

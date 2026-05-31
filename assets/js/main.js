@@ -4,7 +4,7 @@ import { startRouter, onRoute, parseHash, navigate } from "./router.js";
 import { flatSteps, stepAt, globalIndex } from "../../content/modules.js";
 import { renderSidebar } from "./sidebar.js";
 import { renderStep } from "./step-template.js";
-import { isUnlocked, markCompleted, unlockAll } from "./progress.js";
+import { isUnlocked, markCompleted, unlockAll, getState } from "./progress.js";
 
 const content = document.getElementById("content");
 
@@ -14,6 +14,7 @@ function show(route) {
   const step = stepAt(route.module, route.etape);
   renderStep(content, step, {
     globalIndex: gi,
+    teacher: getState().teacher,
     onComplete: (ratio) => { markCompleted(gi, ratio); renderSidebar(route); },
     gotoNext: () => { const n = flatSteps[gi + 1]; if (n) navigate(n.module, n.etape); },
     gotoPrev: () => { const p = flatSteps[gi - 1]; if (p) navigate(p.module, p.etape); }
