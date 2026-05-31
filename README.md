@@ -20,10 +20,10 @@ serve.cmd
 bash serve.sh
 ```
 
-Les deux scripts lancent `python -m http.server 8000`. Ouvrir ensuite :
+Les deux scripts lancent `python -m http.server 8123`. Ouvrir ensuite :
 
 ```
-http://localhost:8000
+http://localhost:8123
 ```
 
 ---
@@ -88,7 +88,7 @@ En cas de démonstration ou de dépannage, le raccourci **`Ctrl + Shift + U`** o
 La progression est stockée dans le **localStorage** du navigateur. Pour repartir de zéro :
 
 1. Ouvrir les outils développeur (`F12`)
-2. Aller dans l'onglet **Application** → **Local Storage** → `http://localhost:8000`
+2. Aller dans l'onglet **Application** → **Local Storage** → `http://localhost:8123`
 3. Sélectionner toutes les entrées et les supprimer (ou cliquer sur l'icône « Effacer »)
 
 ### Usage au vidéoprojecteur
@@ -212,5 +212,5 @@ Ouvrir les URLs suivantes **après avoir lancé le serveur local** :
 
 | URL | Contenu |
 |---|---|
-| `http://localhost:8000/tests/` | Suite de tests unitaires (éditeur, i18n, progression, quiz, routeur, thème, météo) |
-| `http://localhost:8000/tests/smoke.html` | Smoke test global + vérification de la disponibilité des APIs externes |
+| `http://localhost:8123/tests/` | Suite de tests unitaires (éditeur, i18n, progression, quiz, routeur, thème, météo) |
+| `http://localhost:8123/tests/smoke.html` | Smoke test global + vérification de la disponibilité des APIs externes |
