@@ -37,7 +37,12 @@ export const m7 = {
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Heure locale</title>\n  <style>\n    body { font-family: sans-serif; padding: 16px; }\n    #heure { font-size: 2rem; font-weight: bold; margin-top: 12px; color: #2563eb; }\n  </style>\n</head>\n<body>\n  <h2>Heure locale</h2>\n  <p>Fuseau : <code id=\"tz-affiche\"></code></p>\n  <div id=\"heure\">--:--</div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
           js: "const tz = \"Pacific/Auckland\";\n\ndocument.querySelector(\"#tz-affiche\").textContent = tz;\n\nconst heureLocale = new Intl.DateTimeFormat(\"fr-FR\", {\n  hour: \"2-digit\",\n  minute: \"2-digit\",\n  timeZone: tz\n}).format(new Date());\n\ndocument.querySelector(\"#heure\").textContent = heureLocale;"
-        }
+        },
+        verification: [
+          { fichier: "js", contient: "Intl.DateTimeFormat", message: { fr: "Utilise Intl.DateTimeFormat pour formater l'heure locale.", en: "Use Intl.DateTimeFormat to format the local time." } },
+          { fichier: "js", contient: "timeZone: tz", message: { fr: "Passe l'option timeZone: tz à Intl.DateTimeFormat.", en: "Pass the option timeZone: tz to Intl.DateTimeFormat." } },
+          { fichier: "js", contient: "format(new Date())", message: { fr: "Appelle .format(new Date()) pour obtenir l'heure actuelle.", en: "Call .format(new Date()) to get the current time." } }
+        ]
       },
       application: null,
       quiz: [
@@ -94,7 +99,12 @@ export const m7 = {
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>localStorage</title>\n  <style>\n    body { font-family: sans-serif; padding: 16px; }\n    input { padding: 6px; margin-right: 6px; }\n    button { padding: 6px 12px; cursor: pointer; }\n    .carte { background: #f0f4ff; border-radius: 8px; padding: 10px; margin: 6px 0; }\n  </style>\n</head>\n<body>\n  <h2>Tableau de bord — avec persistance</h2>\n  <input id=\"ville\" type=\"text\" placeholder=\"Nom de la ville\">\n  <button onclick=\"ajouter()\">Ajouter</button>\n  <div id=\"cartes\"></div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
           js: "let villes = JSON.parse(localStorage.getItem(\"villes\") || \"[]\");\n\nafficherTout();\n\nfunction ajouter() {\n  const nom = document.querySelector(\"#ville\").value.trim();\n  if (!nom) return;\n  villes.push({ nom });\n  localStorage.setItem(\"villes\", JSON.stringify(villes));\n  afficherTout();\n}\n\nfunction afficherTout() {\n  const conteneur = document.querySelector(\"#cartes\");\n  conteneur.innerHTML = \"\";\n  villes.forEach(function(v) {\n    const div = document.createElement(\"div\");\n    div.className = \"carte\";\n    div.textContent = v.nom;\n    conteneur.appendChild(div);\n  });\n}"
-        }
+        },
+        verification: [
+          { fichier: "js", contient: "localStorage.getItem(\"villes\")", message: { fr: "Charge les villes avec localStorage.getItem(\"villes\").", en: "Load the cities with localStorage.getItem(\"villes\")." } },
+          { fichier: "js", contient: "localStorage.setItem(\"villes\",", message: { fr: "Sauvegarde avec localStorage.setItem(\"villes\", ...) après chaque ajout.", en: "Save with localStorage.setItem(\"villes\", ...) after each addition." } },
+          { fichier: "js", contient: "JSON.stringify(villes)", message: { fr: "Convertis le tableau en JSON avec JSON.stringify(villes) avant de sauvegarder.", en: "Convert the array to JSON with JSON.stringify(villes) before saving." } }
+        ]
       },
       application: null,
       quiz: [
@@ -156,7 +166,12 @@ export const m7 = {
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Supprimer une ville</title>\n  <style>\n    body { font-family: sans-serif; padding: 16px; }\n    input { padding: 6px; margin-right: 6px; }\n    .carte { background: #f0f4ff; border-radius: 8px; padding: 10px; margin: 6px 0; display: flex; justify-content: space-between; align-items: center; }\n    .carte button { background: #e74c3c; color: white; border: none; border-radius: 4px; padding: 4px 8px; cursor: pointer; }\n  </style>\n</head>\n<body>\n  <h2>Tableau de bord</h2>\n  <input id=\"ville\" type=\"text\" placeholder=\"Nom de la ville\">\n  <button onclick=\"ajouter()\">Ajouter</button>\n  <div id=\"cartes\"></div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
           js: "let villes = JSON.parse(localStorage.getItem(\"villes\") || \"[]\");\nafficherTout();\n\nfunction ajouter() {\n  const nom = document.querySelector(\"#ville\").value.trim();\n  if (!nom) return;\n  villes.push({ nom });\n  localStorage.setItem(\"villes\", JSON.stringify(villes));\n  afficherTout();\n}\n\nfunction afficherTout() {\n  const conteneur = document.querySelector(\"#cartes\");\n  conteneur.innerHTML = \"\";\n\n  villes.forEach(function(v, i) {\n    const carte = document.createElement(\"div\");\n    carte.className = \"carte\";\n    carte.textContent = v.nom;\n\n    const btn = document.createElement(\"button\");\n    btn.textContent = \"✕\";\n    btn.addEventListener(\"click\", function() {\n      villes = villes.filter(function(_, j) { return j !== i; });\n      localStorage.setItem(\"villes\", JSON.stringify(villes));\n      afficherTout();\n    });\n\n    carte.appendChild(btn);\n    conteneur.appendChild(carte);\n  });\n}"
-        }
+        },
+        verification: [
+          { fichier: "js", contient: "createElement(\"button\")", message: { fr: "Crée un bouton de suppression avec document.createElement(\"button\").", en: "Create a delete button with document.createElement(\"button\")." } },
+          { fichier: "js", contient: "villes.filter(", message: { fr: "Utilise villes.filter() pour créer le nouveau tableau sans la ville supprimée.", en: "Use villes.filter() to create the new array without the deleted city." } },
+          { fichier: "js", contient: "j !== i", message: { fr: "Dans le filter, garde les villes dont l'index j est différent de i.", en: "In the filter, keep cities whose index j differs from i." } }
+        ]
       },
       application: null,
       quiz: [
@@ -213,7 +228,12 @@ export const m7 = {
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>État de chargement</title>\n  <style>\n    body { font-family: sans-serif; padding: 16px; }\n    #message { color: #6b7280; font-style: italic; margin: 8px 0; min-height: 24px; }\n    .carte {\n      background: #f0f4ff;\n      border-radius: 8px;\n      padding: 12px 16px;\n      margin: 8px 0;\n      opacity: 0;\n      transform: translateY(6px);\n      transition: opacity 0.3s ease, transform 0.3s ease;\n    }\n    .carte.visible {\n      opacity: 1;\n      transform: translateY(0);\n    }\n  </style>\n</head>\n<body>\n  <h2>Tableau de bord</h2>\n  <input id=\"ville\" type=\"text\" placeholder=\"Nom de la ville\" value=\"Seoul\">\n  <button onclick=\"chercher()\">Chercher</button>\n  <div id=\"message\"></div>\n  <div id=\"cartes\"></div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
           js: "async function chercher() {\n  const nom = document.querySelector(\"#ville\").value.trim();\n  const msg = document.querySelector(\"#message\");\n  const conteneur = document.querySelector(\"#cartes\");\n\n  msg.textContent = \"Chargement…\";\n\n  try {\n    const urlGeo = \"https://geocoding-api.open-meteo.com/v1/search?name=\" + nom + \"&count=1&language=fr\";\n    const repGeo = await fetch(urlGeo);\n    const geo = await repGeo.json();\n\n    if (!geo.results) {\n      msg.textContent = \"Ville introuvable.\";\n      return;\n    }\n\n    const lat = geo.results[0].latitude;\n    const lon = geo.results[0].longitude;\n\n    const urlMeteo = \"https://api.open-meteo.com/v1/forecast?latitude=\" + lat\n      + \"&longitude=\" + lon + \"&current=temperature_2m,weather_code&timezone=auto\";\n    const repMeteo = await fetch(urlMeteo);\n    const meteo = await repMeteo.json();\n\n    msg.textContent = \"\";\n\n    const carte = document.createElement(\"div\");\n    carte.className = \"carte\";\n    carte.textContent = geo.results[0].name + \" — \" + meteo.current.temperature_2m + \" °C\";\n    conteneur.appendChild(carte);\n\n    // Déclenche la transition CSS après insertion dans le DOM\n    requestAnimationFrame(function() { carte.classList.add(\"visible\"); });\n\n  } catch (e) {\n    msg.textContent = \"Erreur : \" + e.message;\n  }\n}"
-        }
+        },
+        verification: [
+          { fichier: "js", contient: "msg.textContent = \"Chargement…\"", message: { fr: "Affiche \"Chargement…\" dans #message avant le fetch.", en: "Display \"Chargement…\" in #message before the fetch." } },
+          { fichier: "js", contient: "requestAnimationFrame", message: { fr: "Utilise requestAnimationFrame pour déclencher l'animation CSS après l'insertion dans le DOM.", en: "Use requestAnimationFrame to trigger the CSS animation after DOM insertion." } },
+          { fichier: "html", contient: "transition:", message: { fr: "Ajoute une propriété CSS transition sur les cartes.", en: "Add a CSS transition property to the cards." } }
+        ]
       },
       application: {
         fr: "Bravo, le tableau de bord est maintenant <strong>complet</strong> ! Il affiche l'heure locale de chaque ville, sauvegarde la liste entre les rechargements, permet de supprimer des villes, et s'accompagne d'états de chargement et d'animations soignées. Tu as construit une vraie application web de A à Z. Le Module 8 propose des <strong>défis optionnels</strong> pour aller encore plus loin — à toi de jouer !",

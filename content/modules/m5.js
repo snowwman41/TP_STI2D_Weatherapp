@@ -36,7 +36,11 @@ export const m5 = {
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Explorer une URL d'API</title>\n</head>\n<body>\n  <h2>Exercice : lire une URL d'API</h2>\n  <p>Ouvre la console (F12) pour voir le résultat.</p>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
           js: "// On change name=Paris en name=Lyon\nconst url = \"https://geocoding-api.open-meteo.com/v1/search?name=Lyon&count=1&language=fr\";\n\nconsole.log(\"URL construite :\", url);\n\nconst params = new URL(url).searchParams;\nconsole.log(\"Ville recherchée :\", params.get(\"name\")); // \"Lyon\"\nconsole.log(\"Nombre de résultats :\", params.get(\"count\")); // \"1\""
-        }
+        },
+        verification: [
+          { fichier: "js", contient: "searchParams", message: { fr: "Utilise new URL(url).searchParams pour lire les paramètres de l'URL.", en: "Use new URL(url).searchParams to read the URL parameters." } },
+          { fichier: "js", contient: "params.get(\"name\")", message: { fr: "Utilise params.get(\"name\") pour afficher la ville recherchée.", en: "Use params.get(\"name\") to display the searched city." } }
+        ]
       },
       application: null,
       quiz: [
@@ -96,7 +100,11 @@ export const m5 = {
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Lire du JSON</title>\n</head>\n<body>\n  <h2>Exercice : lire des données JSON</h2>\n  <p>Ouvre la console (F12) pour voir le résultat.</p>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
           js: "const data = {\n  results: [\n    {\n      name: \"Berlin\",\n      latitude: 52.52437,\n      longitude: 13.41053,\n      country: \"Allemagne\",\n      country_code: \"DE\",\n      timezone: \"Europe/Berlin\"\n    }\n  ]\n};\n\nconsole.log(\"Pays :\", data.results[0].country);      // \"Allemagne\"\nconsole.log(\"Latitude :\", data.results[0].latitude);  // 52.52437\nconsole.log(\"Code pays :\", data.results[0].country_code); // \"DE\""
-        }
+        },
+        verification: [
+          { fichier: "js", contient: "data.results[0].country", message: { fr: "Accède au pays avec data.results[0].country.", en: "Access the country with data.results[0].country." } },
+          { fichier: "js", contient: "data.results[0].country_code", message: { fr: "Accède au code pays avec data.results[0].country_code.", en: "Access the country code with data.results[0].country_code." } }
+        ]
       },
       application: null,
       quiz: [
@@ -151,7 +159,12 @@ export const m5 = {
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Premier fetch</title>\n</head>\n<body>\n  <h2>Mon premier fetch</h2>\n  <p>Ouvre la console (F12) pour voir les données de l'API.</p>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
           js: "const ville = \"Madrid\";\nconst url = \"https://geocoding-api.open-meteo.com/v1/search?name=\" + ville + \"&count=1&language=fr\";\n\nfetch(url)\n  .then(function(reponse) {\n    return reponse.json();\n  })\n  .then(function(data) {\n    console.log(data.results[0]);\n    console.log(\"Nom :\", data.results[0].name);    // \"Madrid\"\n    console.log(\"Pays :\", data.results[0].country); // \"Espagne\"\n  });"
-        }
+        },
+        verification: [
+          { fichier: "js", contient: "fetch(url)", message: { fr: "Utilise fetch(url) pour envoyer la requête à l'API.", en: "Use fetch(url) to send the request to the API." } },
+          { fichier: "js", contient: "reponse.json()", message: { fr: "Convertis la réponse en JSON avec reponse.json() dans le premier .then.", en: "Convert the response to JSON with reponse.json() in the first .then." } },
+          { fichier: "js", contient: "data.results[0].country", message: { fr: "Affiche le pays avec data.results[0].country.", en: "Log the country with data.results[0].country." } }
+        ]
       },
       application: null,
       quiz: [
@@ -206,7 +219,12 @@ export const m5 = {
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Pays et drapeau</title>\n  <style>\n    .carte { border: 2px solid #4a6fa5; padding: 16px; border-radius: 8px; display: inline-block; min-width: 160px; background: #f0f4ff; font-family: sans-serif; }\n    .carte h2 { margin: 0 0 8px; color: #1a3a6b; }\n    .carte img { display: block; margin: 8px 0; }\n    .carte p { margin: 4px 0; color: #555; }\n  </style>\n</head>\n<body>\n  <div id=\"carte\" class=\"carte\">Chargement…</div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
           js: "const ville = \"Lisbonne\";\nconst url = \"https://geocoding-api.open-meteo.com/v1/search?name=\" + ville + \"&count=1&language=fr\";\n\nfetch(url)\n  .then(function(reponse) {\n    return reponse.json();\n  })\n  .then(function(data) {\n    const resultat = data.results[0];\n    const pays = resultat.country;      // \"Portugal\"\n    const code = resultat.country_code; // \"PT\"\n\n    const urlDrapeau = `https://flagcdn.com/${code.toLowerCase()}.svg`;\n\n    const carte = document.querySelector(\"#carte\");\n    carte.innerHTML = `\n      <h2>${resultat.name}</h2>\n      <img src=\"${urlDrapeau}\" alt=\"Drapeau de ${pays}\" width=\"48\">\n      <p>${pays}</p>\n    `;\n  });"
-        }
+        },
+        verification: [
+          { fichier: "js", contient: "toLowerCase()", message: { fr: "Utilise .toLowerCase() sur le code pays pour construire l'URL du drapeau.", en: "Use .toLowerCase() on the country code to build the flag URL." } },
+          { fichier: "js", contient: "flagcdn.com", message: { fr: "Construis l'URL du drapeau avec flagcdn.com.", en: "Build the flag URL using flagcdn.com." } },
+          { fichier: "js", contient: "resultat.country_code", message: { fr: "Récupère le code pays avec resultat.country_code.", en: "Get the country code with resultat.country_code." } }
+        ]
       },
       application: {
         fr: "Les cartes de notre tableau de bord affichent maintenant le vrai nom du pays et son drapeau, récupérés en temps réel depuis l'API. Dans le module suivant, on ajoutera la température et les conditions météo — et on apprendra à gérer l'attente et les erreurs réseau.",

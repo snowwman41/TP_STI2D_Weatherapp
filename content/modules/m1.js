@@ -34,7 +34,12 @@ export const m1 = {
         },
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Mon projet</title>\n</head>\n<body>\n  <p>Bonjour !</p>\n</body>\n</html>"
-        }
+        },
+        verification: [
+          { fichier: "html", contient: "<body>", message: { fr: "Ajoute la balise ouvrante <body>.", en: "Add the opening <body> tag." } },
+          { fichier: "html", contient: "<p>", message: { fr: "Ajoute un paragraphe <p> dans le body.", en: "Add a <p> paragraph inside the body." } },
+          { fichier: "html", contient: "Bonjour !", message: { fr: "Le paragraphe doit contenir le texte \"Bonjour !\".", en: "The paragraph must contain the text \"Bonjour !\"." } }
+        ]
       },
       application: null,
       quiz: [
@@ -92,7 +97,12 @@ export const m1 = {
         },
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Tableau de bord</title>\n</head>\n<body>\n  <h1>Tableau de bord des villes</h1>\n  <div id=\"cartes\"></div>\n</body>\n</html>"
-        }
+        },
+        verification: [
+          { fichier: "html", contient: "<h1>", message: { fr: "Ajoute une balise <h1> pour le titre.", en: "Add an <h1> tag for the heading." } },
+          { fichier: "html", contient: "Tableau de bord des villes", message: { fr: "Le <h1> doit contenir le texte \"Tableau de bord des villes\".", en: "The <h1> must contain the text \"Tableau de bord des villes\"." } },
+          { fichier: "html", contient: "id=\"cartes\"", message: { fr: "Ajoute un <div> avec l'attribut id=\"cartes\".", en: "Add a <div> with the attribute id=\"cartes\"." } }
+        ]
       },
       application: null,
       quiz: [
@@ -145,7 +155,12 @@ export const m1 = {
         },
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Tableau de bord</title>\n</head>\n<body>\n  <h1>Tableau de bord des villes</h1>\n  <form id=\"formulaire\">\n    <input type=\"text\" id=\"ville-input\" placeholder=\"Entrez une ville…\">\n    <button type=\"button\">Ajouter</button>\n  </form>\n  <div id=\"cartes\"></div>\n</body>\n</html>"
-        }
+        },
+        verification: [
+          { fichier: "html", contient: "<form", message: { fr: "Ajoute un élément <form> dans le body.", en: "Add a <form> element in the body." } },
+          { fichier: "html", contient: "<input", message: { fr: "Ajoute un <input> dans le formulaire.", en: "Add an <input> inside the form." } },
+          { fichier: "html", contient: "<button", message: { fr: "Ajoute un <button> dans le formulaire.", en: "Add a <button> inside the form." } }
+        ]
       },
       application: null,
       quiz: [
@@ -203,7 +218,13 @@ export const m1 = {
         },
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Tableau de bord des villes</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <h1>Tableau de bord des villes</h1>\n  <form id=\"formulaire\">\n    <input type=\"text\" id=\"ville-input\" placeholder=\"Entrez une ville…\">\n    <button type=\"button\" id=\"btn-ajouter\">Ajouter</button>\n  </form>\n  <div id=\"cartes\"></div>\n  <script src=\"script.js\"></script>\n</body>\n</html>"
-        }
+        },
+        verification: [
+          { fichier: "html", contient: "<h1>", message: { fr: "Ajoute le titre <h1> en haut du body.", en: "Add the <h1> heading at the top of the body." } },
+          { fichier: "html", contient: "id=\"formulaire\"", message: { fr: "Ajoute un <form> avec id=\"formulaire\".", en: "Add a <form> with id=\"formulaire\"." } },
+          { fichier: "html", contient: "id=\"ville-input\"", message: { fr: "Ajoute un <input> avec id=\"ville-input\" dans le formulaire.", en: "Add an <input> with id=\"ville-input\" inside the form." } },
+          { fichier: "html", contient: "id=\"cartes\"", message: { fr: "Ajoute un <div> avec id=\"cartes\" pour les cartes de villes.", en: "Add a <div> with id=\"cartes\" to hold the city cards." } }
+        ]
       },
       application: {
         fr: "Tu viens de poser la structure HTML complète de ton projet dans <code>projet-eleve/index.html</code>. Les modules suivants vont habiller cette structure avec du CSS, puis lui donner vie avec JavaScript.",

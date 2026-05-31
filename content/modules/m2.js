@@ -36,7 +36,12 @@ export const m2 = {
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Sélecteurs</title>\n</head>\n<body>\n  <h1>Tableau de bord des villes</h1>\n  <div class=\"carte\">Paris</div>\n  <div class=\"carte\">Tokyo</div>\n  <div>Pas une carte</div>\n</body>\n</html>",
           css: "h1 {\n  color: #0284c7;\n}\n\n.carte {\n  background-color: #fef9c3;\n}\n"
-        }
+        },
+        verification: [
+          { fichier: "css", contient: "color: #0284c7", message: { fr: "Utilise color: #0284c7 sur le sélecteur h1.", en: "Use color: #0284c7 on the h1 selector." } },
+          { fichier: "css", contient: ".carte", message: { fr: "Ajoute une règle CSS avec le sélecteur .carte.", en: "Add a CSS rule with the .carte selector." } },
+          { fichier: "css", contient: "background-color: #fef9c3", message: { fr: "Utilise background-color: #fef9c3 sur .carte.", en: "Use background-color: #fef9c3 on .carte." } }
+        ]
       },
       application: null,
       quiz: [
@@ -96,7 +101,11 @@ export const m2 = {
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Box model</title>\n</head>\n<body>\n  <div class=\"carte\">Paris — 18° ☀️</div>\n  <div class=\"carte\">Tokyo — 22° 🌤</div>\n</body>\n</html>",
           css: ".carte {\n  padding: 20px;\n  border: 2px solid #0284c7;\n  margin: 8px;\n  background-color: #f0f9ff;\n}\n"
-        }
+        },
+        verification: [
+          { fichier: "css", contient: "padding: 20px", message: { fr: "Ajoute padding: 20px dans la règle .carte.", en: "Add padding: 20px inside the .carte rule." } },
+          { fichier: "css", contient: "border: 2px solid", message: { fr: "Ajoute une propriété border (ex: border: 2px solid #0284c7) dans .carte.", en: "Add a border property (e.g. border: 2px solid #0284c7) inside .carte." } }
+        ]
       },
       application: null,
       quiz: [
@@ -151,7 +160,11 @@ export const m2 = {
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Couleurs</title>\n</head>\n<body>\n  <div class=\"boite-hex\">Hex</div>\n  <div class=\"boite-rgb\">RGB</div>\n</body>\n</html>",
           css: ".boite-hex {\n  background-color: #0ea5e9;\n  color: white;\n  padding: 16px;\n  margin: 8px;\n}\n\n.boite-rgb {\n  background-color: rgb(14, 165, 233);\n  color: white;\n  padding: 16px;\n  margin: 8px;\n}\n"
-        }
+        },
+        verification: [
+          { fichier: "css", contient: "background-color: #0ea5e9", message: { fr: "Ajoute background-color: #0ea5e9 sur .boite-hex.", en: "Add background-color: #0ea5e9 on .boite-hex." } },
+          { fichier: "css", contient: "rgb(14, 165, 233)", message: { fr: "Ajoute background-color: rgb(14, 165, 233) sur .boite-rgb.", en: "Add background-color: rgb(14, 165, 233) on .boite-rgb." } }
+        ]
       },
       application: null,
       quiz: [
@@ -211,7 +224,11 @@ export const m2 = {
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Dégradé</title>\n</head>\n<body>\n  <div class=\"carte\">Paris — 18° ☀️</div>\n  <div class=\"carte\">Tokyo — 22° 🌤</div>\n</body>\n</html>",
           css: ".carte {\n  background: linear-gradient(135deg, #0ea5e9, #2563eb);\n  color: white;\n  padding: 20px;\n  margin: 8px;\n  border-radius: 8px;\n}\n"
-        }
+        },
+        verification: [
+          { fichier: "css", contient: "linear-gradient", message: { fr: "Utilise linear-gradient(...) comme valeur de background sur .carte.", en: "Use linear-gradient(...) as the background value on .carte." } },
+          { fichier: "css", contient: "135deg", message: { fr: "Le dégradé doit utiliser la direction 135deg.", en: "The gradient must use the 135deg direction." } }
+        ]
       },
       application: null,
       quiz: [
@@ -266,7 +283,12 @@ export const m2 = {
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Variables CSS</title>\n</head>\n<body>\n  <div class=\"carte\">Paris — 18° ☀️</div>\n  <div class=\"carte\">Tokyo — 22° 🌤</div>\n</body>\n</html>",
           css: ":root {\n  --couleur-carte: #0ea5e9;\n  --texte-carte: white;\n}\n\n.carte {\n  background: var(--couleur-carte);\n  color: var(--texte-carte);\n  padding: 20px;\n  margin: 8px;\n  border-radius: 8px;\n}\n"
-        }
+        },
+        verification: [
+          { fichier: "css", contient: "--couleur-carte:", message: { fr: "Déclare la variable --couleur-carte dans :root.", en: "Declare the --couleur-carte variable in :root." } },
+          { fichier: "css", contient: "--texte-carte:", message: { fr: "Déclare la variable --texte-carte dans :root.", en: "Declare the --texte-carte variable in :root." } },
+          { fichier: "css", contient: "var(--couleur-carte)", message: { fr: "Utilise var(--couleur-carte) dans la règle .carte.", en: "Use var(--couleur-carte) inside the .carte rule." } }
+        ]
       },
       application: null,
       quiz: [
@@ -321,7 +343,12 @@ export const m2 = {
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Grid</title>\n</head>\n<body>\n  <div id=\"cartes\">\n    <div class=\"carte\">Paris ☀️</div>\n    <div class=\"carte\">Tokyo 🌤</div>\n    <div class=\"carte\">New York 🌧</div>\n    <div class=\"carte\">Sydney 🌈</div>\n  </div>\n</body>\n</html>",
           css: "#cartes {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\n  gap: 16px;\n  padding: 16px;\n}\n\n.carte {\n  background: linear-gradient(135deg, #0ea5e9, #2563eb);\n  color: white;\n  padding: 20px;\n  border-radius: 8px;\n}\n"
-        }
+        },
+        verification: [
+          { fichier: "css", contient: "display: grid", message: { fr: "Ajoute display: grid sur #cartes.", en: "Add display: grid to #cartes." } },
+          { fichier: "css", contient: "grid-template-columns", message: { fr: "Ajoute grid-template-columns avec repeat(auto-fill, minmax(200px, 1fr)).", en: "Add grid-template-columns with repeat(auto-fill, minmax(200px, 1fr))." } },
+          { fichier: "css", contient: "gap: 16px", message: { fr: "Ajoute gap: 16px pour espacer les cartes.", en: "Add gap: 16px to space the cards." } }
+        ]
       },
       application: null,
       quiz: [
@@ -381,7 +408,11 @@ export const m2 = {
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Responsive</title>\n</head>\n<body>\n  <div id=\"cartes\">\n    <div class=\"carte\">Paris ☀️</div>\n    <div class=\"carte\">Tokyo 🌤</div>\n    <div class=\"carte\">New York 🌧</div>\n    <div class=\"carte\">Sydney 🌈</div>\n  </div>\n</body>\n</html>",
           css: "#cartes {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\n  gap: 16px;\n  padding: 16px;\n}\n\n.carte {\n  background: linear-gradient(135deg, #0ea5e9, #2563eb);\n  color: white;\n  padding: 20px;\n  border-radius: 8px;\n}\n\n@media (max-width: 500px) {\n  #cartes {\n    grid-template-columns: 1fr;\n  }\n}\n"
-        }
+        },
+        verification: [
+          { fichier: "css", contient: "@media (max-width: 500px)", message: { fr: "Ajoute un @media (max-width: 500px) pour le style mobile.", en: "Add a @media (max-width: 500px) for mobile styles." } },
+          { fichier: "css", contient: "grid-template-columns: 1fr", message: { fr: "Dans le @media, force grid-template-columns: 1fr sur #cartes.", en: "Inside the @media, force grid-template-columns: 1fr on #cartes." } }
+        ]
       },
       application: {
         fr: "Ton projet dispose maintenant d'une interface stylisée et responsive : cartes avec dégradé, grille automatique et adaptation mobile. Les variables CSS sont prêtes pour basculer en mode sombre. Prochaine étape : donner vie à tout cela avec JavaScript !",

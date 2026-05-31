@@ -36,7 +36,11 @@ export const m4 = {
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Tableau de villes</title>\n</head>\n<body>\n  <form id=\"formulaire\">\n    <input type=\"text\" id=\"ville-input\" placeholder=\"Entrez une ville…\">\n    <button type=\"submit\">Ajouter</button>\n  </form>\n  <div id=\"cartes\"></div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
           js: "const formulaire = document.querySelector(\"#formulaire\");\nconst champ = document.querySelector(\"#ville-input\");\n\nconst villes = [];\n\nformulaire.addEventListener(\"submit\", function(event) {\n  event.preventDefault();\n  const ville = champ.value;\n  villes.push(ville);\n  console.log(villes);\n  champ.value = \"\";\n});"
-        }
+        },
+        verification: [
+          { fichier: "js", contient: "villes.push", message: { fr: "Utilise villes.push() pour ajouter la ville au tableau.", en: "Use villes.push() to add the city to the array." } },
+          { fichier: "js", contient: "const villes = []", message: { fr: "Déclare le tableau villes avec const villes = [].", en: "Declare the villes array with const villes = []." } }
+        ]
       },
       application: null,
       quiz: [
@@ -96,7 +100,12 @@ export const m4 = {
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Créer une carte</title>\n  <style>\n    .carte { border: 2px solid #333; padding: 12px; margin: 8px; border-radius: 6px; display: inline-block; }\n  </style>\n</head>\n<body>\n  <form id=\"formulaire\">\n    <input type=\"text\" id=\"ville-input\" placeholder=\"Entrez une ville…\">\n    <button type=\"submit\">Ajouter</button>\n  </form>\n  <div id=\"cartes\"></div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
           js: "const conteneur = document.querySelector(\"#cartes\");\n\nconst carte = document.createElement(\"div\");\ncarte.className = \"carte\";\ncarte.textContent = \"Paris\";\nconteneur.append(carte);"
-        }
+        },
+        verification: [
+          { fichier: "js", contient: "createElement", message: { fr: "Utilise document.createElement() pour créer un élément HTML.", en: "Use document.createElement() to create an HTML element." } },
+          { fichier: "js", contient: "className", message: { fr: "Attribue la classe \"carte\" avec .className.", en: "Assign the class \"carte\" using .className." } },
+          { fichier: "js", contient: "append", message: { fr: "Utilise .append() pour insérer la carte dans #cartes.", en: "Use .append() to insert the card into #cartes." } }
+        ]
       },
       application: null,
       quiz: [
@@ -151,7 +160,12 @@ export const m4 = {
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Template literals</title>\n  <style>\n    .carte { border: 2px solid #333; padding: 12px; margin: 8px; border-radius: 6px; display: inline-block; min-width: 150px; }\n    .carte h2 { margin: 0 0 8px; font-size: 1.1rem; }\n    .carte p { margin: 4px 0; color: #555; }\n  </style>\n</head>\n<body>\n  <form id=\"formulaire\">\n    <input type=\"text\" id=\"ville-input\" placeholder=\"Entrez une ville…\">\n    <button type=\"submit\">Ajouter</button>\n  </form>\n  <div id=\"cartes\"></div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
           js: "const formulaire = document.querySelector(\"#formulaire\");\nconst champ = document.querySelector(\"#ville-input\");\nconst conteneur = document.querySelector(\"#cartes\");\n\nformulaire.addEventListener(\"submit\", function(event) {\n  event.preventDefault();\n  const ville = champ.value;\n\n  const carte = document.createElement(\"div\");\n  carte.className = \"carte\";\n  carte.innerHTML = `\n    <h2>${ville}</h2>\n    <p>Pays : —</p>\n    <p>Météo : —</p>\n  `;\n\n  conteneur.append(carte);\n  champ.value = \"\";\n});"
-        }
+        },
+        verification: [
+          { fichier: "js", contient: "innerHTML", message: { fr: "Utilise .innerHTML pour définir le contenu HTML de la carte.", en: "Use .innerHTML to set the HTML content of the card." } },
+          { fichier: "js", contient: "${ville}", message: { fr: "Insère la variable ville dans le template literal avec ${ville}.", en: "Insert the ville variable into the template literal with ${ville}." } },
+          { fichier: "js", contient: "<h2>", message: { fr: "La carte doit contenir un <h2> avec le nom de la ville.", en: "The card must contain an <h2> with the city name." } }
+        ]
       },
       application: null,
       quiz: [
@@ -206,7 +220,12 @@ export const m4 = {
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Tableau de bord des villes</title>\n  <style>\n    body { font-family: sans-serif; padding: 16px; }\n    #cartes { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }\n    .carte { border: 2px solid #4a6fa5; padding: 16px; border-radius: 8px; min-width: 140px; background: #f0f4ff; }\n    .carte h2 { margin: 0 0 8px; font-size: 1.1rem; color: #1a3a6b; }\n    .carte p { margin: 4px 0; color: #555; font-size: 0.9rem; }\n  </style>\n</head>\n<body>\n  <form id=\"formulaire\">\n    <input type=\"text\" id=\"ville-input\" placeholder=\"Entrez une ville…\">\n    <button type=\"submit\">Ajouter</button>\n  </form>\n  <div id=\"cartes\"></div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
           js: "const formulaire = document.querySelector(\"#formulaire\");\nconst champ = document.querySelector(\"#ville-input\");\nconst conteneur = document.querySelector(\"#cartes\");\n\nconst villes = [];\n\nfunction afficher() {\n  conteneur.innerHTML = \"\";\n  for (const ville of villes) {\n    const carte = document.createElement(\"div\");\n    carte.className = \"carte\";\n    carte.innerHTML = `\n      <h2>${ville}</h2>\n      <p>Pays : —</p>\n      <p>Météo : —</p>\n    `;\n    conteneur.append(carte);\n  }\n}\n\nformulaire.addEventListener(\"submit\", function(event) {\n  event.preventDefault();\n  const ville = champ.value;\n  if (ville === \"\") return;\n  villes.push(ville);\n  afficher();\n  champ.value = \"\";\n});"
-        }
+        },
+        verification: [
+          { fichier: "js", contient: "function afficher()", message: { fr: "Déclare une fonction afficher() pour mettre à jour l'affichage.", en: "Declare an afficher() function to update the display." } },
+          { fichier: "js", contient: "conteneur.innerHTML = \"\"", message: { fr: "Dans afficher(), vide le conteneur avec conteneur.innerHTML = \"\".", en: "Inside afficher(), clear the container with conteneur.innerHTML = \"\"." } },
+          { fichier: "js", contient: "for (const ville of villes)", message: { fr: "Utilise une boucle for...of pour parcourir le tableau villes.", en: "Use a for...of loop to iterate over the villes array." } }
+        ]
       },
       application: {
         fr: "Chaque ville ajoutée produit maintenant une vraie carte sur le tableau de bord, avec des données fictives en attendant. Dans le module suivant, on remplacera ces tirets par de vraies informations récupérées depuis une API (pays, météo en temps réel) !",

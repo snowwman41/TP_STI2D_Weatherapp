@@ -36,7 +36,11 @@ export const m3 = {
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Variables & fonctions</title>\n</head>\n<body>\n  <h1>Ouvre la console pour voir le résultat !</h1>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
           js: "const prenom = \"Marie\";\n\nfunction direBonjour(nom) {\n  return \"Bonjour, \" + nom + \" !\";\n}\n\nconsole.log(direBonjour(prenom)); // Bonjour, Marie !"
-        }
+        },
+        verification: [
+          { fichier: "js", contient: "return", message: { fr: "La fonction direBonjour doit utiliser return pour retourner le message.", en: "The direBonjour function must use return to return the message." } },
+          { fichier: "js", contient: "Bonjour, ", message: { fr: "Le message retourné doit commencer par \"Bonjour, \".", en: "The returned message must start with \"Bonjour, \"." } }
+        ]
       },
       application: null,
       quiz: [
@@ -96,7 +100,12 @@ export const m3 = {
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Sélectionner des éléments</title>\n</head>\n<body>\n  <form id=\"formulaire\">\n    <input type=\"text\" id=\"ville-input\" placeholder=\"Entrez une ville…\">\n    <button id=\"btn-ajouter\">Ajouter</button>\n  </form>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
           js: "const bouton = document.querySelector(\"#btn-ajouter\");\nconst champ = document.querySelector(\"#ville-input\");\n\nconsole.log(bouton);\nconsole.log(champ);"
-        }
+        },
+        verification: [
+          { fichier: "js", contient: "querySelector", message: { fr: "Utilise document.querySelector() pour sélectionner les éléments.", en: "Use document.querySelector() to select elements." } },
+          { fichier: "js", contient: "#btn-ajouter", message: { fr: "Sélectionne le bouton avec le sélecteur \"#btn-ajouter\".", en: "Select the button with the selector \"#btn-ajouter\"." } },
+          { fichier: "js", contient: "#ville-input", message: { fr: "Sélectionne le champ texte avec le sélecteur \"#ville-input\".", en: "Select the text field with the selector \"#ville-input\"." } }
+        ]
       },
       application: null,
       quiz: [
@@ -151,7 +160,12 @@ export const m3 = {
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Événements</title>\n</head>\n<body>\n  <form id=\"formulaire\">\n    <input type=\"text\" id=\"ville-input\" placeholder=\"Entrez une ville…\">\n    <button type=\"submit\">Ajouter</button>\n  </form>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
           js: "const formulaire = document.querySelector(\"#formulaire\");\n\nformulaire.addEventListener(\"submit\", function(event) {\n  event.preventDefault();\n  console.log(\"Bouton cliqué !\");\n});"
-        }
+        },
+        verification: [
+          { fichier: "js", contient: "addEventListener", message: { fr: "Utilise addEventListener pour écouter les événements.", en: "Use addEventListener to listen for events." } },
+          { fichier: "js", contient: "\"submit\"", message: { fr: "Écoute l'événement \"submit\" sur le formulaire.", en: "Listen for the \"submit\" event on the form." } },
+          { fichier: "js", contient: "event.preventDefault()", message: { fr: "Appelle event.preventDefault() pour empêcher le rechargement.", en: "Call event.preventDefault() to prevent the page reload." } }
+        ]
       },
       application: null,
       quiz: [
@@ -211,7 +225,11 @@ export const m3 = {
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Lire la valeur</title>\n</head>\n<body>\n  <form id=\"formulaire\">\n    <input type=\"text\" id=\"ville-input\" placeholder=\"Entrez une ville…\">\n    <button type=\"submit\">Ajouter</button>\n  </form>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
           js: "const formulaire = document.querySelector(\"#formulaire\");\nconst champ = document.querySelector(\"#ville-input\");\n\nformulaire.addEventListener(\"submit\", function(event) {\n  event.preventDefault();\n  const ville = champ.value;\n  console.log(\"Ville :\", ville);\n});"
-        }
+        },
+        verification: [
+          { fichier: "js", contient: "champ.value", message: { fr: "Lis la propriété .value du champ pour obtenir le texte saisi.", en: "Read the .value property of the field to get the typed text." } },
+          { fichier: "js", contient: "addEventListener", message: { fr: "N'oublie pas d'utiliser addEventListener pour écouter le submit.", en: "Don't forget to use addEventListener to listen for submit." } }
+        ]
       },
       application: {
         fr: "Le bouton \"Ajouter\" de ton projet lit maintenant le nom de ville saisi et l'affiche dans la console. Dans le module suivant, on utilisera cette valeur pour créer une vraie carte sur le tableau de bord !",

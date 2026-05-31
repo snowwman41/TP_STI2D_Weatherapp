@@ -37,7 +37,12 @@ export const m6 = {
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Asynchronisme</title>\n</head>\n<body>\n  <h2>Exercice : ordre d'exécution</h2>\n  <p>Ouvre la console (F12) et observe l'ordre des messages.</p>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
           js: "console.log(\"1 — début\");\n\nsetTimeout(function() {\n  console.log(\"3 — première minuterie (1 s)\");\n}, 1000);\n\nsetTimeout(function() {\n  console.log(\"4 — deuxième minuterie (2 s)\");\n}, 2000);\n\nconsole.log(\"2 — après les setTimeout\");\n\n// Ordre réel :\n// 1 — début\n// 2 — après les setTimeout\n// 3 — première minuterie (1 s)\n// 4 — deuxième minuterie (2 s)"
-        }
+        },
+        verification: [
+          { fichier: "js", contient: "setTimeout(function() {", message: { fr: "Ajoute un second setTimeout avec une fonction de callback.", en: "Add a second setTimeout with a callback function." } },
+          { fichier: "js", contient: "2000", message: { fr: "Le second setTimeout doit avoir un délai de 2000 ms.", en: "The second setTimeout must have a delay of 2000 ms." } },
+          { fichier: "js", contient: "deuxième minuterie", message: { fr: "Affiche le message \"4 — deuxième minuterie\" dans la console.", en: "Log the message \"4 — deuxième minuterie\" to the console." } }
+        ]
       },
       application: null,
       quiz: [
@@ -99,7 +104,12 @@ export const m6 = {
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>async / await</title>\n</head>\n<body>\n  <h2>Exercice : async / await</h2>\n  <p>Ouvre la console (F12) pour voir le résultat.</p>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
           js: "async function chercher(ville) {\n  const url = \"https://geocoding-api.open-meteo.com/v1/search?name=\" + ville + \"&count=1&language=fr\";\n\n  const reponse = await fetch(url);\n  const data = await reponse.json();\n\n  console.log(\"Nom :\", data.results[0].name);      // \"Amsterdam\"\n  console.log(\"Latitude :\", data.results[0].latitude); // 52.374...\n}\n\nchercher(\"Amsterdam\");"
-        }
+        },
+        verification: [
+          { fichier: "js", contient: "async function chercher", message: { fr: "Déclare la fonction avec le mot-clé async.", en: "Declare the function with the async keyword." } },
+          { fichier: "js", contient: "await fetch(url)", message: { fr: "Utilise await devant fetch(url) pour attendre la réponse.", en: "Use await before fetch(url) to wait for the response." } },
+          { fichier: "js", contient: "await reponse.json()", message: { fr: "Utilise await devant reponse.json() pour convertir la réponse.", en: "Use await before reponse.json() to convert the response." } }
+        ]
       },
       application: null,
       quiz: [
@@ -156,7 +166,11 @@ export const m6 = {
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Deux requêtes</title>\n</head>\n<body>\n  <h2>Exercice : géocodage + météo</h2>\n  <p>Ouvre la console (F12) pour voir la température.</p>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
           js: "async function obtenirMeteo(ville) {\n  // Requête 1 : géocodage\n  const urlGeo = \"https://geocoding-api.open-meteo.com/v1/search?name=\" + ville + \"&count=1&language=fr\";\n  const repGeo = await fetch(urlGeo);\n  const geo = await repGeo.json();\n\n  const lat = geo.results[0].latitude;\n  const lon = geo.results[0].longitude;\n  console.log(\"Coordonnées :\", lat, lon);\n\n  // Requête 2 : météo\n  const urlMeteo = \"https://api.open-meteo.com/v1/forecast?latitude=\" + lat\n    + \"&longitude=\" + lon\n    + \"&current=temperature_2m,weather_code&timezone=auto\";\n  const repMeteo = await fetch(urlMeteo);\n  const meteo = await repMeteo.json();\n\n  console.log(\"Température :\", meteo.current.temperature_2m, \"°C\");\n  console.log(\"Code météo :\", meteo.current.weather_code);\n}\n\nobtenirMeteo(\"Berlin\");"
-        }
+        },
+        verification: [
+          { fichier: "js", contient: "open-meteo.com/v1/forecast", message: { fr: "Construis l'URL de l'API météo avec api.open-meteo.com/v1/forecast.", en: "Build the weather API URL with api.open-meteo.com/v1/forecast." } },
+          { fichier: "js", contient: "meteo.current.temperature_2m", message: { fr: "Affiche la température avec meteo.current.temperature_2m.", en: "Log the temperature with meteo.current.temperature_2m." } }
+        ]
       },
       application: null,
       quiz: [
@@ -218,7 +232,12 @@ export const m6 = {
         correction: {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Gestion des erreurs</title>\n  <style>\n    body { font-family: sans-serif; padding: 16px; }\n    #message { margin-top: 12px; padding: 10px; border-radius: 6px; background: #f0f4ff; }\n    .erreur { background: #ffe0e0; color: #c0392b; }\n  </style>\n</head>\n<body>\n  <h2>Exercice : gestion des erreurs</h2>\n  <input id=\"ville\" type=\"text\" placeholder=\"Nom de la ville\" value=\"Tokyo\">\n  <button onclick=\"charger()\">Chercher</button>\n  <div id=\"message\">En attente…</div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
           js: "async function charger() {\n  const ville = document.querySelector(\"#ville\").value;\n  const msg = document.querySelector(\"#message\");\n\n  try {\n    const urlGeo = \"https://geocoding-api.open-meteo.com/v1/search?name=\" + ville + \"&count=1&language=fr\";\n    const repGeo = await fetch(urlGeo);\n    const data = await repGeo.json();\n\n    if (!data.results) {\n      msg.className = \"erreur\";\n      msg.textContent = \"Ville introuvable : \" + ville;\n      return;\n    }\n\n    const lat = data.results[0].latitude;\n    const lon = data.results[0].longitude;\n\n    const urlMeteo = \"https://api.open-meteo.com/v1/forecast?latitude=\" + lat\n      + \"&longitude=\" + lon + \"&current=temperature_2m,weather_code&timezone=auto\";\n    const repMeteo = await fetch(urlMeteo);\n    const meteo = await repMeteo.json();\n\n    msg.className = \"\";\n    msg.textContent = data.results[0].name + \" : \" + meteo.current.temperature_2m + \" °C\";\n\n  } catch (e) {\n    msg.className = \"erreur\";\n    msg.textContent = \"Erreur réseau : \" + e.message;\n  }\n}"
-        }
+        },
+        verification: [
+          { fichier: "js", contient: "try {", message: { fr: "Entoure le code fetch dans un bloc try { ... }.", en: "Wrap the fetch code in a try { ... } block." } },
+          { fichier: "js", contient: "catch (e)", message: { fr: "Ajoute un catch (e) pour gérer les erreurs réseau.", en: "Add a catch (e) to handle network errors." } },
+          { fichier: "js", contient: "if (!data.results)", message: { fr: "Vérifie si la ville existe avec if (!data.results).", en: "Check whether the city exists with if (!data.results)." } }
+        ]
       },
       application: {
         fr: "Les cartes du tableau de bord affichent maintenant la <strong>vraie température</strong> et les conditions météo, récupérées en temps réel. Les erreurs (ville introuvable, réseau indisponible) sont gérées proprement sans planter la page. Le prochain module ajoute l'heure locale, la persistance des villes et la touche finale de style.",
