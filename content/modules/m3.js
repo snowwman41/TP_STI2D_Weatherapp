@@ -232,8 +232,8 @@ export const m3 = {
         ]
       },
       application: {
-        fr: "Le bouton \"Ajouter\" de ton projet lit maintenant le nom de ville saisi et l'affiche dans la console. Dans le module suivant, on utilisera cette valeur pour créer une vraie carte sur le tableau de bord !",
-        en: "Your project's \"Ajouter\" button now reads the typed city name and logs it to the console. In the next module, we'll use that value to create a real card on the dashboard!"
+        fr: "Le bouton \"Ajouter\" de ton projet lit maintenant le nom de ville saisi et l'affiche dans la console. Dans le module suivant, on utilisera cette valeur pour créer une vraie carte sur le tableau de bord ! <br><br>👉 <strong>Dans Notepad++ :</strong> ouvre <code>script.js</code> de ton dossier <code>projet-eleve/</code>, reporte-y ce que tu viens de pratiquer, enregistre (Ctrl+S), puis rafraîchis <code>index.html</code> dans le navigateur. Ton projet doit maintenant réagir au clic et lire la ville saisie (console).",
+        en: "Your project's \"Ajouter\" button now reads the typed city name and logs it to the console. In the next module, we'll use that value to create a real card on the dashboard! <br><br>👉 <strong>In Notepad++:</strong> open <code>script.js</code> from your <code>projet-eleve/</code> folder, transfer what you just practised, save (Ctrl+S), then refresh <code>index.html</code> in the browser. Your project should now react to a click and read the typed city (console)."
       },
       quiz: [
         {

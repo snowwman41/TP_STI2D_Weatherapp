@@ -227,8 +227,8 @@ export const m1 = {
         ]
       },
       application: {
-        fr: "Tu viens de poser la structure HTML complète de ton projet dans <code>projet-eleve/index.html</code>. Les modules suivants vont habiller cette structure avec du CSS, puis lui donner vie avec JavaScript.",
-        en: "You've just laid the complete HTML structure of your project in <code>projet-eleve/index.html</code>. The next modules will style this structure with CSS, then bring it to life with JavaScript."
+        fr: "Tu viens de poser la structure HTML complète de ton projet dans <code>projet-eleve/index.html</code>. Les modules suivants vont habiller cette structure avec du CSS, puis lui donner vie avec JavaScript. <br><br>👉 <strong>Dans Notepad++ :</strong> ouvre <code>index.html</code> de ton dossier <code>projet-eleve/</code>, reporte-y ce que tu viens de pratiquer, enregistre (Ctrl+S), puis rafraîchis <code>index.html</code> dans le navigateur. Ton projet doit maintenant afficher l'en-tête, le champ et le bouton.",
+        en: "You've just laid the complete HTML structure of your project in <code>projet-eleve/index.html</code>. The next modules will style this structure with CSS, then bring it to life with JavaScript. <br><br>👉 <strong>In Notepad++:</strong> open <code>index.html</code> from your <code>projet-eleve/</code> folder, transfer what you just practised, save (Ctrl+S), then refresh <code>index.html</code> in the browser. Your project should now display the header, the input field and the button."
       },
       quiz: [
         {

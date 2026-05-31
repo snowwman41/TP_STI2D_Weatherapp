@@ -37,7 +37,7 @@ if (!JSDOM) {
     }
   });
 
-  describe("render (jsdom) — les 37 étapes", () => {
+  describe("render (jsdom) — les 39 étapes", () => {
     it("aucune étape ne lève d'exception au rendu", () =>
       assertTrue(errors.length === 0, "exceptions → " + errors.join("  |  ")));
     it("chaque étape à quiz expose son bouton Valider", () =>

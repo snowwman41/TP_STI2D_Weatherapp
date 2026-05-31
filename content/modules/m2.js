@@ -415,8 +415,8 @@ export const m2 = {
         ]
       },
       application: {
-        fr: "Ton projet dispose maintenant d'une interface stylisée et responsive : cartes avec dégradé, grille automatique et adaptation mobile. Les variables CSS sont prêtes pour basculer en mode sombre. Prochaine étape : donner vie à tout cela avec JavaScript !",
-        en: "Your project now has a styled, responsive interface: gradient cards, an automatic grid, and mobile adaptation. CSS variables are ready for dark mode toggling. Next step: bring it all to life with JavaScript!"
+        fr: "Ton projet dispose maintenant d'une interface stylisée et responsive : cartes avec dégradé, grille automatique et adaptation mobile. Les variables CSS sont prêtes pour basculer en mode sombre. Prochaine étape : donner vie à tout cela avec JavaScript ! <br><br>👉 <strong>Dans Notepad++ :</strong> ouvre <code>style.css</code> de ton dossier <code>projet-eleve/</code>, reporte-y ce que tu viens de pratiquer, enregistre (Ctrl+S), puis rafraîchis <code>index.html</code> dans le navigateur. Ton projet doit maintenant afficher des cartes stylées en grille.",
+        en: "Your project now has a styled, responsive interface: gradient cards, an automatic grid, and mobile adaptation. CSS variables are ready for dark mode toggling. Next step: bring it all to life with JavaScript! <br><br>👉 <strong>In Notepad++:</strong> open <code>style.css</code> from your <code>projet-eleve/</code> folder, transfer what you just practised, save (Ctrl+S), then refresh <code>index.html</code> in the browser. Your project should now display styled cards in a grid."
       },
       quiz: [
         {

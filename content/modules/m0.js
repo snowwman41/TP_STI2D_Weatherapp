@@ -91,6 +91,56 @@ export const m0 = {
       ],
       scoreMinimal: 1,
       defiOptionnel: null
+    },
+    {
+      titre: { fr: "Ton espace de travail", en: "Your workspace" },
+      besoin: {
+        fr: "Tu as deux outils à ta disposition tout au long de la formation : un éditeur en ligne sur cette plateforme et Notepad++ sur ton ordinateur. Comprendre le rôle de chacun va te faire gagner un temps précieux.",
+        en: "You have two tools at your disposal throughout this course: an online editor on this platform and Notepad++ on your computer. Understanding the role of each will save you a lot of time."
+      },
+      decouverte: {
+        fr: "<strong>L'éditeur en ligne</strong> te permet d'apprendre et d'expérimenter chaque nouvelle notion avec un résultat instantané dans l'aperçu — pas besoin de sauvegarder ni d'ouvrir un navigateur. <strong>Notepad++</strong>, lui, te sert à construire ton <em>vrai projet</em> dans le dossier <code>projet-eleve/</code> : c'est là que les fichiers <code>index.html</code>, <code>style.css</code> et <code>script.js</code> prennent vie pour de bon.",
+        en: "<strong>The online editor</strong> lets you learn and experiment with each new concept, with instant feedback in the preview — no saving or browser needed. <strong>Notepad++</strong> is where you build your <em>real project</em> in the <code>projet-eleve/</code> folder: that is where <code>index.html</code>, <code>style.css</code>, and <code>script.js</code> truly come to life."
+      },
+      explication: {
+        fr: "La boucle de travail à retenir est simple : <strong>(1)</strong> tu apprends une notion en ligne dans l'éditeur de la plateforme, tu l'expérimentes ; <strong>(2)</strong> tu reportes ce que tu viens de pratiquer dans tes fichiers Notepad++ (<code>projet-eleve/</code>) ; <strong>(3)</strong> tu enregistres avec <kbd>Ctrl+S</kbd> ; <strong>(4)</strong> tu ouvres ou rafraîchis <code>index.html</code> dans le navigateur — soit par double-clic, soit via <code>serve.cmd</code> — et tu vois <em>ton</em> projet avancer. Pas « faire tout en ligne puis copier-coller à la fin » : module après module, ton vrai projet grandit en parallèle de ton apprentissage.<br><br>Pour démarrer, ouvre le dossier <code>projet-eleve/starter/</code> dans Notepad++ (Fichier → Ouvrir le dossier) et ouvre <code>index.html</code> dans le navigateur.",
+        en: "The workflow to remember is simple: <strong>(1)</strong> you learn a concept online in the platform editor, you experiment; <strong>(2)</strong> you transfer what you just practised into your Notepad++ files (<code>projet-eleve/</code>); <strong>(3)</strong> you save with <kbd>Ctrl+S</kbd>; <strong>(4)</strong> you open or refresh <code>index.html</code> in the browser — either by double-clicking or via <code>serve.cmd</code> — and you watch <em>your</em> project grow. Not « do everything online then copy-paste at the end »: module by module, your real project grows alongside your learning.<br><br>To get started, open the <code>projet-eleve/starter/</code> folder in Notepad++ (File → Open Folder) and open <code>index.html</code> in the browser."
+      },
+      illustration: null,
+      exemple: {
+        code: "// La boucle en 4 temps :\n// 1. J'apprends la notion ici, dans l'éditeur en ligne\n// 2. Je reporte dans projet-eleve/ avec Notepad++\n// 3. Ctrl+S pour enregistrer\n// 4. Je rafraîchis index.html dans le navigateur → mon projet avance !",
+        langage: "text",
+        commentaire: {
+          fr: "Chaque module = une nouvelle notion apprise en ligne + reportée dans ton projet réel.",
+          en: "Each module = a new concept learned online + carried over into your real project."
+        }
+      },
+      exercice: null,
+      application: {
+        fr: "Tes fichiers de départ se trouvent dans <code>projet-eleve/starter/</code> — ouvre ce dossier dans Notepad++ maintenant. Tu y verras <code>index.html</code>, <code>style.css</code> et <code>script.js</code> prêts à accueillir tout ce que tu vas construire.",
+        en: "Your starter files are in <code>projet-eleve/starter/</code> — open that folder in Notepad++ now. You will find <code>index.html</code>, <code>style.css</code> and <code>script.js</code> ready to receive everything you are about to build."
+      },
+      quiz: [
+        {
+          type: "qcm",
+          question: {
+            fr: "Où construis-tu ton vrai projet ?",
+            en: "Where do you build your real project?"
+          },
+          options: [
+            { fr: "Uniquement dans l'éditeur en ligne de la plateforme", en: "Only in the platform's online editor" },
+            { fr: "Dans les fichiers de projet-eleve/, avec Notepad++", en: "In the projet-eleve/ files, using Notepad++" },
+            { fr: "Dans un nouveau dossier créé à chaque module", en: "In a new folder created for each module" }
+          ],
+          bonneReponse: 1,
+          explication: {
+            fr: "L'éditeur en ligne sert à apprendre et tester. C'est Notepad++ et le dossier <code>projet-eleve/</code> qui contiennent ton vrai projet, celui que tu peux ouvrir dans le navigateur.",
+            en: "The online editor is for learning and testing. Notepad++ and the <code>projet-eleve/</code> folder hold your real project — the one you can open in the browser."
+          }
+        }
+      ],
+      scoreMinimal: 1,
+      defiOptionnel: null
     }
   ]
 };
