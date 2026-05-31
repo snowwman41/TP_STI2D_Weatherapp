@@ -133,12 +133,12 @@ export const m1 = {
         en: "A <code>&lt;form&gt;</code> groups input fields together. <code>&lt;input&gt;</code> creates a text field, <code>&lt;button&gt;</code> creates a clickable button. The <code>placeholder</code> attribute shows hint text in the field while it is empty."
       },
       explication: {
-        fr: "<code>&lt;input type=\"text\"&gt;</code> accepte du texte libre. On ajoute <code>id=\"ville-input\"</code> pour le retrouver en JavaScript. Le <code>&lt;button&gt;</code> déclenchera notre code JS plus tard — pour l'instant, on pose juste la structure HTML.",
-        en: "<code>&lt;input type=\"text\"&gt;</code> accepts free text. We add <code>id=\"ville-input\"</code> to find it from JavaScript. The <code>&lt;button&gt;</code> will trigger our JS code later — for now, we're just laying out the HTML structure."
+        fr: "<code>&lt;input type=\"text\"&gt;</code> accepte du texte libre. On ajoute <code>id=\"champ-ville\"</code> pour le retrouver en JavaScript. Le <code>&lt;button&gt;</code> déclenchera notre code JS plus tard — pour l'instant, on pose juste la structure HTML.",
+        en: "<code>&lt;input type=\"text\"&gt;</code> accepts free text. We add <code>id=\"champ-ville\"</code> to find it from JavaScript. The <code>&lt;button&gt;</code> will trigger our JS code later — for now, we're just laying out the HTML structure."
       },
       illustration: null,
       exemple: {
-        code: "<form id=\"formulaire\">\n  <input type=\"text\" id=\"ville-input\" placeholder=\"Entrez une ville…\">\n  <button type=\"button\">Ajouter</button>\n</form>",
+        code: "<form id=\"form-ville\">\n  <input type=\"text\" id=\"champ-ville\" placeholder=\"Entrez une ville…\">\n  <button type=\"submit\">Ajouter</button>\n</form>",
         langage: "html",
         commentaire: {
           fr: "Un formulaire simple avec un champ texte et un bouton.",
@@ -154,7 +154,7 @@ export const m1 = {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Tableau de bord</title>\n</head>\n<body>\n  <h1>Tableau de bord des villes</h1>\n  <!-- Ajoute le form ici -->\n  <div id=\"cartes\"></div>\n</body>\n</html>"
         },
         correction: {
-          html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Tableau de bord</title>\n</head>\n<body>\n  <h1>Tableau de bord des villes</h1>\n  <form id=\"formulaire\">\n    <input type=\"text\" id=\"ville-input\" placeholder=\"Entrez une ville…\">\n    <button type=\"button\">Ajouter</button>\n  </form>\n  <div id=\"cartes\"></div>\n</body>\n</html>"
+          html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Tableau de bord</title>\n</head>\n<body>\n  <h1>Tableau de bord des villes</h1>\n  <form id=\"form-ville\">\n    <input type=\"text\" id=\"champ-ville\" placeholder=\"Entrez une ville…\">\n    <button type=\"submit\">Ajouter</button>\n  </form>\n  <div id=\"cartes\"></div>\n</body>\n</html>"
         },
         verification: [
           { fichier: "html", contient: "<form", message: { fr: "Ajoute un élément <form> dans le body.", en: "Add a <form> element in the body." } },
@@ -201,7 +201,7 @@ export const m1 = {
       },
       illustration: null,
       exemple: {
-        code: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Tableau de bord des villes</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <h1>Tableau de bord des villes</h1>\n  <form id=\"formulaire\">\n    <input type=\"text\" id=\"ville-input\" placeholder=\"Entrez une ville…\">\n    <button type=\"button\" id=\"btn-ajouter\">Ajouter</button>\n  </form>\n  <div id=\"cartes\"></div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
+        code: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Tableau de bord des villes</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <h1>Tableau de bord des villes</h1>\n  <form id=\"form-ville\">\n    <input type=\"text\" id=\"champ-ville\" placeholder=\"Entrez une ville…\">\n    <button type=\"submit\">Ajouter</button>\n  </form>\n  <div id=\"cartes\"></div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
         langage: "html",
         commentaire: {
           fr: "La structure complète du fichier index.html du projet.",
@@ -217,12 +217,12 @@ export const m1 = {
           html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Tableau de bord des villes</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <!-- 1. Ajoute le titre h1 -->\n  <!-- 2. Ajoute le formulaire avec input et bouton -->\n  <!-- 3. Ajoute le div#cartes -->\n  <script src=\"script.js\"></script>\n</body>\n</html>"
         },
         correction: {
-          html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Tableau de bord des villes</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <h1>Tableau de bord des villes</h1>\n  <form id=\"formulaire\">\n    <input type=\"text\" id=\"ville-input\" placeholder=\"Entrez une ville…\">\n    <button type=\"button\" id=\"btn-ajouter\">Ajouter</button>\n  </form>\n  <div id=\"cartes\"></div>\n  <script src=\"script.js\"></script>\n</body>\n</html>"
+          html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Tableau de bord des villes</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <h1>Tableau de bord des villes</h1>\n  <form id=\"form-ville\">\n    <input type=\"text\" id=\"champ-ville\" placeholder=\"Entrez une ville…\">\n    <button type=\"submit\">Ajouter</button>\n  </form>\n  <div id=\"cartes\"></div>\n  <script src=\"script.js\"></script>\n</body>\n</html>"
         },
         verification: [
           { fichier: "html", contient: "<h1>", message: { fr: "Ajoute le titre <h1> en haut du body.", en: "Add the <h1> heading at the top of the body." } },
-          { fichier: "html", contient: "id=\"formulaire\"", message: { fr: "Ajoute un <form> avec id=\"formulaire\".", en: "Add a <form> with id=\"formulaire\"." } },
-          { fichier: "html", contient: "id=\"ville-input\"", message: { fr: "Ajoute un <input> avec id=\"ville-input\" dans le formulaire.", en: "Add an <input> with id=\"ville-input\" inside the form." } },
+          { fichier: "html", contient: "id=\"form-ville\"", message: { fr: "Ajoute un <form> avec id=\"form-ville\".", en: "Add a <form> with id=\"form-ville\"." } },
+          { fichier: "html", contient: "id=\"champ-ville\"", message: { fr: "Ajoute un <input> avec id=\"champ-ville\" dans le formulaire.", en: "Add an <input> with id=\"champ-ville\" inside the form." } },
           { fichier: "html", contient: "id=\"cartes\"", message: { fr: "Ajoute un <div> avec id=\"cartes\" pour les cartes de villes.", en: "Add a <div> with id=\"cartes\" to hold the city cards." } }
         ]
       },

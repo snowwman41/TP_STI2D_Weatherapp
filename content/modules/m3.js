@@ -81,30 +81,30 @@ export const m3 = {
       },
       illustration: "dom-tree",
       exemple: {
-        code: "// Sélectionner par id\nconst champVille = document.querySelector(\"#ville-input\");\n\n// Sélectionner par balise\nconst bouton = document.querySelector(\"button\");\n\nconsole.log(champVille); // <input id=\"ville-input\" …>\nconsole.log(bouton);     // <button …>Ajouter</button>",
+        code: "// Sélectionner par id\nconst champVille = document.querySelector(\"#champ-ville\");\n\n// Sélectionner par balise\nconst bouton = document.querySelector(\"button\");\n\nconsole.log(champVille); // <input id=\"champ-ville\" …>\nconsole.log(bouton);     // <button …>Ajouter</button>",
         langage: "js",
         commentaire: {
-          fr: "<code>#ville-input</code> cible l'élément avec cet id ; <code>button</code> cible le premier bouton de la page.",
-          en: "<code>#ville-input</code> targets the element with that id; <code>button</code> targets the first button on the page."
+          fr: "<code>#champ-ville</code> cible l'élément avec cet id ; <code>button</code> cible le premier bouton de la page.",
+          en: "<code>#champ-ville</code> targets the element with that id; <code>button</code> targets the first button on the page."
         }
       },
       exercice: {
         enonce: {
-          fr: "À partir du HTML fourni, sélectionne le bouton (par son <code>id</code>) et le champ texte (par son <code>id</code>) avec <code>querySelector</code>, puis affiche-les dans la console.",
-          en: "Using the provided HTML, select the button (by its <code>id</code>) and the text field (by its <code>id</code>) with <code>querySelector</code>, then log them to the console."
+          fr: "À partir du HTML fourni, sélectionne le bouton (avec le sélecteur <code>#form-ville button</code>) et le champ texte (avec <code>#champ-ville</code>) avec <code>querySelector</code>, puis affiche-les dans la console.",
+          en: "Using the provided HTML, select the button (with the selector <code>#form-ville button</code>) and the text field (with <code>#champ-ville</code>) with <code>querySelector</code>, then log them to the console."
         },
         fichiers: {
-          html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Sélectionner des éléments</title>\n</head>\n<body>\n  <form id=\"formulaire\">\n    <input type=\"text\" id=\"ville-input\" placeholder=\"Entrez une ville…\">\n    <button id=\"btn-ajouter\">Ajouter</button>\n  </form>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
-          js: "// Sélectionne le bouton par son id 'btn-ajouter'\nconst bouton = // ...\n\n// Sélectionne le champ texte par son id 'ville-input'\nconst champ = // ...\n\n// Affiche-les dans la console\nconsole.log(bouton);\nconsole.log(champ);"
+          html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Sélectionner des éléments</title>\n</head>\n<body>\n  <form id=\"form-ville\">\n    <input type=\"text\" id=\"champ-ville\" placeholder=\"Entrez une ville…\">\n    <button type=\"submit\">Ajouter</button>\n  </form>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
+          js: "// Sélectionne le bouton avec '#form-ville button'\nconst bouton = // ...\n\n// Sélectionne le champ texte par son id 'champ-ville'\nconst champ = // ...\n\n// Affiche-les dans la console\nconsole.log(bouton);\nconsole.log(champ);"
         },
         correction: {
-          html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Sélectionner des éléments</title>\n</head>\n<body>\n  <form id=\"formulaire\">\n    <input type=\"text\" id=\"ville-input\" placeholder=\"Entrez une ville…\">\n    <button id=\"btn-ajouter\">Ajouter</button>\n  </form>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
-          js: "const bouton = document.querySelector(\"#btn-ajouter\");\nconst champ = document.querySelector(\"#ville-input\");\n\nconsole.log(bouton);\nconsole.log(champ);"
+          html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Sélectionner des éléments</title>\n</head>\n<body>\n  <form id=\"form-ville\">\n    <input type=\"text\" id=\"champ-ville\" placeholder=\"Entrez une ville…\">\n    <button type=\"submit\">Ajouter</button>\n  </form>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
+          js: "const bouton = document.querySelector(\"#form-ville button\");\nconst champ = document.querySelector(\"#champ-ville\");\n\nconsole.log(bouton);\nconsole.log(champ);"
         },
         verification: [
           { fichier: "js", contient: "querySelector", message: { fr: "Utilise document.querySelector() pour sélectionner les éléments.", en: "Use document.querySelector() to select elements." } },
-          { fichier: "js", contient: "#btn-ajouter", message: { fr: "Sélectionne le bouton avec le sélecteur \"#btn-ajouter\".", en: "Select the button with the selector \"#btn-ajouter\"." } },
-          { fichier: "js", contient: "#ville-input", message: { fr: "Sélectionne le champ texte avec le sélecteur \"#ville-input\".", en: "Select the text field with the selector \"#ville-input\"." } }
+          { fichier: "js", contient: "#form-ville button", message: { fr: "Sélectionne le bouton avec le sélecteur \"#form-ville button\".", en: "Select the button with the selector \"#form-ville button\"." } },
+          { fichier: "js", contient: "#champ-ville", message: { fr: "Sélectionne le champ texte avec le sélecteur \"#champ-ville\".", en: "Select the text field with the selector \"#champ-ville\"." } }
         ]
       },
       application: null,
@@ -141,7 +141,7 @@ export const m3 = {
       },
       illustration: null,
       exemple: {
-        code: "const formulaire = document.querySelector(\"#formulaire\");\n\nformulaire.addEventListener(\"submit\", function(event) {\n  event.preventDefault(); // empêche le rechargement\n  console.log(\"Formulaire soumis !\");\n});",
+        code: "const formulaire = document.querySelector(\"#form-ville\");\n\nformulaire.addEventListener(\"submit\", function(event) {\n  event.preventDefault(); // empêche le rechargement\n  console.log(\"Formulaire soumis !\");\n});",
         langage: "js",
         commentaire: {
           fr: "<code>addEventListener</code> sur le formulaire avec le type <code>\"submit\"</code> ; <code>preventDefault()</code> bloque le rechargement de la page.",
@@ -154,12 +154,12 @@ export const m3 = {
           en: "Add a <code>\"submit\"</code> event listener on the form. Inside the function, call <code>event.preventDefault()</code> then log <code>\"Bouton cliqué !\"</code> to the console."
         },
         fichiers: {
-          html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Événements</title>\n</head>\n<body>\n  <form id=\"formulaire\">\n    <input type=\"text\" id=\"ville-input\" placeholder=\"Entrez une ville…\">\n    <button type=\"submit\">Ajouter</button>\n  </form>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
-          js: "const formulaire = document.querySelector(\"#formulaire\");\n\n// Ajoute un écouteur 'submit' sur le formulaire\nformulaire.addEventListener(\"submit\", function(event) {\n  // 1. Empêche le rechargement de la page\n\n  // 2. Affiche \"Bouton cliqué !\" dans la console\n\n});"
+          html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Événements</title>\n</head>\n<body>\n  <form id=\"form-ville\">\n    <input type=\"text\" id=\"champ-ville\" placeholder=\"Entrez une ville…\">\n    <button type=\"submit\">Ajouter</button>\n  </form>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
+          js: "const formulaire = document.querySelector(\"#form-ville\");\n\n// Ajoute un écouteur 'submit' sur le formulaire\nformulaire.addEventListener(\"submit\", function(event) {\n  // 1. Empêche le rechargement de la page\n\n  // 2. Affiche \"Bouton cliqué !\" dans la console\n\n});"
         },
         correction: {
-          html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Événements</title>\n</head>\n<body>\n  <form id=\"formulaire\">\n    <input type=\"text\" id=\"ville-input\" placeholder=\"Entrez une ville…\">\n    <button type=\"submit\">Ajouter</button>\n  </form>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
-          js: "const formulaire = document.querySelector(\"#formulaire\");\n\nformulaire.addEventListener(\"submit\", function(event) {\n  event.preventDefault();\n  console.log(\"Bouton cliqué !\");\n});"
+          html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Événements</title>\n</head>\n<body>\n  <form id=\"form-ville\">\n    <input type=\"text\" id=\"champ-ville\" placeholder=\"Entrez une ville…\">\n    <button type=\"submit\">Ajouter</button>\n  </form>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
+          js: "const formulaire = document.querySelector(\"#form-ville\");\n\nformulaire.addEventListener(\"submit\", function(event) {\n  event.preventDefault();\n  console.log(\"Bouton cliqué !\");\n});"
         },
         verification: [
           { fichier: "js", contient: "addEventListener", message: { fr: "Utilise addEventListener pour écouter les événements.", en: "Use addEventListener to listen for events." } },
@@ -206,7 +206,7 @@ export const m3 = {
       },
       illustration: null,
       exemple: {
-        code: "const champ = document.querySelector(\"#ville-input\");\nconst formulaire = document.querySelector(\"#formulaire\");\n\nformulaire.addEventListener(\"submit\", function(event) {\n  event.preventDefault();\n  const ville = champ.value;\n  console.log(\"Ville :\", ville);\n});",
+        code: "const champ = document.querySelector(\"#champ-ville\");\nconst formulaire = document.querySelector(\"#form-ville\");\n\nformulaire.addEventListener(\"submit\", function(event) {\n  event.preventDefault();\n  const ville = champ.value;\n  console.log(\"Ville :\", ville);\n});",
         langage: "js",
         commentaire: {
           fr: "<code>champ.value</code> lit le texte tapé par l'utilisateur au moment de la soumission.",
@@ -215,16 +215,16 @@ export const m3 = {
       },
       exercice: {
         enonce: {
-          fr: "Dans l'écouteur <code>submit</code> du formulaire, lis la valeur du champ <code>#ville-input</code> et affiche <code>\"Ville : [valeur saisie]\"</code> dans la console.",
-          en: "Inside the form's <code>submit</code> listener, read the value of the <code>#ville-input</code> field and log <code>\"Ville : [typed value]\"</code> to the console."
+          fr: "Dans l'écouteur <code>submit</code> du formulaire, lis la valeur du champ <code>#champ-ville</code> et affiche <code>\"Ville : [valeur saisie]\"</code> dans la console.",
+          en: "Inside the form's <code>submit</code> listener, read the value of the <code>#champ-ville</code> field and log <code>\"Ville : [typed value]\"</code> to the console."
         },
         fichiers: {
-          html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Lire la valeur</title>\n</head>\n<body>\n  <form id=\"formulaire\">\n    <input type=\"text\" id=\"ville-input\" placeholder=\"Entrez une ville…\">\n    <button type=\"submit\">Ajouter</button>\n  </form>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
-          js: "const formulaire = document.querySelector(\"#formulaire\");\nconst champ = document.querySelector(\"#ville-input\");\n\nformulaire.addEventListener(\"submit\", function(event) {\n  event.preventDefault();\n\n  // Lis la valeur du champ et stocke-la dans 'ville'\n  const ville = // ...\n\n  // Affiche \"Ville : \" suivi du nom tapé\n  console.log(\"Ville :\", ville);\n});"
+          html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Lire la valeur</title>\n</head>\n<body>\n  <form id=\"form-ville\">\n    <input type=\"text\" id=\"champ-ville\" placeholder=\"Entrez une ville…\">\n    <button type=\"submit\">Ajouter</button>\n  </form>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
+          js: "const formulaire = document.querySelector(\"#form-ville\");\nconst champ = document.querySelector(\"#champ-ville\");\n\nformulaire.addEventListener(\"submit\", function(event) {\n  event.preventDefault();\n\n  // Lis la valeur du champ et stocke-la dans 'ville'\n  const ville = // ...\n\n  // Affiche \"Ville : \" suivi du nom tapé\n  console.log(\"Ville :\", ville);\n});"
         },
         correction: {
-          html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Lire la valeur</title>\n</head>\n<body>\n  <form id=\"formulaire\">\n    <input type=\"text\" id=\"ville-input\" placeholder=\"Entrez une ville…\">\n    <button type=\"submit\">Ajouter</button>\n  </form>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
-          js: "const formulaire = document.querySelector(\"#formulaire\");\nconst champ = document.querySelector(\"#ville-input\");\n\nformulaire.addEventListener(\"submit\", function(event) {\n  event.preventDefault();\n  const ville = champ.value;\n  console.log(\"Ville :\", ville);\n});"
+          html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Lire la valeur</title>\n</head>\n<body>\n  <form id=\"form-ville\">\n    <input type=\"text\" id=\"champ-ville\" placeholder=\"Entrez une ville…\">\n    <button type=\"submit\">Ajouter</button>\n  </form>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
+          js: "const formulaire = document.querySelector(\"#form-ville\");\nconst champ = document.querySelector(\"#champ-ville\");\n\nformulaire.addEventListener(\"submit\", function(event) {\n  event.preventDefault();\n  const ville = champ.value;\n  console.log(\"Ville :\", ville);\n});"
         },
         verification: [
           { fichier: "js", contient: "champ.value", message: { fr: "Lis la propriété .value du champ pour obtenir le texte saisi.", en: "Read the .value property of the field to get the typed text." } },
