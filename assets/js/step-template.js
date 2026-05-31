@@ -106,15 +106,14 @@ export function renderStep(container, step, ctx) {
         fb.innerHTML = passed
           ? `<div class="ok">✓ ${t("exercisePassed")}</div>`
           : results.map(r => `<div class="${r.ok ? "ok" : "ko"}">${r.ok ? "✓" : "✗"} ${richText(pick(r.message))}</div>`).join("");
-        if (passed) {
-          checkBtn.disabled = true;
-          exOK = true;
-          maybeComplete();
-        } else {
+        // Re-vérifie à CHAQUE clic : si le code redevient faux, l'étape se reverrouille.
+        exOK = passed;
+        if (!passed) {
           // La correction n'apparaît qu'en cas d'erreur, comme une aide.
           solBox.hidden = false;
           solBox.innerHTML = `<p class="hint">${t("solutionHelp")}</p>${correctionHtml()}`;
         }
+        maybeComplete();
       });
     } else {
       // Exercice sans règles de vérification : repli sur l'affichage de la correction.
