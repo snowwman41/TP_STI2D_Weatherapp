@@ -21,4 +21,8 @@ describe("verify.verifyExercise", () => {
     assertEqual(verifyExercise([], { html: "" }).passed, true));
   it("fichier absent du code → règle échoue", () =>
     assertEqual(verifyExercise(regles, {}).passed, false));
+  it("tolère les différences d'espaces (color: #x === color:#x)", () => {
+    const r = [{ fichier: "css", contient: "color: #0284c7", message: { fr: "x", en: "x" } }];
+    assertEqual(verifyExercise(r, { css: "h1{color:#0284c7}" }).passed, true);
+  });
 });
