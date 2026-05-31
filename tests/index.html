@@ -4,7 +4,13 @@
 <body>
   <div id="results">Chargement…</div>
   <script type="module">
-    // Importer ici chaque fichier *.test.js puis appeler render().
+    import "./theme.test.js";
+    import "./i18n.test.js";
+    import "./router.test.js";
+    import "./progress.test.js";
+    import "./editor.test.js";
+    import "./quiz.test.js";
+    import "./weather.test.js";
     import { render } from "./runner.js";
     render();
   </script>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><title>Smoke test</title>
+<link rel="stylesheet" href="../assets/css/variables.css">
+<link rel="stylesheet" href="../assets/css/components.css"></head>
+<body>
+<div id="log"></div>
+<div id="host" style="position:absolute;left:-9999px"></div>
+<script type="module">
+import { flatSteps } from "../content/modules.js";
+import { renderStep } from "../assets/js/step-template.js";
+const log_ = document.getElementById("log");
+const log = (m, ok=true) => log_.innerHTML += `<div style="color:${ok?'green':'red'}">${ok?'✓':'✗'} ${m}</div>`;
+const host = document.getElementById("host");
+
+// 1) chaque étape se rend sans exception
+let okSteps = 0;
+flatSteps.forEach((s, i) => {
+  try { renderStep(host, s, { globalIndex:i, onComplete(){}, gotoNext(){}, gotoPrev(){} }); okSteps++; }
+  catch (e) { log(`étape ${i} (${s.titre.fr}) : ${e.message}`, false); }
+});
+log(`${okSteps}/${flatSteps.length} étapes rendues sans erreur`, okSteps === flatSteps.length);
+
+// 2) chaque quiz a une bonneReponse définie
+let badQuiz = 0;
+flatSteps.forEach(s => (s.quiz||[]).forEach(q => { if (q.bonneReponse === undefined) badQuiz++; }));
+log(`quiz : ${badQuiz} question(s) sans bonneReponse`, badQuiz === 0);
+
+// 3) APIs joignables
+try {
+  const g = await fetch("https://geocoding-api.open-meteo.com/v1/search?name=Paris&count=1").then(r=>r.json());
+  log("Open-Meteo geocoding répond ("+(g.results?.[0]?.country||"?")+")", !!g.results);
+  const f = await fetch("https://api.open-meteo.com/v1/forecast?latitude=48.85&longitude=2.35&current=temperature_2m,weather_code&timezone=auto").then(r=>r.json());
+  log("Open-Meteo forecast répond ("+f.current?.temperature_2m+"°)", f.current!=null);
+  const flag = await fetch("https://flagcdn.com/fr.svg"); log("flagcdn répond", flag.ok);
+} catch(e) { log("API : "+e.message, false); }
+</script>
+</body></html>
