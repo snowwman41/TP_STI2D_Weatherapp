@@ -1,10 +1,13 @@
+import { demoApp } from "../demo-app.js";
+
 export const m0 = {
   titre: { fr: "Découverte & mise en route", en: "Getting started" },
   etapes: [
     {
       titre: { fr: "À quoi va ressembler le projet ?", en: "What will the project look like?" },
-      besoin: { fr: "Avant de coder, voyons ce qu'on va construire : un tableau de bord qui affiche la météo de villes du monde.",
-                en: "Before coding, let's see what we'll build: a dashboard showing the weather of cities worldwide." },
+      besoin: { fr: "Avant de coder, voyons ce qu'on va construire : un tableau de bord qui affiche la météo de villes du monde. La démo ci-dessous est <strong>la vraie application finale</strong> — essaie d'ajouter une ville !",
+                en: "Before coding, let's see what we'll build: a dashboard showing the weather of cities worldwide. The demo below is <strong>the real finished app</strong> — try adding a city!" },
+      demo: demoApp,
       decouverte: { fr: "Comprendre l'objectif final aide à savoir <em>pourquoi</em> chaque notion qu'on apprendra est utile.",
                     en: "Understanding the final goal helps us know <em>why</em> each notion we learn matters." },
       explication: { fr: "L'application finale permettra de taper le nom d'une ville et d'afficher une carte avec son pays, son drapeau, sa température, la météo et l'heure locale. On va la construire petit à petit.",

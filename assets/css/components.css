@@ -56,3 +56,6 @@
 .exo-feedback.ko { background: rgba(220, 38, 38, .10); }
 .exo-feedback .ok { color: var(--c-success); font-weight: 700; }
 .exo-feedback .ko { color: var(--c-danger); }
+
+/* Démo interactive (étape de découverte) */
+.demo-frame { width: 100%; height: 420px; border: 1px solid var(--c-border); border-radius: var(--radius); background: #fff; display: block; }

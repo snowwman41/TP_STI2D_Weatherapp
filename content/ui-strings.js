@@ -16,6 +16,7 @@ export const uiStrings = {
   prev:         { fr: "Étape précédente", en: "Previous step" },
   teacherUnlock:{ fr: "Tout déverrouiller (prof)", en: "Unlock all (teacher)" },
   reset:        { fr: "Réinitialiser ma progression", en: "Reset my progress" },
+  blockDemo:    { fr: "Démo : le résultat final (interactif)", en: "Demo: the final result (interactive)" },
   blockNeed:    { fr: "Le besoin", en: "The need" },
   blockDiscover:{ fr: "Découverte", en: "Discover" },
   blockExplain: { fr: "Explication", en: "Explanation" },

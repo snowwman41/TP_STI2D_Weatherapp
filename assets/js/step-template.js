@@ -1,7 +1,7 @@
 import { pick, t } from "./i18n.js";
 import { richText } from "./sanitize.js";
 import { getIllustration } from "./illustrations.js";
-import { createEditor } from "./editor.js";
+import { createEditor, buildPreviewDoc } from "./editor.js";
 import { renderQuiz } from "./quiz.js";
 import { verifyExercise } from "./verify.js";
 
@@ -23,6 +23,7 @@ export function renderStep(container, step, ctx) {
     <article class="step">
       <h2>${richText(pick(step.titre))}</h2>
       ${block("blockNeed", "🎯", `<p class="need">${richText(pick(step.besoin))}</p>`)}
+      ${step.demo ? `<section class="step-block"><h3>🔎 ${t("blockDemo")}</h3><iframe class="demo-frame" sandbox="allow-scripts"></iframe></section>` : ""}
       ${block("blockDiscover", "💡", `<p>${richText(pick(step.decouverte))}</p>`)}
       ${block("blockExplain", "📖", `<div>${richText(pick(step.explication))}</div>${step.illustration ? getIllustration(step.illustration) : ""}`)}
       ${step.exemple ? block("blockExample", "👀",
@@ -41,6 +42,12 @@ export function renderStep(container, step, ctx) {
         <button class="btn btn-primary nav-next">${t("next")}</button>
       </nav>
     </article>`;
+
+  // Démo interactive (étape de découverte) : on exécute l'app finale dans une iframe sandbox.
+  if (step.demo) {
+    const f = container.querySelector(".demo-frame");
+    if (f) f.srcdoc = buildPreviewDoc(step.demo.html, step.demo.css, step.demo.js);
+  }
 
   const nextBtn = container.querySelector(".nav-next");
 
