@@ -37,6 +37,7 @@ export function renderStep(container, step, ctx) {
       ${block("blockApply", "🚀", step.application ? `<div>${richText(pick(step.application))}</div>` : "")}
       ${step.defiOptionnel ? `<section class="step-block challenge"><h3>⭐ ${t("optionalChallenge")}</h3><div>${richText(pick(step.defiOptionnel))}</div></section>` : ""}
       ${quizGates ? `<section class="step-block"><h3>✅ ${t("blockQuiz")}</h3><div class="quiz-host"></div></section>` : ""}
+      <div class="gate-msg" hidden></div>
       <nav class="step-nav">
         <button class="btn nav-prev">${t("prev")}</button>
         <button class="btn btn-primary nav-next">${t("next")}</button>
@@ -50,16 +51,37 @@ export function renderStep(container, step, ctx) {
   }
 
   const nextBtn = container.querySelector(".nav-next");
+  const gateMsg = container.querySelector(".gate-msg");
 
   // Déblocage combiné : l'étape suivante s'ouvre quand exercice ET quiz sont validés.
   let exOK = !exGates;
   let quizOK = !quizGates;
   let quizRatio = 1;
   let completed = false;
-  function refreshGate() {
-    const open = ctx.teacher || (exOK && quizOK);
-    nextBtn.disabled = !open;
-    if (open && !completed) { completed = true; ctx.onComplete(quizRatio); }
+  let gateShown = false;
+
+  const gateOpen = () => ctx.teacher || (exOK && quizOK);
+
+  // Affiche ce qu'il reste à valider (ou un feu vert si tout est bon).
+  function renderGate() {
+    if (gateOpen()) {
+      gateMsg.hidden = false;
+      gateMsg.className = "gate-msg ok";
+      gateMsg.innerHTML = pick({ fr: "✓ Tout est validé — clique sur « Étape suivante » !", en: "✓ All done — click \"Next step\"!" });
+      return;
+    }
+    const items = [];
+    if (exGates) items.push(`<li class="${exOK ? "ok" : "ko"}">${exOK ? "✓" : "✗"} ${pick({ fr: "Réussir l'exercice (bouton « Vérifier »)", en: "Pass the exercise (\"Check\" button)" })}</li>`);
+    if (quizGates) items.push(`<li class="${quizOK ? "ok" : "ko"}">${quizOK ? "✓" : "✗"} ${pick({ fr: "Réussir le quiz", en: "Pass the quiz" })}</li>`);
+    gateMsg.hidden = false;
+    gateMsg.className = "gate-msg ko";
+    gateMsg.innerHTML = `<strong>${pick({ fr: "Avant de continuer, il reste à valider :", en: "Before continuing, you still need to:" })}</strong><ul>${items.join("")}</ul>`;
+  }
+
+  // Marque l'étape complète dès que les portes sont franchies, et met à jour le message s'il est affiché.
+  function maybeComplete() {
+    if (gateOpen() && !completed) { completed = true; ctx.onComplete(quizRatio); }
+    if (gateShown) renderGate();
   }
 
   // Exercice
@@ -87,7 +109,7 @@ export function renderStep(container, step, ctx) {
         if (passed) {
           checkBtn.disabled = true;
           exOK = true;
-          refreshGate();
+          maybeComplete();
         } else {
           // La correction n'apparaît qu'en cas d'erreur, comme une aide.
           solBox.hidden = false;
@@ -115,13 +137,17 @@ export function renderStep(container, step, ctx) {
     renderQuiz(container.querySelector(".quiz-host"), step.quiz, step.scoreMinimal ?? 1, (ratio) => {
       quizOK = true;
       quizRatio = ratio;
-      refreshGate();
+      maybeComplete();
     });
   }
 
-  nextBtn.addEventListener("click", ctx.gotoNext);
+  // Navigation : si tout est validé on avance ; sinon on affiche ce qu'il reste à faire.
+  nextBtn.addEventListener("click", () => {
+    if (gateOpen()) { ctx.gotoNext(); }
+    else { gateShown = true; renderGate(); }
+  });
   container.querySelector(".nav-prev").addEventListener("click", ctx.gotoPrev);
-  refreshGate();   // état initial (et complète d'emblée les étapes sans porte)
+  maybeComplete();   // complète d'emblée les étapes sans porte
 }
 
 function escapeHtml(s) {

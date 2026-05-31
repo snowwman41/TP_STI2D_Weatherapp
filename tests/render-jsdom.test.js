@@ -47,27 +47,30 @@ if (!JSDOM) {
   // Verrouillage combiné exercice + quiz (étape « Les 3 fichiers du web » = M0/E1).
   const step2 = flatSteps.find(s => s.module === 0 && s.etape === 1);
   const host = dom.window.document.createElement("div");
-  renderStep(host, step2, { globalIndex: 1, teacher: false, onComplete() {}, gotoNext() {}, gotoPrev() {} });
+  let navigated = 0;
+  renderStep(host, step2, { globalIndex: 1, teacher: false, onComplete() {}, gotoNext() { navigated++; }, gotoPrev() {} });
   const next = host.querySelector(".nav-next");
   const check = host.querySelector(".exo-check");
   const area = host.querySelector(".editor-area");      // onglet HTML actif par défaut
   const solution = host.querySelector(".solution");
+  const gate = host.querySelector(".gate-msg");
 
-  const disabledInitial = next.disabled;
-  // 1) échec : le starter n'a ni <link> ni <script>
+  // 1) clic sur Suivant verrouillé → message affiché, pas de navigation
+  next.click();
+  const lockedShowsMsg = !gate.hidden && navigated === 0;
+  // 2) échec de l'exercice → la correction s'affiche en aide
   check.click();
   const failShowsHelp = !solution.hidden;
-  const stillLockedAfterFail = next.disabled;
-  // 2) on corrige le HTML, on revérifie → exercice OK mais quiz pas encore fait
+  // 3) on corrige le HTML : exercice OK mais quiz à faire → Suivant ne navigue toujours pas
   area.value = step2.exercice.correction.html;
   area.dispatchEvent(new dom.window.Event("input"));
   check.click();
-  const stillLockedQuizPending = next.disabled;
+  next.click();
+  const stillLockedQuizPending = navigated === 0 && !gate.hidden;
 
   describe("render (jsdom) — verrouillage exercice+quiz", () => {
-    it("Suivant désactivé au départ", () => assertTrue(disabledInitial));
+    it("clic sur Suivant verrouillé → affiche ce qu'il reste, sans naviguer", () => assertTrue(lockedShowsMsg));
     it("échec → la correction s'affiche en aide", () => assertTrue(failShowsHelp));
-    it("échec → Suivant reste verrouillé", () => assertTrue(stillLockedAfterFail));
-    it("exercice réussi mais quiz à faire → Suivant reste verrouillé", () => assertTrue(stillLockedQuizPending));
+    it("exercice réussi mais quiz à faire → ne navigue pas", () => assertTrue(stillLockedQuizPending));
   });
 }
