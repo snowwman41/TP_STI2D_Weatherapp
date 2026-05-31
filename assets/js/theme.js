@@ -6,7 +6,7 @@ export function nextTheme(current) {
 }
 
 export function getTheme() {
-  return (hasLS && localStorage.getItem(KEY)) || "light";
+  return (hasLS && localStorage.getItem(KEY)) || "dark";
 }
 
 export function applyTheme(theme) {
