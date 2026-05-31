@@ -5,6 +5,7 @@ import { flatSteps, stepAt, globalIndex } from "../../content/modules.js";
 import { renderSidebar } from "./sidebar.js";
 import { renderStep } from "./step-template.js";
 import { isUnlocked, markCompleted, unlockAll, getState, resetProgress } from "./progress.js";
+import { confirmDialog } from "./modal.js";
 
 const content = document.getElementById("content");
 
@@ -32,14 +33,19 @@ const langSel = document.getElementById("lang");
 langSel.value = getLang();
 langSel.addEventListener("change", () => setLang(langSel.value));
 
-// Réinitialisation : efface toute la progression après confirmation.
+// Réinitialisation : efface toute la progression après confirmation (modale au thème du site).
 const resetBtn = document.getElementById("reset");
 const applyResetLabel = () => { resetBtn.title = t("reset"); };
-resetBtn.addEventListener("click", () => {
-  const ok = confirm(pick({
-    fr: "⚠️ Réinitialiser effacera TOUTE ta progression (étapes terminées, scores de quiz, déverrouillages). Tu recommenceras depuis le tout début. Continuer ?",
-    en: "⚠️ Resetting will erase ALL your progress (completed steps, quiz scores, unlocks). You'll start over from the very beginning. Continue?"
-  }));
+resetBtn.addEventListener("click", async () => {
+  const ok = await confirmDialog({
+    message: pick({
+      fr: "⚠️ Réinitialiser effacera TOUTE ta progression (étapes terminées, scores de quiz, déverrouillages). Tu recommenceras depuis le tout début. Continuer ?",
+      en: "⚠️ Resetting will erase ALL your progress (completed steps, quiz scores, unlocks). You'll start over from the very beginning. Continue?"
+    }),
+    okLabel: pick({ fr: "Tout réinitialiser", en: "Reset everything" }),
+    cancelLabel: pick({ fr: "Annuler", en: "Cancel" }),
+    danger: true
+  });
   if (!ok) return;
   resetProgress();
   navigate(0, 0);
