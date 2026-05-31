@@ -268,7 +268,7 @@ describe("theme", () => {
 const KEY = "tbv:theme";
 
 export function nextTheme(current) {
-  return current === "light" ? "dark" : "light";
+  return current === "dark" ? "light" : "dark";
 }
 
 export function getTheme() {
