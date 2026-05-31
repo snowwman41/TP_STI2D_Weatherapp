@@ -31,8 +31,8 @@ export const m0 = {
                 en: "To build a web page, we need three files, each with its own role." },
       decouverte: { fr: "Séparer structure, style et comportement rend le code clair et réutilisable.",
                     en: "Separating structure, style and behavior keeps code clear and reusable." },
-      explication: { fr: "<strong>HTML</strong> = la structure (le contenu). <strong>CSS</strong> = le style (l'apparence). <strong>JavaScript</strong> = le comportement (les actions). Comparaison : HTML est le squelette, CSS les vêtements, JS les muscles.",
-                     en: "<strong>HTML</strong> = structure (content). <strong>CSS</strong> = style (looks). <strong>JavaScript</strong> = behavior (actions). Analogy: HTML is the skeleton, CSS the clothes, JS the muscles." },
+      explication: { fr: "<strong>HTML</strong> est le fichier central : c'est lui que le navigateur ouvre et <strong>affiche</strong>. Il définit la <strong>structure</strong> (le contenu) de la page. On lui <strong>relie</strong> ensuite deux fichiers : un <strong>CSS</strong> pour le <strong>style</strong> (l'apparence) et un <strong>JavaScript</strong> pour le <strong>comportement</strong> (l'interactivité). Image : HTML est le squelette, CSS les vêtements, JS les muscles.<br><br><strong>Où relier ces fichiers ?</strong> Le <code><link></code> du CSS va dans le <code><head></code>. Le <code><script></code> du JS se place <strong>tout à la fin</strong>, juste avant <code></body></code> : ainsi le HTML est déjà chargé quand le JavaScript s'exécute (sinon il chercherait des éléments qui n'existent pas encore).",
+                     en: "<strong>HTML</strong> is the central file: it's the one the browser opens and <strong>displays</strong>. It defines the page's <strong>structure</strong> (the content). You then <strong>link</strong> two files to it: a <strong>CSS</strong> file for <strong>style</strong> (looks) and a <strong>JavaScript</strong> file for <strong>behavior</strong> (interactivity). Picture it: HTML is the skeleton, CSS the clothes, JS the muscles.<br><br><strong>Where do you link them?</strong> The CSS <code><link></code> goes in the <code><head></code>. The JS <code><script></code> goes <strong>at the very end</strong>, just before <code></body></code>: that way the HTML is already loaded when the JavaScript runs (otherwise it would look for elements that don't exist yet)." },
       illustration: null,
       exemple: { code: "index.html   → structure\nstyle.css    → apparence\nscript.js    → comportement",
                  langage: "text", commentaire: { fr: "Les trois fichiers de notre projet.", en: "The three files of our project." } },
@@ -53,7 +53,12 @@ export const m0 = {
           options: [{ fr: "HTML", en: "HTML" }, { fr: "CSS", en: "CSS" }, { fr: "JavaScript", en: "JavaScript" }],
           bonneReponse: 1, explication: { fr: "Le CSS s'occupe du style.", en: "CSS handles styling." } },
         { type: "complete", question: { fr: "Quelle balise relie un fichier JS ? <…src=\"script.js\">", en: "Which tag links a JS file? <…src=\"script.js\">" },
-          bonneReponse: "script", explication: { fr: "<script src=\"…\"> charge le JavaScript.", en: "<script src=\"…\"> loads JavaScript." } }
+          bonneReponse: "script", explication: { fr: "<script src=\"…\"> charge le JavaScript.", en: "<script src=\"…\"> loads JavaScript." } },
+        { type: "qcm", question: { fr: "Où place-t-on le <code><script></code> du JavaScript ?", en: "Where do you put the JavaScript <code><script></code>?" },
+          options: [{ fr: "Dans le <code><head></code>, tout en haut", en: "In the <code><head></code>, at the top" },
+                    { fr: "Juste avant <code></body></code>, à la fin", en: "Just before <code></body></code>, at the end" },
+                    { fr: "N'importe où, ça ne change rien", en: "Anywhere, it makes no difference" }],
+          bonneReponse: 1, explication: { fr: "À la fin du <code><body></code>, le HTML est déjà chargé : le JS peut donc manipuler les éléments de la page.", en: "At the end of the <code><body></code>, the HTML is already loaded, so the JS can work with the page's elements." } }
       ],
       scoreMinimal: 1,
       defiOptionnel: null
