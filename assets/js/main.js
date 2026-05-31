@@ -1,10 +1,10 @@
 import { initTheme } from "./theme.js";
-import { getLang, setLang, onLangChange, applyStaticI18n, t } from "./i18n.js";
+import { getLang, setLang, onLangChange, applyStaticI18n, t, pick } from "./i18n.js";
 import { startRouter, onRoute, parseHash, navigate } from "./router.js";
 import { flatSteps, stepAt, globalIndex } from "../../content/modules.js";
 import { renderSidebar } from "./sidebar.js";
 import { renderStep } from "./step-template.js";
-import { isUnlocked, markCompleted, unlockAll, getState } from "./progress.js";
+import { isUnlocked, markCompleted, unlockAll, getState, resetProgress } from "./progress.js";
 
 const content = document.getElementById("content");
 
@@ -31,8 +31,24 @@ document.getElementById("burger").addEventListener("click", () =>
 const langSel = document.getElementById("lang");
 langSel.value = getLang();
 langSel.addEventListener("change", () => setLang(langSel.value));
-onLangChange(() => { applyStaticI18n(); show(parseHash(location.hash)); });
+
+// Réinitialisation : efface toute la progression après confirmation.
+const resetBtn = document.getElementById("reset");
+const applyResetLabel = () => { resetBtn.title = t("reset"); };
+resetBtn.addEventListener("click", () => {
+  const ok = confirm(pick({
+    fr: "⚠️ Réinitialiser effacera TOUTE ta progression (étapes terminées, scores de quiz, déverrouillages). Tu recommenceras depuis le tout début. Continuer ?",
+    en: "⚠️ Resetting will erase ALL your progress (completed steps, quiz scores, unlocks). You'll start over from the very beginning. Continue?"
+  }));
+  if (!ok) return;
+  resetProgress();
+  navigate(0, 0);
+  show(parseHash(location.hash));
+});
+
+onLangChange(() => { applyStaticI18n(); applyResetLabel(); show(parseHash(location.hash)); });
 applyStaticI18n();
+applyResetLabel();
 
 // Déverrouillage prof : Ctrl+Shift+U
 window.addEventListener("keydown", e => {
