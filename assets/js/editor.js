@@ -24,7 +24,7 @@ export function createEditor(container, initial, opts = {}) {
     <div class="editor">
       <div class="editor-tabs">${tabs.map(t => `<button class="etab" data-t="${t}">${t.toUpperCase()}</button>`).join("")}</div>
       <textarea class="editor-area" spellcheck="false"></textarea>
-      <iframe class="editor-preview" sandbox="allow-scripts"></iframe>
+      <iframe class="editor-preview" sandbox="allow-scripts allow-forms"></iframe>
       <div class="editor-console" aria-label="console"></div>
     </div>`;
 

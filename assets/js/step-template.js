@@ -23,7 +23,7 @@ export function renderStep(container, step, ctx) {
     <article class="step">
       <h2>${richText(pick(step.titre))}</h2>
       ${block("blockNeed", "🎯", `<p class="need">${richText(pick(step.besoin))}</p>`)}
-      ${step.demo ? `<section class="step-block"><h3>🔎 ${t("blockDemo")}</h3><iframe class="demo-frame" sandbox="allow-scripts"></iframe></section>` : ""}
+      ${step.demo ? `<section class="step-block"><h3>🔎 ${t("blockDemo")}</h3><iframe class="demo-frame" sandbox="allow-scripts allow-forms"></iframe></section>` : ""}
       ${block("blockDiscover", "💡", `<p>${richText(pick(step.decouverte))}</p>`)}
       ${block("blockExplain", "📖", `<div>${richText(pick(step.explication))}</div>${step.illustration ? getIllustration(step.illustration) : ""}`)}
       ${step.exemple ? block("blockExample", "👀",

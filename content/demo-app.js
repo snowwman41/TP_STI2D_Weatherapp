@@ -82,6 +82,6 @@ function afficher() {
 }
 
 // Villes pré-chargées pour que la démo soit vivante immédiatement.
-["Tokyo", "Paris", "New York"].forEach(nom =>
+["Tokyo", "Paris", "Alger"].forEach(nom =>
   chercherVille(nom).then(v => { villes.push(v); afficher(); }).catch(() => {}));`
 };
