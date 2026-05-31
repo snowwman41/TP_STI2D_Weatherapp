@@ -12,8 +12,8 @@ export const m0 = {
       illustration: null,
       exemple: null,
       exercice: null,
-      application: { fr: "Voici un aperçu d'une carte de ville finie :<div class='preview-card'>🇯🇵 <strong>Tokyo</strong> — 22° · Ciel dégagé · 14:30</div>",
-                     en: "Here's a preview of a finished city card:<div class='preview-card'>🇯🇵 <strong>Tokyo</strong> — 22° · Clear sky · 14:30</div>" },
+      application: { fr: "Voici un aperçu d'une carte de ville finie : <strong>🇯🇵 Tokyo — 22° · Ciel dégagé · 14:30</strong>",
+                     en: "Here's a preview of a finished city card: <strong>🇯🇵 Tokyo — 22° · Clear sky · 14:30</strong>" },
       quiz: [
         { type: "qcm", question: { fr: "Que va afficher l'application pour chaque ville ?", en: "What will the app show for each city?" },
           options: [{ fr: "Seulement le nom", en: "Only the name" },

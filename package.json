@@ -3,5 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Plateforme d'apprentissage — aucun build, aucune dépendance. type:module permet d'exécuter les tests via node."
+  "description": "Plateforme d'apprentissage — aucun build, aucune dépendance d'exécution. type:module permet d'exécuter les tests via node.",
+  "devDependencies": {
+    "jsdom": "^29.1.1"
+  }
 }

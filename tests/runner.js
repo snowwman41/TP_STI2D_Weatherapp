@@ -31,9 +31,11 @@ export function render() {
   const passed = results.filter(r => r.ok).length;
   const allOk = passed === results.length;
 
-  // Mode navigateur : rendu HTML dans #results.
-  if (typeof document !== "undefined") {
-    const root = document.getElementById("results");
+  // Mode navigateur : rendu HTML dans #results (uniquement si l'élément existe ;
+  // un test jsdom peut définir `document` sans page de tests réelle).
+  const root = (typeof document !== "undefined" && document.getElementById)
+    ? document.getElementById("results") : null;
+  if (root) {
     root.innerHTML =
       `<h1>${passed}/${results.length} tests passés</h1>` +
       results.map(r =>

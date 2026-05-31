@@ -1,4 +1,5 @@
 import { pick, t } from "./i18n.js";
+import { richText } from "./sanitize.js";
 
 function correct(q, ans) {
   if (q.type === "complete")
@@ -16,9 +17,9 @@ export function renderQuiz(container, questions, seuil, onPass) {
   const answers = new Array(questions.length).fill(undefined);
   container.innerHTML = `<div class="quiz">${questions.map((q, i) => `
     <div class="qz" data-i="${i}">
-      <p class="qz-q">${i + 1}. ${pick(q.question)}</p>
+      <p class="qz-q">${i + 1}. ${richText(pick(q.question))}</p>
       <div class="qz-opts">${renderInput(q, i)}</div>
-      <p class="qz-explain" hidden>${pick(q.explication)}</p>
+      <p class="qz-explain" hidden>${richText(pick(q.explication))}</p>
     </div>`).join("")}
     <button class="btn btn-primary qz-validate">${t("quizValidate")}</button>
     <p class="qz-result" hidden></p></div>`;
@@ -50,7 +51,7 @@ function renderInput(q, i) {
     return `<label><input type="radio" name="q${i}" data-val value="true"> ${pick({fr:"Vrai",en:"True"})}</label>
             <label><input type="radio" name="q${i}" data-val value="false"> ${pick({fr:"Faux",en:"False"})}</label>`;
   return q.options.map((o, k) =>
-    `<label><input type="radio" name="q${i}" data-val value="${k}"> ${pick(o)}</label>`).join("");
+    `<label><input type="radio" name="q${i}" data-val value="${k}"> ${richText(pick(o))}</label>`).join("");
 }
 
 function readVal(q, inp) {
