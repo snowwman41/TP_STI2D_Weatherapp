@@ -3,6 +3,8 @@ import { richText, escapeText } from "../assets/js/sanitize.js";
 
 describe("sanitize.escapeText", () => {
   it("échappe < > &", () => assertEqual(escapeText("a & <b>"), "a &amp; &lt;b&gt;"));
+  it("ne double-échappe PAS les entités déjà présentes", () =>
+    assertEqual(escapeText("&lt;html&gt; &amp; &#39;"), "&lt;html&gt; &amp; &#39;"));
   it("tolère null", () => assertEqual(escapeText(null), ""));
 });
 
@@ -17,5 +19,7 @@ describe("sanitize.richText", () => {
     assertEqual(richText("le <head> et </body>"), "le &lt;head&gt; et &lt;/body&gt;"));
   it("préserve <em> et <br>", () =>
     assertEqual(richText("a<br><em>b</em>"), "a<br><em>b</em>"));
+  it("gère les balises écrites en entités (&lt;html&gt;) dans un <code>", () =>
+    assertEqual(richText("(<code>&lt;html&gt;</code>)"), "(<code>&lt;html&gt;</code>)"));
   it("tolère null", () => assertEqual(richText(null), ""));
 });

@@ -14,7 +14,10 @@ const ALLOWED = ["strong", "em", "code", "br", "b", "i", "kbd", "u"];
 
 export function escapeText(value) {
   return String(value ?? "")
-    .replace(/&/g, "&amp;")
+    // N'échappe le « & » que s'il n'introduit pas déjà une entité (&lt; &gt; &amp; &#39; …).
+    // Le contenu mélange balises littérales (<head>) ET entités (&lt;html&gt;) : les deux
+    // doivent s'afficher correctement, sans double-échappement.
+    .replace(/&(?!(?:[a-zA-Z][a-zA-Z0-9]*|#\d+|#x[0-9a-fA-F]+);)/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
 }
