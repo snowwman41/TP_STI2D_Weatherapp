@@ -259,7 +259,73 @@ export const m7 = {
       defiOptionnel: null
     },
 
-    // ─── Étape 5 (Capstone) ──────────────────────────────────────────────────────
+    // ─── Étape 5 (Mode sombre) ────────────────────────────────────────────────────
+    {
+      titre: { fr: "Le mode sombre", en: "Dark mode" },
+      besoin: {
+        fr: "Beaucoup d'utilisateurs préfèrent une interface sombre, surtout le soir. Grâce aux <strong>variables CSS</strong> (vues au module CSS), on peut basculer tout le thème d'un seul coup.",
+        en: "Many users prefer a dark interface, especially at night. Thanks to <strong>CSS variables</strong> (seen in the CSS module), we can switch the whole theme at once."
+      },
+      decouverte: {
+        fr: "On définit une seconde palette sous le sélecteur <code>[data-theme=\"dark\"]</code> : il redéfinit les mêmes variables avec des couleurs sombres. En JavaScript, il suffit d'ajouter ou de retirer l'attribut <code>data-theme=\"dark\"</code> sur la balise <code>&lt;html&gt;</code> pour basculer instantanément toute la page.",
+        en: "We define a second palette under the <code>[data-theme=\"dark\"]</code> selector: it redefines the same variables with dark colors. In JavaScript, you just add or remove the <code>data-theme=\"dark\"</code> attribute on the <code>&lt;html&gt;</code> tag to instantly switch the whole page."
+      },
+      explication: {
+        fr: "<code>document.documentElement</code> désigne la balise <code>&lt;html&gt;</code>. On lit et écrit son thème avec <code>document.documentElement.dataset.theme</code>. Au clic du bouton, on bascule entre <code>\"dark\"</code> et une valeur vide. Pour que le choix survive au rechargement, on peut le sauvegarder dans <code>localStorage</code> (vu à l'étape précédente) et le réappliquer au démarrage.",
+        en: "<code>document.documentElement</code> is the <code>&lt;html&gt;</code> tag. You read and write its theme with <code>document.documentElement.dataset.theme</code>. On button click, you toggle between <code>\"dark\"</code> and an empty value. So the choice survives a reload, you can save it to <code>localStorage</code> (seen in the previous step) and reapply it at startup."
+      },
+      illustration: null,
+      exemple: {
+        code: "/* ── CSS : deux palettes ── */\n/* :root {\n  --fond: #ffffff;\n  --texte: #0f172a;\n}\n[data-theme=\"dark\"] {\n  --fond: #0b1220;\n  --texte: #dbeafe;\n}\nbody { background: var(--fond); color: var(--texte); } */\n\n// ── JavaScript : basculer le thème ──\nconst bouton = document.querySelector(\"#theme\");\n\nbouton.addEventListener(\"click\", function() {\n  const html = document.documentElement;\n  const sombre = html.dataset.theme === \"dark\";\n  html.dataset.theme = sombre ? \"\" : \"dark\";\n  localStorage.setItem(\"theme\", html.dataset.theme); // mémorise le choix\n});",
+        langage: "js",
+        commentaire: {
+          fr: "Le bouton ajoute ou retire <code>data-theme=\"dark\"</code> sur <code>&lt;html&gt;</code> ; les variables CSS font le reste automatiquement.",
+          en: "The button adds or removes <code>data-theme=\"dark\"</code> on <code>&lt;html&gt;</code>; the CSS variables do the rest automatically."
+        }
+      },
+      exercice: {
+        enonce: {
+          fr: "Complète le gestionnaire de clic du bouton « 🌙 Thème » : bascule l'attribut <code>data-theme</code> de <code>&lt;html&gt;</code> entre <code>\"dark\"</code> et une chaîne vide. Observe la page passer du clair au sombre.",
+          en: "Complete the « 🌙 Theme » button's click handler: toggle the <code>data-theme</code> attribute of <code>&lt;html&gt;</code> between <code>\"dark\"</code> and an empty string. Watch the page switch from light to dark."
+        },
+        fichiers: {
+          html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Mode sombre</title>\n  <style>\n    :root { --fond: #ffffff; --texte: #0f172a; --carte: #f0f4ff; }\n    [data-theme=\"dark\"] { --fond: #0b1220; --texte: #dbeafe; --carte: #111c30; }\n    body { background: var(--fond); color: var(--texte); font-family: sans-serif; padding: 16px; transition: background .2s, color .2s; }\n    .carte { background: var(--carte); border-radius: 8px; padding: 16px; margin-top: 12px; }\n    button { padding: 8px 14px; cursor: pointer; }\n  </style>\n</head>\n<body>\n  <button id=\"theme\">🌙 Thème</button>\n  <div class=\"carte\">Paris — 18°</div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
+          js: "const bouton = document.querySelector(\"#theme\");\n\nbouton.addEventListener(\"click\", function() {\n  const html = document.documentElement;\n\n  // Bascule html.dataset.theme entre \"dark\" et \"\" (vide)\n  // ...\n});"
+        },
+        correction: {
+          html: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Mode sombre</title>\n  <style>\n    :root { --fond: #ffffff; --texte: #0f172a; --carte: #f0f4ff; }\n    [data-theme=\"dark\"] { --fond: #0b1220; --texte: #dbeafe; --carte: #111c30; }\n    body { background: var(--fond); color: var(--texte); font-family: sans-serif; padding: 16px; transition: background .2s, color .2s; }\n    .carte { background: var(--carte); border-radius: 8px; padding: 16px; margin-top: 12px; }\n    button { padding: 8px 14px; cursor: pointer; }\n  </style>\n</head>\n<body>\n  <button id=\"theme\">🌙 Thème</button>\n  <div class=\"carte\">Paris — 18°</div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
+          js: "const bouton = document.querySelector(\"#theme\");\n\nbouton.addEventListener(\"click\", function() {\n  const html = document.documentElement;\n  const sombre = html.dataset.theme === \"dark\";\n  html.dataset.theme = sombre ? \"\" : \"dark\";\n});"
+        },
+        verification: [
+          { fichier: "js", contient: "dataset.theme", message: { fr: "Modifie le thème avec html.dataset.theme.", en: "Change the theme with html.dataset.theme." } },
+          { fichier: "js", contient: "\"dark\"", message: { fr: "Bascule la valeur vers \"dark\" quand le thème est clair.", en: "Toggle the value to \"dark\" when the theme is light." } }
+        ]
+      },
+      application: {
+        fr: "Ton tableau de bord peut maintenant basculer en mode sombre. Comme les couleurs viennent toutes de variables CSS, aucun autre code n'est à changer. Tu peux même garder le choix de l'utilisateur avec <code>localStorage</code>, comme à l'étape précédente.",
+        en: "Your dashboard can now switch to dark mode. Since all colors come from CSS variables, no other code needs changing. You can even keep the user's choice with <code>localStorage</code>, as in the previous step."
+      },
+      quiz: [
+        {
+          type: "qcm",
+          question: { fr: "Comment bascule-t-on tout le thème de la page ?", en: "How do you switch the whole page theme?" },
+          options: [
+            { fr: "En changeant la couleur de chaque élément un par un", en: "By changing each element's color one by one" },
+            { fr: "En ajoutant/retirant data-theme=\"dark\" sur <html> — les variables CSS font le reste", en: "By adding/removing data-theme=\"dark\" on <html> — the CSS variables do the rest" },
+            { fr: "En rechargeant la page", en: "By reloading the page" }
+          ],
+          bonneReponse: 1,
+          explication: {
+            fr: "Une seconde palette est définie sous <code>[data-theme=\"dark\"]</code>. En posant cet attribut sur <code>&lt;html&gt;</code>, toutes les variables changent d'un coup — donc toute l'interface.",
+            en: "A second palette is defined under <code>[data-theme=\"dark\"]</code>. By setting that attribute on <code>&lt;html&gt;</code>, all variables change at once — so does the whole interface."
+          }
+        }
+      ],
+      scoreMinimal: 1,
+      defiOptionnel: null
+    },
+
+    // ─── Étape 6 (Capstone) ──────────────────────────────────────────────────────
     {
       titre: { fr: "Assemble ton projet complet", en: "Assemble your complete project" },
       besoin: {

@@ -251,26 +251,26 @@ export const m2 = {
       defiOptionnel: null
     },
     {
-      titre: { fr: "Variables CSS & mode sombre", en: "CSS variables & dark mode" },
+      titre: { fr: "Les variables CSS", en: "CSS variables" },
       besoin: {
-        fr: "Quand on utilise une même couleur à plusieurs endroits, la changer oblige à modifier chaque ligne. Les variables CSS règlent ce problème et rendent le mode sombre facile à implémenter.",
-        en: "When the same color is used in many places, changing it means editing every line. CSS variables solve this problem and make dark mode easy to implement."
+        fr: "Quand on utilise une même couleur à plusieurs endroits, la changer oblige à modifier chaque ligne. Les variables CSS règlent ce problème : on définit la valeur une seule fois et on la réutilise partout.",
+        en: "When the same color is used in many places, changing it means editing every line. CSS variables solve this: you define the value once and reuse it everywhere."
       },
       decouverte: {
-        fr: "On déclare une variable CSS dans <code>:root</code> avec la syntaxe <code>--nom-variable: valeur;</code>, puis on la lit partout avec <code>var(--nom-variable)</code>. Redéfinir les variables sous un sélecteur différent (comme <code>[data-theme=\"dark\"]</code>) change instantanément toute la palette.",
-        en: "A CSS variable is declared inside <code>:root</code> with the syntax <code>--variable-name: value;</code>, then read anywhere with <code>var(--variable-name)</code>. Redefining the variables under a different selector (like <code>[data-theme=\"dark\"]</code>) instantly changes the whole palette."
+        fr: "On déclare une variable CSS dans <code>:root</code> avec la syntaxe <code>--nom-variable: valeur;</code>, puis on la lit partout avec <code>var(--nom-variable)</code>. Changer la valeur à un seul endroit met à jour toute la page.",
+        en: "A CSS variable is declared inside <code>:root</code> with the syntax <code>--variable-name: value;</code>, then read anywhere with <code>var(--variable-name)</code>. Changing the value in one place updates the whole page."
       },
       explication: {
-        fr: "Le sélecteur <code>:root</code> correspond à la racine du document HTML — les variables définies là sont accessibles depuis n'importe quel élément. Pour le mode sombre, on ajoute <code>data-theme=\"dark\"</code> sur le <code>&lt;html&gt;</code> (via JavaScript) : le CSS redéfinit alors les variables avec des couleurs sombres, sans toucher à aucun autre sélecteur.",
-        en: "The <code>:root</code> selector matches the root of the HTML document — variables defined there are accessible from any element. For dark mode, you add <code>data-theme=\"dark\"</code> to the <code>&lt;html&gt;</code> tag (via JavaScript): the CSS then redefines the variables with dark colors, without touching any other selector."
+        fr: "Le sélecteur <code>:root</code> correspond à la racine du document HTML — les variables définies là sont accessibles depuis n'importe quel élément. L'intérêt : si une couleur est utilisée à dix endroits, il suffit de changer la variable une seule fois pour tout mettre à jour. <em>(Plus tard, dans les finitions, on s'en servira pour créer un mode sombre.)</em>",
+        en: "The <code>:root</code> selector matches the root of the HTML document — variables defined there are accessible from any element. The benefit: if a color is used in ten places, you change the variable once to update everything. <em>(Later, in the finishing touches, we'll use this to build a dark mode.)</em>"
       },
       illustration: null,
       exemple: {
-        code: ":root {\n  --couleur-principale: #0284c7;\n  --fond-carte: #f0f9ff;\n  --texte: #1e293b;\n}\n\n[data-theme=\"dark\"] {\n  --couleur-principale: #38bdf8;\n  --fond-carte: #1e293b;\n  --texte: #e2e8f0;\n}\n\n.carte {\n  background-color: var(--fond-carte);\n  color: var(--texte);\n  border: 2px solid var(--couleur-principale);\n}",
+        code: ":root {\n  --couleur-principale: #0284c7;\n  --fond-carte: #f0f9ff;\n  --texte: #1e293b;\n}\n\n.carte {\n  background-color: var(--fond-carte);\n  color: var(--texte);\n  border: 2px solid var(--couleur-principale);\n}",
         langage: "css",
         commentaire: {
-          fr: "Définition des variables et basculement mode sombre.",
-          en: "Variable definition and dark mode switching."
+          fr: "On déclare les variables une fois dans :root, puis on les réutilise avec var().",
+          en: "Variables declared once in :root, then reused with var()."
         }
       },
       exercice: {
