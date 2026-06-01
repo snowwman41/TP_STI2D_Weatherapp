@@ -170,6 +170,18 @@ export const m3 = {
         ]
       },
       application: null,
+      notepad: {
+        fr: {
+          fichier: "script.js",
+          intro: "Dans <code>script.js</code>, ajoute ces lignes pour réagir au clic sur le bouton Ajouter :",
+          code: "const formulaire = document.querySelector(\"#form-ville\");\n\nformulaire.addEventListener(\"submit\", function(event) {\n  event.preventDefault();\n  console.log(\"Bouton cliqué !\");\n});"
+        },
+        en: {
+          fichier: "script.js",
+          intro: "In <code>script.js</code>, add these lines to react to the Add button click:",
+          code: "const formulaire = document.querySelector(\"#form-ville\");\n\nformulaire.addEventListener(\"submit\", function(event) {\n  event.preventDefault();\n  console.log(\"Bouton cliqué !\");\n});"
+        }
+      },
       quiz: [
         {
           type: "qcm",
@@ -234,8 +246,20 @@ export const m3 = {
         ]
       },
       application: {
-        fr: "Le bouton \"Ajouter\" de ton projet lit maintenant le nom de ville saisi et l'affiche dans la console. Dans le module suivant, on utilisera cette valeur pour créer une vraie carte sur le tableau de bord ! <br><br>👉 <strong>Dans Notepad++ :</strong> ouvre <code>script.js</code> de ton dossier <code>app_web_meteo/</code>, reporte-y ce que tu viens de pratiquer, enregistre (Ctrl+S), puis rafraîchis <code>index.html</code> dans le navigateur. Ton projet doit maintenant réagir au clic et lire la ville saisie (console).",
-        en: "Your project's \"Ajouter\" button now reads the typed city name and logs it to the console. In the next module, we'll use that value to create a real card on the dashboard! <br><br>👉 <strong>In Notepad++:</strong> open <code>script.js</code> from your <code>app_web_meteo/</code> folder, transfer what you just practised, save (Ctrl+S), then refresh <code>index.html</code> in the browser. Your project should now react to a click and read the typed city (console)."
+        fr: "Le bouton « Ajouter » de ton projet lit maintenant le nom de ville saisi et l'affiche dans la console. Dans le module suivant, on utilisera cette valeur pour créer une vraie carte sur le tableau de bord !",
+        en: "Your project's « Ajouter » button now reads the typed city name and logs it to the console. In the next module, we'll use that value to create a real card on the dashboard!"
+      },
+      notepad: {
+        fr: {
+          fichier: "script.js",
+          intro: "Remplace tout le contenu de <code>script.js</code> par ce code qui lit le nom de ville saisi :",
+          code: "const formulaire = document.querySelector(\"#form-ville\");\nconst champ = document.querySelector(\"#champ-ville\");\n\nformulaire.addEventListener(\"submit\", function(event) {\n  event.preventDefault();\n  const ville = champ.value;\n  console.log(\"Ville :\", ville);\n});"
+        },
+        en: {
+          fichier: "script.js",
+          intro: "Replace the entire content of <code>script.js</code> with this code that reads the typed city name:",
+          code: "const formulaire = document.querySelector(\"#form-ville\");\nconst champ = document.querySelector(\"#champ-ville\");\n\nformulaire.addEventListener(\"submit\", function(event) {\n  event.preventDefault();\n  const ville = champ.value;\n  console.log(\"Ville :\", ville);\n});"
+        }
       },
       quiz: [
         {

@@ -56,9 +56,65 @@
 .step-block { margin: 22px 0; padding: 16px; border: 1px solid var(--c-border); border-radius: var(--radius); background: var(--c-surface); }
 .step-block h3 { margin: 0 0 8px; font-family: var(--font-body); font-size: 15px; }
 .step-block.challenge { border-style: dashed; }
+
+/* ── Bloc Notepad++ ── */
+.step-notepad {
+  margin: 22px 0;
+  padding: 16px;
+  border: 1px solid #f59e0b;
+  border-left: 4px solid #f59e0b;
+  border-radius: var(--radius);
+  background: #fffbeb;
+}
+[data-theme="dark"] .step-notepad {
+  background: #2d2200;
+  border-color: #b45309;
+  border-left-color: #f59e0b;
+}
+.step-notepad h3 { margin: 0 0 10px; font-family: var(--font-body); font-size: 15px; color: #92400e; }
+[data-theme="dark"] .step-notepad h3 { color: #fbbf24; }
+.notepad-file { margin: 0 0 8px; font-size: 14px; }
+.notepad-intro { margin: 0 0 10px; }
+.notepad-code {
+  background: #0f172a; color: #e2e8f0;
+  padding: 12px; border-radius: var(--radius-sm);
+  overflow: auto; font-family: var(--font-mono); font-size: 12.5px;
+  margin: 0 0 10px; white-space: pre;
+}
+.notepad-footer { margin: 0; font-size: 13px; color: #92400e; }
+[data-theme="dark"] .notepad-footer { color: #fbbf24; }
 .need { font-style: italic; font-size: 17px; }
 .code { background: #0f172a; color: #e2e8f0; padding: 12px; border-radius: var(--radius-sm); overflow: auto; font-family: var(--font-mono); font-size: 13px; }
 .hint { font-size: 13px; color: var(--c-text-soft); }
+
+/* ── Login overlay ── */
+#login-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  display: flex; align-items: center; justify-content: center; padding: 24px;
+  background: var(--c-bg);
+}
+.login-card {
+  background: var(--c-surface); border: 1px solid var(--c-border);
+  border-radius: var(--radius); padding: 40px 32px; max-width: 400px; width: 100%;
+  text-align: center; box-shadow: var(--shadow);
+}
+.login-logo { font-size: 48px; margin-bottom: 12px; }
+.login-title { font-size: 22px; margin: 0 0 8px; }
+.login-subtitle { color: var(--c-text-soft); margin: 0 0 24px; font-size: 14px; }
+.login-input {
+  font: inherit; width: 100%; padding: 10px 14px; margin-bottom: 12px;
+  border: 1px solid var(--c-border); border-radius: var(--radius-sm);
+  background: var(--c-bg); color: var(--c-text); font-size: 16px;
+  text-align: center; letter-spacing: 0.05em; display: block;
+}
+.login-input:focus { outline: 2px solid var(--c-primary); border-color: var(--c-primary); }
+.login-btn { width: 100%; padding: 12px; font-size: 16px; }
+.login-error { color: var(--c-danger); font-size: 13px; margin-top: 8px; }
+.pseudo-tag {
+  font-size: 13px; color: var(--c-text-soft); padding: 4px 10px;
+  border: 1px solid var(--c-border); border-radius: var(--radius-sm);
+  background: var(--c-bg-soft);
+}
 .step-nav { display: flex; justify-content: space-between; margin-top: 24px; }
 .preview-card { margin-top: 10px; padding: 14px; border-radius: var(--radius);
   background: linear-gradient(135deg, var(--c-card-grad-a), var(--c-card-grad-b)); color: #fff; font-size: 18px; }

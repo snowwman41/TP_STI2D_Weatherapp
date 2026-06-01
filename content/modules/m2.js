@@ -46,6 +46,18 @@ export const m2 = {
         ]
       },
       application: null,
+      notepad: {
+        fr: {
+          fichier: "style.css",
+          intro: "Ouvre <code>style.css</code> dans ton dossier <code>app_web_meteo/</code> et ajoute ces premières règles CSS :",
+          code: "h1 {\n  color: #0284c7;\n}\n\n.carte {\n  background-color: #f0f9ff;\n  padding: 16px;\n  margin: 8px;\n  border-radius: 8px;\n}"
+        },
+        en: {
+          fichier: "style.css",
+          intro: "Open <code>style.css</code> in your <code>app_web_meteo/</code> folder and add these first CSS rules:",
+          code: "h1 {\n  color: #0284c7;\n}\n\n.carte {\n  background-color: #f0f9ff;\n  padding: 16px;\n  margin: 8px;\n  border-radius: 8px;\n}"
+        }
+      },
       quiz: [
         {
           type: "qcm",
@@ -110,6 +122,18 @@ export const m2 = {
         ]
       },
       application: null,
+      notepad: {
+        fr: {
+          fichier: "style.css",
+          intro: "Mets à jour la règle <code>.carte</code> dans <code>style.css</code> avec le <code>padding</code>, la <code>border</code> et le <code>margin</code> :",
+          code: ".carte {\n  background-color: #f0f9ff;\n  padding: 20px;\n  border: 2px solid #0284c7;\n  margin: 8px;\n  border-radius: 8px;\n}"
+        },
+        en: {
+          fichier: "style.css",
+          intro: "Update the <code>.carte</code> rule in <code>style.css</code> with <code>padding</code>, <code>border</code>, and <code>margin</code>:",
+          code: ".carte {\n  background-color: #f0f9ff;\n  padding: 20px;\n  border: 2px solid #0284c7;\n  margin: 8px;\n  border-radius: 8px;\n}"
+        }
+      },
       quiz: [
         {
           type: "complete",
@@ -169,6 +193,18 @@ export const m2 = {
         ]
       },
       application: null,
+      notepad: {
+        fr: {
+          fichier: "style.css",
+          intro: "Dans <code>style.css</code>, mets à jour la couleur de fond des cartes en bleu vif :",
+          code: ".carte {\n  background-color: #0ea5e9;\n  color: white;\n  padding: 20px;\n  border: none;\n  margin: 8px;\n  border-radius: 8px;\n}"
+        },
+        en: {
+          fichier: "style.css",
+          intro: "In <code>style.css</code>, update the card background to bright blue:",
+          code: ".carte {\n  background-color: #0ea5e9;\n  color: white;\n  padding: 20px;\n  border: none;\n  margin: 8px;\n  border-radius: 8px;\n}"
+        }
+      },
       quiz: [
         {
           type: "qcm",
@@ -233,6 +269,18 @@ export const m2 = {
         ]
       },
       application: null,
+      notepad: {
+        fr: {
+          fichier: "style.css",
+          intro: "Remplace <code>background-color</code> par un dégradé dans la règle <code>.carte</code> de <code>style.css</code> :",
+          code: ".carte {\n  background: linear-gradient(135deg, #0ea5e9, #2563eb);\n  color: white;\n  padding: 20px;\n  margin: 8px;\n  border-radius: 8px;\n}"
+        },
+        en: {
+          fichier: "style.css",
+          intro: "Replace <code>background-color</code> with a gradient in the <code>.carte</code> rule in <code>style.css</code>:",
+          code: ".carte {\n  background: linear-gradient(135deg, #0ea5e9, #2563eb);\n  color: white;\n  padding: 20px;\n  margin: 8px;\n  border-radius: 8px;\n}"
+        }
+      },
       quiz: [
         {
           type: "complete",
@@ -293,6 +341,18 @@ export const m2 = {
         ]
       },
       application: null,
+      notepad: {
+        fr: {
+          fichier: "style.css",
+          intro: "Remplace le début de <code>style.css</code> par les variables <code>:root</code> puis utilise-les dans <code>.carte</code> :",
+          code: ":root {\n  --couleur-principale: #0284c7;\n  --fond-carte: linear-gradient(135deg, #0ea5e9, #2563eb);\n  --texte-carte: white;\n}\n\nh1 {\n  color: var(--couleur-principale);\n}\n\n.carte {\n  background: var(--fond-carte);\n  color: var(--texte-carte);\n  padding: 20px;\n  margin: 8px;\n  border-radius: 8px;\n}"
+        },
+        en: {
+          fichier: "style.css",
+          intro: "Replace the top of <code>style.css</code> with <code>:root</code> variables, then use them in <code>.carte</code>:",
+          code: ":root {\n  --couleur-principale: #0284c7;\n  --fond-carte: linear-gradient(135deg, #0ea5e9, #2563eb);\n  --texte-carte: white;\n}\n\nh1 {\n  color: var(--couleur-principale);\n}\n\n.carte {\n  background: var(--fond-carte);\n  color: var(--texte-carte);\n  padding: 20px;\n  margin: 8px;\n  border-radius: 8px;\n}"
+        }
+      },
       quiz: [
         {
           type: "vraifaux",
@@ -353,6 +413,18 @@ export const m2 = {
         ]
       },
       application: null,
+      notepad: {
+        fr: {
+          fichier: "style.css",
+          intro: "Ajoute la règle de grille pour <code>#cartes</code> dans <code>style.css</code> :",
+          code: "#cartes {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\n  gap: 16px;\n  padding: 16px;\n}"
+        },
+        en: {
+          fichier: "style.css",
+          intro: "Add the grid rule for <code>#cartes</code> in <code>style.css</code>:",
+          code: "#cartes {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\n  gap: 16px;\n  padding: 16px;\n}"
+        }
+      },
       quiz: [
         {
           type: "qcm",
@@ -417,8 +489,20 @@ export const m2 = {
         ]
       },
       application: {
-        fr: "Ton projet dispose maintenant d'une interface stylisée et responsive : cartes avec dégradé, grille automatique et adaptation mobile. Les variables CSS sont prêtes pour basculer en mode sombre. Prochaine étape : donner vie à tout cela avec JavaScript ! <br><br>👉 <strong>Dans Notepad++ :</strong> ouvre <code>style.css</code> de ton dossier <code>app_web_meteo/</code>, reporte-y ce que tu viens de pratiquer, enregistre (Ctrl+S), puis rafraîchis <code>index.html</code> dans le navigateur. Ton projet doit maintenant afficher des cartes stylées en grille.",
-        en: "Your project now has a styled, responsive interface: gradient cards, an automatic grid, and mobile adaptation. CSS variables are ready for dark mode toggling. Next step: bring it all to life with JavaScript! <br><br>👉 <strong>In Notepad++:</strong> open <code>style.css</code> from your <code>app_web_meteo/</code> folder, transfer what you just practised, save (Ctrl+S), then refresh <code>index.html</code> in the browser. Your project should now display styled cards in a grid."
+        fr: "Ton projet dispose maintenant d'une interface stylisée et responsive : cartes avec dégradé, grille automatique et adaptation mobile. Les variables CSS sont prêtes pour basculer en mode sombre. Prochaine étape : donner vie à tout cela avec JavaScript !",
+        en: "Your project now has a styled, responsive interface: gradient cards, an automatic grid, and mobile adaptation. CSS variables are ready for dark mode toggling. Next step: bring it all to life with JavaScript!"
+      },
+      notepad: {
+        fr: {
+          fichier: "style.css",
+          intro: "À la fin de <code>style.css</code>, ajoute le media query pour l'adaptation mobile :",
+          code: "@media (max-width: 500px) {\n  #cartes {\n    grid-template-columns: 1fr;\n  }\n}"
+        },
+        en: {
+          fichier: "style.css",
+          intro: "At the end of <code>style.css</code>, add the media query for mobile adaptation:",
+          code: "@media (max-width: 500px) {\n  #cartes {\n    grid-template-columns: 1fr;\n  }\n}"
+        }
       },
       quiz: [
         {

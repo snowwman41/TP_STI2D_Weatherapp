@@ -26,6 +26,18 @@ export const m1 = {
           en: "A minimal, valid HTML skeleton."
         }
       },
+      notepad: {
+        fr: {
+          fichier: "index.html",
+          intro: "Ouvre <code>index.html</code> dans ton dossier <code>app_web_meteo/</code> et colle ce squelette HTML complet :",
+          code: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Tableau de bord des villes</title>\n</head>\n<body>\n\n</body>\n</html>"
+        },
+        en: {
+          fichier: "index.html",
+          intro: "Open <code>index.html</code> in your <code>app_web_meteo/</code> folder and paste this complete skeleton:",
+          code: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Tableau de bord des villes</title>\n</head>\n<body>\n\n</body>\n</html>"
+        }
+      },
       exercice: {
         enonce: {
           fr: "Le fichier ci-dessous est presque complet. Ajoute la balise ouvrante <code>&lt;body&gt;</code> manquante et son contenu (un paragraphe \"Bonjour !\") avant la balise fermante.",
@@ -107,6 +119,18 @@ export const m1 = {
         ]
       },
       application: null,
+      notepad: {
+        fr: {
+          fichier: "index.html",
+          intro: "Dans le <code>&lt;body&gt;</code> de ton <code>index.html</code>, ajoute ces deux lignes :",
+          code: "<h1>Tableau de bord des villes</h1>\n<div id=\"cartes\"></div>"
+        },
+        en: {
+          fichier: "index.html",
+          intro: "Inside the <code>&lt;body&gt;</code> of your <code>index.html</code>, add these two lines:",
+          code: "<h1>Tableau de bord des villes</h1>\n<div id=\"cartes\"></div>"
+        }
+      },
       quiz: [
         {
           type: "complete",
@@ -165,6 +189,18 @@ export const m1 = {
         ]
       },
       application: null,
+      notepad: {
+        fr: {
+          fichier: "index.html",
+          intro: "Entre le <code>&lt;h1&gt;</code> et le <code>&lt;div id=\"cartes\"&gt;</code> de ton <code>index.html</code>, ajoute le formulaire :",
+          code: "<form id=\"form-ville\">\n  <input type=\"text\" id=\"champ-ville\" placeholder=\"Entrez une ville…\">\n  <button type=\"submit\">Ajouter</button>\n</form>"
+        },
+        en: {
+          fichier: "index.html",
+          intro: "Between the <code>&lt;h1&gt;</code> and <code>&lt;div id=\"cartes\"&gt;</code> in your <code>index.html</code>, add the form:",
+          code: "<form id=\"form-ville\">\n  <input type=\"text\" id=\"champ-ville\" placeholder=\"Entrez une ville…\">\n  <button type=\"submit\">Ajouter</button>\n</form>"
+        }
+      },
       quiz: [
         {
           type: "qcm",
@@ -227,6 +263,19 @@ export const m1 = {
           { fichier: "html", contient: "<script", message: { fr: "Relie le fichier JS avec une balise <script> juste avant </body>.", en: "Link the JS file with a <script> tag just before </body>." } },
           { fichier: "html", contient: "src=\"script.js\"", message: { fr: "Le <script> doit avoir src=\"script.js\".", en: "The <script> must have src=\"script.js\"." } }
         ]
+      },
+      application: null,
+      notepad: {
+        fr: {
+          fichier: "index.html",
+          intro: "Dans le <code>&lt;head&gt;</code> de ton <code>index.html</code>, ajoute le lien CSS. Juste avant <code>&lt;/body&gt;</code>, ajoute la balise script :",
+          code: "<!-- Dans <head> -->\n<link rel=\"stylesheet\" href=\"style.css\">\n\n<!-- Juste avant </body> -->\n<script src=\"script.js\"></script>"
+        },
+        en: {
+          fichier: "index.html",
+          intro: "In the <code>&lt;head&gt;</code> of your <code>index.html</code>, add the CSS link. Just before <code>&lt;/body&gt;</code>, add the script tag:",
+          code: "<!-- In <head> -->\n<link rel=\"stylesheet\" href=\"style.css\">\n\n<!-- Just before </body> -->\n<script src=\"script.js\"></script>"
+        }
       },
       application: {
         fr: "Dans ton dossier <code>app_web_meteo/</code>, c'est à toi de relier tes trois fichiers : ajoute la balise <code>&lt;link&gt;</code> vers <code>style.css</code> dans le <code>&lt;head&gt;</code> et la balise <code>&lt;script&gt;</code> vers <code>script.js</code> juste avant <code>&lt;/body&gt;</code>. C'est ton point de départ pour le vrai projet.",
@@ -308,8 +357,20 @@ export const m1 = {
         ]
       },
       application: {
-        fr: "Tu viens de poser la structure HTML complète de ton projet dans <code>app_web_meteo/index.html</code>. Les modules suivants vont habiller cette structure avec du CSS, puis lui donner vie avec JavaScript. <br><br>👉 <strong>Dans Notepad++ :</strong> ouvre <code>index.html</code> de ton dossier <code>app_web_meteo/</code>, reporte-y ce que tu viens de pratiquer, enregistre (Ctrl+S), puis rafraîchis <code>index.html</code> dans le navigateur. Ton projet doit maintenant afficher l'en-tête, le champ et le bouton.",
-        en: "You've just laid the complete HTML structure of your project in <code>app_web_meteo/index.html</code>. The next modules will style this structure with CSS, then bring it to life with JavaScript. <br><br>👉 <strong>In Notepad++:</strong> open <code>index.html</code> from your <code>app_web_meteo/</code> folder, transfer what you just practised, save (Ctrl+S), then refresh <code>index.html</code> in the browser. Your project should now display the header, the input field and the button."
+        fr: "Tu viens de poser la structure HTML complète de ton projet. Les modules suivants vont habiller cette structure avec du CSS, puis lui donner vie avec JavaScript.",
+        en: "You've just laid the complete HTML structure of your project. The next modules will style this structure with CSS, then bring it to life with JavaScript."
+      },
+      notepad: {
+        fr: {
+          fichier: "index.html",
+          intro: "Ton <code>index.html</code> complet doit ressembler exactement à ceci — copie-le dans Notepad++ :",
+          code: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Tableau de bord des villes</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <h1>Tableau de bord des villes</h1>\n  <form id=\"form-ville\">\n    <input type=\"text\" id=\"champ-ville\" placeholder=\"Entrez une ville…\">\n    <button type=\"submit\">Ajouter</button>\n  </form>\n  <div id=\"cartes\"></div>\n  <script src=\"script.js\"></script>\n</body>\n</html>"
+        },
+        en: {
+          fichier: "index.html",
+          intro: "Your complete <code>index.html</code> should look exactly like this — copy it into Notepad++:",
+          code: "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Tableau de bord des villes</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <h1>Tableau de bord des villes</h1>\n  <form id=\"form-ville\">\n    <input type=\"text\" id=\"champ-ville\" placeholder=\"Entrez une ville…\">\n    <button type=\"submit\">Ajouter</button>\n  </form>\n  <div id=\"cartes\"></div>\n  <script src=\"script.js\"></script>\n</body>\n</html>"
+        }
       },
       quiz: [
         {

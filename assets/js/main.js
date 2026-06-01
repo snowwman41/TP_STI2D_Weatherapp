@@ -4,8 +4,9 @@ import { startRouter, onRoute, parseHash, navigate } from "./router.js";
 import { flatSteps, stepAt, globalIndex } from "../../content/modules.js";
 import { renderSidebar } from "./sidebar.js";
 import { renderStep } from "./step-template.js";
-import { isUnlocked, markCompleted, unlockAll, getState, resetProgress } from "./progress.js";
+import { isUnlocked, markCompleted, unlockAll, getState, resetProgress, initProgress } from "./progress.js";
 import { confirmDialog } from "./modal.js";
+import { showLogin } from "./login.js";
 
 const content = document.getElementById("content");
 
@@ -25,9 +26,9 @@ function show(route) {
   window.scrollTo(0, 0);
 }
 
-// Init
+// Init immédiat (avant login)
 initTheme(document.getElementById("theme-toggle"));
-// ── Tiroir mobile (sidebar) : burger, backdrop, fermeture au choix d'étape ──
+
 const sidebarEl = document.getElementById("sidebar");
 const backdropEl = document.getElementById("sidebar-backdrop");
 const burgerEl = document.getElementById("burger");
@@ -43,12 +44,10 @@ const closeSidebar = () => setSidebar(false);
 
 burgerEl.addEventListener("click", () => setSidebar(!sidebarEl.classList.contains("open")));
 backdropEl.addEventListener("click", closeSidebar);
-// Choisir une étape (lien déverrouillé) referme le tiroir
 sidebarEl.addEventListener("click", (e) => {
   const link = e.target.closest("a.step-link");
   if (link && !link.classList.contains("locked")) closeSidebar();
 });
-// Échap referme le tiroir ; repasser en mode bureau le referme aussi (évite l'état coincé)
 window.addEventListener("keydown", (e) => { if (e.key === "Escape") closeSidebar(); });
 mqMobile.addEventListener("change", (e) => { if (!e.matches) closeSidebar(); });
 
@@ -56,7 +55,13 @@ const langSel = document.getElementById("lang");
 langSel.value = getLang();
 langSel.addEventListener("change", () => setLang(langSel.value));
 
-// Réinitialisation : efface toute la progression après confirmation (modale au thème du site).
+// Attendre le login avant de démarrer l'app
+const { pseudo, savedData } = await showLogin();
+initProgress(pseudo, savedData);
+
+document.getElementById('pseudo-display').textContent = `👤 ${pseudo}`;
+
+// Réinitialisation
 const resetBtn = document.getElementById("reset");
 const applyResetLabel = () => { resetBtn.title = t("reset"); };
 resetBtn.addEventListener("click", async () => {

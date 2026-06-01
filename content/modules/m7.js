@@ -47,6 +47,18 @@ export const m7 = {
         ]
       },
       application: null,
+      notepad: {
+        fr: {
+          fichier: "script.js",
+          intro: "Dans la création de la carte, récupère le fuseau horaire et ajoute l'heure locale. Ajoute ces lignes <strong>après</strong> <code>const res = geo.results[0];</code> :",
+          code: "const tz = res.timezone; // ex : \"Europe/Paris\"\nconst heureLocale = new Intl.DateTimeFormat(\"fr-FR\", {\n  hour: \"2-digit\",\n  minute: \"2-digit\",\n  timeZone: tz\n}).format(new Date());\n\n// Puis dans le innerHTML de la carte, ajoute :\n// <p>🕐 ${heureLocale}</p>"
+        },
+        en: {
+          fichier: "script.js",
+          intro: "In the card creation, get the timezone and add local time. Add these lines <strong>after</strong> <code>const res = geo.results[0];</code>:",
+          code: "const tz = res.timezone; // e.g. \"Europe/Paris\"\nconst heureLocale = new Intl.DateTimeFormat(\"fr-FR\", {\n  hour: \"2-digit\",\n  minute: \"2-digit\",\n  timeZone: tz\n}).format(new Date());\n\n// Then in the card's innerHTML, add:\n// <p>🕐 ${heureLocale}</p>"
+        }
+      },
       quiz: [
         {
           type: "complete",
@@ -109,6 +121,18 @@ export const m7 = {
         ]
       },
       application: null,
+      notepad: {
+        fr: {
+          fichier: "script.js",
+          intro: "Au tout début de <code>script.js</code>, charge les villes sauvegardées. Après chaque ajout de carte, sauvegarde le tableau :",
+          code: "// Tout au début du fichier :\nlet villes = JSON.parse(localStorage.getItem(\"villes\") || \"[]\");\n\n// Après avoir créé la carte (après conteneur.append(carte)) :\nvilles.push({ nom: res.name, pays: res.country, code: res.country_code.toLowerCase(), tz: res.timezone });\nlocalStorage.setItem(\"villes\", JSON.stringify(villes));"
+        },
+        en: {
+          fichier: "script.js",
+          intro: "At the very top of <code>script.js</code>, load saved cities. After each card is added, save the array:",
+          code: "// At the very top of the file:\nlet villes = JSON.parse(localStorage.getItem(\"villes\") || \"[]\");\n\n// After the card is created (after conteneur.append(carte)):\nvilles.push({ nom: res.name, pays: res.country, code: res.country_code.toLowerCase(), tz: res.timezone });\nlocalStorage.setItem(\"villes\", JSON.stringify(villes));"
+        }
+      },
       quiz: [
         {
           type: "qcm",

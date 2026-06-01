@@ -229,8 +229,20 @@ export const m5 = {
         ]
       },
       application: {
-        fr: "Les cartes de notre tableau de bord affichent maintenant le vrai nom du pays et son drapeau, récupérés en temps réel depuis l'API. Dans le module suivant, on ajoutera la température et les conditions météo — et on apprendra à gérer l'attente et les erreurs réseau. <br><br>👉 <strong>Dans Notepad++ :</strong> ouvre <code>script.js</code> de ton dossier <code>app_web_meteo/</code>, reporte-y ce que tu viens de pratiquer, enregistre (Ctrl+S), puis rafraîchis <code>index.html</code> dans le navigateur. Ton projet doit maintenant afficher le vrai pays et le drapeau.",
-        en: "Our dashboard cards now display the real country name and its flag, fetched live from the API. In the next module, we will add temperature and weather conditions — and learn how to handle loading states and network errors. <br><br>👉 <strong>In Notepad++:</strong> open <code>script.js</code> from your <code>app_web_meteo/</code> folder, transfer what you just practised, save (Ctrl+S), then refresh <code>index.html</code> in the browser. Your project should now display the real country and flag."
+        fr: "Les cartes affichent maintenant le vrai nom du pays et son drapeau, récupérés en temps réel depuis l'API. Dans le module suivant, on ajoutera la température et les conditions météo !",
+        en: "The cards now display the real country name and its flag, fetched live from the API. In the next module, we will add temperature and weather conditions!"
+      },
+      notepad: {
+        fr: {
+          fichier: "script.js",
+          intro: "Remplace tout <code>script.js</code> par ce code qui crée une carte avec le vrai pays et drapeau :",
+          code: "const formulaire = document.querySelector(\"#form-ville\");\nconst champ = document.querySelector(\"#champ-ville\");\nconst conteneur = document.querySelector(\"#cartes\");\n\nformulaire.addEventListener(\"submit\", function(event) {\n  event.preventDefault();\n  const ville = champ.value;\n  if (ville === \"\") return;\n\n  const url = \"https://geocoding-api.open-meteo.com/v1/search?name=\" + ville + \"&count=1&language=fr\";\n  fetch(url)\n    .then(function(r) { return r.json(); })\n    .then(function(data) {\n      const res = data.results[0];\n      const urlDrapeau = \"https://flagcdn.com/\" + res.country_code.toLowerCase() + \".svg\";\n      const carte = document.createElement(\"div\");\n      carte.className = \"carte\";\n      carte.innerHTML = `<h2>${res.name}</h2><img src=\"${urlDrapeau}\" alt=\"\" width=\"40\"><p>${res.country}</p><p>Météo : —</p>`;\n      conteneur.append(carte);\n    });\n\n  champ.value = \"\";\n});"
+        },
+        en: {
+          fichier: "script.js",
+          intro: "Replace all of <code>script.js</code> with this code that creates a card with real country and flag:",
+          code: "const formulaire = document.querySelector(\"#form-ville\");\nconst champ = document.querySelector(\"#champ-ville\");\nconst conteneur = document.querySelector(\"#cartes\");\n\nformulaire.addEventListener(\"submit\", function(event) {\n  event.preventDefault();\n  const ville = champ.value;\n  if (ville === \"\") return;\n\n  const url = \"https://geocoding-api.open-meteo.com/v1/search?name=\" + ville + \"&count=1&language=fr\";\n  fetch(url)\n    .then(function(r) { return r.json(); })\n    .then(function(data) {\n      const res = data.results[0];\n      const urlDrapeau = \"https://flagcdn.com/\" + res.country_code.toLowerCase() + \".svg\";\n      const carte = document.createElement(\"div\");\n      carte.className = \"carte\";\n      carte.innerHTML = `<h2>${res.name}</h2><img src=\"${urlDrapeau}\" alt=\"\" width=\"40\"><p>${res.country}</p><p>Météo : —</p>`;\n      conteneur.append(carte);\n    });\n\n  champ.value = \"\";\n});"
+        }
       },
       quiz: [
         {

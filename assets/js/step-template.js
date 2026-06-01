@@ -13,6 +13,19 @@ function block(labelKey, icon, inner) {
   return `<section class="step-block"><h3>${icon} ${t(labelKey)}</h3>${inner}</section>`;
 }
 
+function renderNotepad(step) {
+  if (!step.notepad) return "";
+  const n = pick(step.notepad);
+  if (!n) return "";
+  return `<section class="step-notepad">
+    <h3>✏️ ${t("blockNotepad")}</h3>
+    ${n.fichier ? `<p class="notepad-file">📄 <code>${escapeHtml(n.fichier)}</code></p>` : ""}
+    ${n.intro ? `<p class="notepad-intro">${richText(n.intro)}</p>` : ""}
+    ${n.code ? `<pre class="notepad-code"><code>${escapeHtml(n.code)}</code></pre>` : ""}
+    <p class="notepad-footer">${richText(t("notepadSave"))}</p>
+  </section>`;
+}
+
 export function renderStep(container, step, ctx) {
   // ctx = { onComplete: fn(score), gotoNext, gotoPrev, globalIndex, teacher }
   if (currentEditor) { currentEditor.destroy(); currentEditor = null; }
@@ -37,6 +50,7 @@ export function renderStep(container, step, ctx) {
         <div class="exo-feedback" hidden></div>
         <div class="solution" hidden></div></section>` : ""}
       ${block("blockApply", "🚀", step.application ? `<div>${richText(pick(step.application))}</div>` : "")}
+      ${renderNotepad(step)}
       ${step.defiOptionnel ? `<section class="step-block challenge"><h3>⭐ ${t("optionalChallenge")}</h3><div>${richText(pick(step.defiOptionnel))}</div></section>` : ""}
       ${quizGates ? `<section class="step-block"><h3>✅ ${t("blockQuiz")}</h3><div class="quiz-host"></div></section>` : ""}
       <div class="gate-msg" hidden></div>

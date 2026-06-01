@@ -23,6 +23,8 @@ export const uiStrings = {
   blockExample: { fr: "Exemple", en: "Example" },
   blockExercise:{ fr: "Exercice", en: "Exercise" },
   blockApply:   { fr: "Dans le projet", en: "In the project" },
+  blockNotepad: { fr: "À faire dans Notepad++", en: "Do this in Notepad++" },
+  notepadSave:  { fr: "puis <kbd>Ctrl+S</kbd> pour enregistrer et rafraîchis le navigateur.", en: "then <kbd>Ctrl+S</kbd> to save and refresh the browser." },
   blockQuiz:    { fr: "Quiz", en: "Quiz" },
   optionalChallenge: { fr: "Défi optionnel", en: "Optional challenge" }
 };

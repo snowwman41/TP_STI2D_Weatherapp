@@ -45,6 +45,18 @@ export const m4 = {
         ]
       },
       application: null,
+      notepad: {
+        fr: {
+          fichier: "script.js",
+          intro: "Mets à jour <code>script.js</code> pour stocker les villes dans un tableau :",
+          code: "const formulaire = document.querySelector(\"#form-ville\");\nconst champ = document.querySelector(\"#champ-ville\");\n\nconst villes = [];\n\nformulaire.addEventListener(\"submit\", function(event) {\n  event.preventDefault();\n  const ville = champ.value;\n  if (ville === \"\") return;\n  villes.push(ville);\n  console.log(villes);\n  champ.value = \"\";\n});"
+        },
+        en: {
+          fichier: "script.js",
+          intro: "Update <code>script.js</code> to store cities in an array:",
+          code: "const formulaire = document.querySelector(\"#form-ville\");\nconst champ = document.querySelector(\"#champ-ville\");\n\nconst villes = [];\n\nformulaire.addEventListener(\"submit\", function(event) {\n  event.preventDefault();\n  const ville = champ.value;\n  if (ville === \"\") return;\n  villes.push(ville);\n  console.log(villes);\n  champ.value = \"\";\n});"
+        }
+      },
       quiz: [
         {
           type: "qcm",
@@ -230,8 +242,20 @@ export const m4 = {
         ]
       },
       application: {
-        fr: "Chaque ville ajoutée produit maintenant une vraie carte sur le tableau de bord, avec des données fictives en attendant. Dans le module suivant, on remplacera ces tirets par de vraies informations récupérées depuis une API (pays, météo en temps réel) ! <br><br>👉 <strong>Dans Notepad++ :</strong> ouvre <code>script.js</code> de ton dossier <code>app_web_meteo/</code>, reporte-y ce que tu viens de pratiquer, enregistre (Ctrl+S), puis rafraîchis <code>index.html</code> dans le navigateur. Ton projet doit maintenant créer une carte par ville ajoutée.",
-        en: "Each added city now produces a real card on the dashboard, with placeholder data for now. In the next module, we will replace those dashes with real information fetched from an API (country, live weather data)! <br><br>👉 <strong>In Notepad++:</strong> open <code>script.js</code> from your <code>app_web_meteo/</code> folder, transfer what you just practised, save (Ctrl+S), then refresh <code>index.html</code> in the browser. Your project should now create a card for each city added."
+        fr: "Chaque ville ajoutée produit maintenant une vraie carte sur le tableau de bord, avec des données fictives en attendant. Dans le module suivant, on remplacera ces tirets par de vraies informations récupérées depuis une API !",
+        en: "Each added city now produces a real card on the dashboard, with placeholder data for now. In the next module, we will replace those dashes with real information fetched from an API!"
+      },
+      notepad: {
+        fr: {
+          fichier: "script.js",
+          intro: "Remplace tout le contenu de <code>script.js</code> par ce code complet avec la fonction <code>afficher()</code> :",
+          code: "const formulaire = document.querySelector(\"#form-ville\");\nconst champ = document.querySelector(\"#champ-ville\");\nconst conteneur = document.querySelector(\"#cartes\");\n\nconst villes = [];\n\nfunction afficher() {\n  conteneur.innerHTML = \"\";\n  for (const ville of villes) {\n    const carte = document.createElement(\"div\");\n    carte.className = \"carte\";\n    carte.innerHTML = `<h2>${ville}</h2><p>Pays : —</p><p>Météo : —</p>`;\n    conteneur.append(carte);\n  }\n}\n\nformulaire.addEventListener(\"submit\", function(event) {\n  event.preventDefault();\n  const ville = champ.value;\n  if (ville === \"\") return;\n  villes.push(ville);\n  afficher();\n  champ.value = \"\";\n});"
+        },
+        en: {
+          fichier: "script.js",
+          intro: "Replace the entire content of <code>script.js</code> with this complete code including the <code>afficher()</code> function:",
+          code: "const formulaire = document.querySelector(\"#form-ville\");\nconst champ = document.querySelector(\"#champ-ville\");\nconst conteneur = document.querySelector(\"#cartes\");\n\nconst villes = [];\n\nfunction afficher() {\n  conteneur.innerHTML = \"\";\n  for (const ville of villes) {\n    const carte = document.createElement(\"div\");\n    carte.className = \"carte\";\n    carte.innerHTML = `<h2>${ville}</h2><p>Pays : —</p><p>Météo : —</p>`;\n    conteneur.append(carte);\n  }\n}\n\nformulaire.addEventListener(\"submit\", function(event) {\n  event.preventDefault();\n  const ville = champ.value;\n  if (ville === \"\") return;\n  villes.push(ville);\n  afficher();\n  champ.value = \"\";\n});"
+        }
       },
       quiz: [
         {

@@ -9,11 +9,27 @@
   <link rel="stylesheet" href="assets/css/components.css">
 </head>
 <body>
+  <!-- Écran de connexion -->
+  <div id="login-overlay">
+    <div class="login-card">
+      <div class="login-logo">🌍</div>
+      <h1 class="login-title">Tableau de bord des villes</h1>
+      <p class="login-subtitle">Entre ton pseudo pour retrouver ta progression</p>
+      <form id="login-form" autocomplete="off">
+        <input id="pseudo-input" class="login-input" type="text" placeholder="Ton pseudo…" spellcheck="false" required>
+        <input id="password-input" class="login-input" type="password" placeholder="Mot de passe admin…" style="display:none">
+        <button type="submit" class="btn btn-primary login-btn">Commencer →</button>
+      </form>
+      <p id="login-error" class="login-error" hidden></p>
+    </div>
+  </div>
+
   <div class="app">
     <header class="topbar">
       <button class="btn burger" id="burger" aria-label="Menu" aria-controls="sidebar" aria-expanded="false">☰</button>
       <span class="brand">🌍 <span data-i18n="brand">Tableau de bord des villes</span></span>
       <div class="controls">
+        <span id="pseudo-display" class="pseudo-tag"></span>
         <select id="lang" aria-label="Langue"><option value="fr">FR</option><option value="en">EN</option></select>
         <button class="btn" id="theme-toggle" aria-label="Thème">🌙</button>
         <button class="btn" id="reset" aria-label="Réinitialiser">↺</button>
@@ -23,6 +39,7 @@
     <main class="content"><div class="content-inner" id="content"></div></main>
     <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script type="module" src="assets/js/main.js"></script>
 </body>
 </html>
