@@ -1,15 +1,50 @@
+:root { --topbar-h: 56px; }
+
 .app { display: grid; grid-template-columns: 280px 1fr; min-height: 100vh; }
 .topbar { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between;
-  padding: 10px 20px; border-bottom: 1px solid var(--c-border); background: var(--c-surface); position: sticky; top: 0; z-index: 10; }
-.topbar .brand { font-weight: 800; }
-.topbar .controls { display: flex; gap: 8px; align-items: center; }
+  padding: 10px 20px; border-bottom: 1px solid var(--c-border); background: var(--c-surface); position: sticky; top: 0; z-index: 50; }
+.topbar .brand { font-weight: 800; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.topbar .controls { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
 .sidebar { border-right: 1px solid var(--c-border); background: var(--c-bg-soft); padding: 16px; overflow-y: auto; }
 .content { padding: 28px; }
 .content-inner { max-width: var(--maxw-content); margin: 0 auto; }
 .burger { display: none; }
+
+/* Fond assombri du tiroir (mobile uniquement) */
+.sidebar-backdrop { display: none; }
+
 @media (max-width: 800px) {
   .app { grid-template-columns: 1fr; }
-  .sidebar { display: none; }
-  .sidebar.open { display: block; position: fixed; inset: 56px 0 0 0; z-index: 20; }
+  .content { padding: 16px; }
   .burger { display: inline-block; }
+
+  /* Sidebar = tiroir glissant depuis la gauche */
+  .sidebar {
+    position: fixed;
+    top: var(--topbar-h);
+    left: 0;
+    bottom: 0;
+    width: min(82vw, 320px);
+    z-index: 40;
+    transform: translateX(-100%);
+    transition: transform .25s ease;
+    box-shadow: var(--shadow);
+  }
+  .sidebar.open { transform: translateX(0); }
+
+  /* Backdrop : assombrit le reste de l'écran, clic pour fermer */
+  .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: var(--topbar-h) 0 0 0;
+    background: rgba(15, 23, 42, .5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .25s ease, visibility .25s ease;
+    z-index: 35;
+  }
+  .sidebar-backdrop.open { opacity: 1; visibility: visible; }
+
+  /* Bloque le défilement de la page derrière le tiroir ouvert */
+  body.sidebar-open { overflow: hidden; }
 }

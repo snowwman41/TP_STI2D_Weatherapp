@@ -3,6 +3,8 @@ export const m1 = {
   etapes: [
     {
       titre: { fr: "Le squelette d'une page", en: "The page skeleton" },
+      rappel: { fr: "Tu sais déjà ce qu'est le HTML et une balise. Ici tu vas construire la <strong>structure</strong> complète d'une page : son squelette et ses balises de base.",
+                en: "You already know what HTML and a tag are. Here you'll build a page's full <strong>structure</strong>: its skeleton and basic tags." },
       besoin: {
         fr: "Toute page web est un fichier HTML. Comprendre sa structure de base est la première brique indispensable.",
         en: "Every web page is an HTML file. Understanding its basic structure is the first essential building block."
@@ -181,6 +183,85 @@ export const m1 = {
             en: "<code>&lt;input type=\"text\"&gt;</code> is the text input field. <code>&lt;button&gt;</code> is a button and <code>&lt;div&gt;</code> is a generic container."
           }
         }
+      ],
+      scoreMinimal: 1,
+      defiOptionnel: null
+    },
+    {
+      titre: { fr: "Relier le CSS et le JavaScript", en: "Linking CSS and JavaScript" },
+      besoin: {
+        fr: "Tu sais maintenant écrire la structure HTML d'une page. Pour l'<strong>habiller</strong> (CSS) et la rendre <strong>interactive</strong> (JavaScript), il faut relier ces deux fichiers à ton HTML.",
+        en: "You now know how to write a page's HTML structure. To <strong>dress it up</strong> (CSS) and make it <strong>interactive</strong> (JavaScript), you must link these two files to your HTML."
+      },
+      decouverte: {
+        fr: "Le HTML est le fichier central : c'est lui que le navigateur ouvre. On lui <strong>relie</strong> un fichier <strong>CSS</strong> (le style) et un fichier <strong>JavaScript</strong> (le comportement). Le <code>&lt;link&gt;</code> du CSS se place dans le <code>&lt;head&gt;</code>. Le <code>&lt;script&gt;</code> du JS se place tout à la fin, juste avant <code>&lt;/body&gt;</code>.",
+        en: "HTML is the central file: it's the one the browser opens. You <strong>link</strong> a <strong>CSS</strong> file (style) and a <strong>JavaScript</strong> file (behavior) to it. The CSS <code>&lt;link&gt;</code> goes in the <code>&lt;head&gt;</code>. The JS <code>&lt;script&gt;</code> goes at the very end, just before <code>&lt;/body&gt;</code>."
+      },
+      explication: {
+        fr: "Le <code>&lt;link rel=\"stylesheet\" href=\"style.css\"&gt;</code> va dans le <code>&lt;head&gt;</code> : le navigateur charge le style avant d'afficher la page. Le <code>&lt;script src=\"script.js\"&gt;&lt;/script&gt;</code> se place <strong>tout à la fin</strong>, juste avant <code>&lt;/body&gt;</code> : ainsi tout le HTML est déjà chargé quand le JavaScript s'exécute (sinon il chercherait des éléments qui n'existent pas encore).",
+        en: "The <code>&lt;link rel=\"stylesheet\" href=\"style.css\"&gt;</code> goes in the <code>&lt;head&gt;</code>: the browser loads the style before displaying the page. The <code>&lt;script src=\"script.js\"&gt;&lt;/script&gt;</code> goes <strong>at the very end</strong>, just before <code>&lt;/body&gt;</code>: that way the whole HTML is already loaded when the JavaScript runs (otherwise it would look for elements that don't exist yet)."
+      },
+      illustration: null,
+      exemple: {
+        code: "<!DOCTYPE html>\n<html>\n<head>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <h1>Mon projet</h1>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
+        langage: "html",
+        commentaire: {
+          fr: "Le <code>&lt;link&gt;</code> dans le <code>&lt;head&gt;</code>, le <code>&lt;script&gt;</code> juste avant <code>&lt;/body&gt;</code>.",
+          en: "The <code>&lt;link&gt;</code> in the <code>&lt;head&gt;</code>, the <code>&lt;script&gt;</code> just before <code>&lt;/body&gt;</code>."
+        }
+      },
+      exercice: {
+        enonce: {
+          fr: "Relie ce fichier HTML à un CSS et un JS : complète les deux lignes manquantes — le <code>&lt;link&gt;</code> dans le <code>&lt;head&gt;</code> et le <code>&lt;script&gt;</code> avant <code>&lt;/body&gt;</code>.",
+          en: "Link this HTML to a CSS and JS file: complete the two missing lines — the <code>&lt;link&gt;</code> in the <code>&lt;head&gt;</code> and the <code>&lt;script&gt;</code> before <code>&lt;/body&gt;</code>."
+        },
+        fichiers: {
+          html: "<!DOCTYPE html>\n<html>\n<head>\n  <!-- relie le CSS ici -->\n</head>\n<body>\n  <h1>Mon projet</h1>\n  <!-- relie le JS ici -->\n</body>\n</html>"
+        },
+        correction: {
+          html: "<!DOCTYPE html>\n<html>\n<head>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <h1>Mon projet</h1>\n  <script src=\"script.js\"></script>\n</body>\n</html>"
+        },
+        verification: [
+          { fichier: "html", contient: "<link", message: { fr: "Relie le fichier CSS avec une balise <link> dans le <head>.", en: "Link the CSS file with a <link> tag in the <head>." } },
+          { fichier: "html", contient: "href=\"style.css\"", message: { fr: "Le <link> doit pointer vers href=\"style.css\".", en: "The <link> must point to href=\"style.css\"." } },
+          { fichier: "html", contient: "<script", message: { fr: "Relie le fichier JS avec une balise <script> juste avant </body>.", en: "Link the JS file with a <script> tag just before </body>." } },
+          { fichier: "html", contient: "src=\"script.js\"", message: { fr: "Le <script> doit avoir src=\"script.js\".", en: "The <script> must have src=\"script.js\"." } }
+        ]
+      },
+      application: {
+        fr: "Dans ton dossier <code>projet-eleve/</code>, tu retrouveras ces trois fichiers déjà reliés — c'est ton point de départ pour le vrai projet.",
+        en: "In your <code>projet-eleve/</code> folder you'll find these three files already linked — that's your starting point for the real project."
+      },
+      quiz: [
+        { type: "qcm", question: { fr: "Où place-t-on le <code>&lt;script&gt;</code> du JavaScript ?", en: "Where do you put the JavaScript <code>&lt;script&gt;</code>?" },
+          options: [{ fr: "Dans le <code>&lt;head&gt;</code>, tout en haut", en: "In the <code>&lt;head&gt;</code>, at the top" },
+                    { fr: "Juste avant <code>&lt;/body&gt;</code>, à la fin", en: "Just before <code>&lt;/body&gt;</code>, at the end" },
+                    { fr: "N'importe où, ça ne change rien", en: "Anywhere, it makes no difference" }],
+          bonneReponse: 1,
+          explication: { fr: "À la fin du <code>&lt;body&gt;</code>, le HTML est déjà chargé : le JS peut donc manipuler les éléments de la page.", en: "At the end of the <code>&lt;body&gt;</code>, the HTML is already loaded, so the JS can work with the page's elements." } },
+        { type: "complete", question: { fr: "Quelle balise relie un fichier JS ? (sans les chevrons) &lt;… src=\"script.js\"&gt;", en: "Which tag links a JS file? (without angle brackets) &lt;… src=\"script.js\"&gt;" },
+          bonneReponse: "script",
+          explication: { fr: "<code>&lt;script src=\"…\"&gt;</code> charge le JavaScript.", en: "<code>&lt;script src=\"…\"&gt;</code> loads JavaScript." } }
+      ],
+      scoreMinimal: 1,
+      defiOptionnel: null
+    },
+    {
+      titre: { fr: "Comment le navigateur lit ta page", en: "How the browser reads your page" },
+      besoin: { fr: "Comprendre ce que fait le navigateur quand il ouvre ta page évite beaucoup d'erreurs plus tard.",
+                en: "Understanding what the browser does when it opens your page avoids many later mistakes." },
+      decouverte: { fr: "Le navigateur lit le HTML de haut en bas, applique le CSS, puis exécute le JS.",
+                    en: "The browser reads HTML top to bottom, applies CSS, then runs JS." },
+      explication: { fr: "Le navigateur transforme ton HTML en un <strong>arbre</strong> d'éléments (le DOM). Le CSS habille cet arbre, le JS peut le modifier. On reverra le DOM en détail bientôt.",
+                     en: "The browser turns your HTML into a <strong>tree</strong> of elements (the DOM). CSS dresses this tree, JS can change it. We'll revisit the DOM soon." },
+      illustration: "dom-tree",
+      exemple: null,
+      exercice: null,
+      application: { fr: "Ton projet est une page que le navigateur lira ainsi à chaque rechargement.",
+                     en: "Your project is a page the browser reads this way on every reload." },
+      quiz: [
+        { type: "vraifaux", question: { fr: "Le navigateur transforme le HTML en un arbre appelé le DOM.", en: "The browser turns HTML into a tree called the DOM." },
+          bonneReponse: true, explication: { fr: "Oui, c'est le Document Object Model.", en: "Yes — the Document Object Model." } }
       ],
       scoreMinimal: 1,
       defiOptionnel: null

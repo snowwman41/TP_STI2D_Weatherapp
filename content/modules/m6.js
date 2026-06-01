@@ -4,6 +4,8 @@ export const m6 = {
     // ─── Étape 1 ────────────────────────────────────────────────────────────────
     {
       titre: { fr: "Pourquoi il faut attendre", en: "Why we need to wait" },
+      rappel: { fr: "Tu sais récupérer des données avec <code>fetch</code>. Maintenant tu vas apprendre à <strong>attendre proprement</strong> la réponse du serveur avec <code>async</code>/<code>await</code>, et à gérer les erreurs.",
+                en: "You can fetch data with <code>fetch</code>. Now you'll learn to <strong>wait properly</strong> for the server's response with <code>async</code>/<code>await</code>, and handle errors." },
       besoin: {
         fr: "Quand on appelle une API, la réponse ne revient pas instantanément — le réseau prend du temps. Si JavaScript attendait sans rien faire, toute la page se <strong>bloquerait</strong>. Il faut donc comprendre ce qu'est le code <strong>asynchrone</strong>.",
         en: "When we call an API, the response does not come back instantly — the network takes time. If JavaScript waited and did nothing, the whole page would <strong>freeze</strong>. We therefore need to understand what <strong>asynchronous</strong> code is."

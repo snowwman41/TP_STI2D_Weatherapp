@@ -3,6 +3,8 @@ export const m5 = {
   etapes: [
     {
       titre: { fr: "Qu'est-ce qu'une API ?", en: "What is an API?" },
+      rappel: { fr: "Tes cartes s'affichent avec des données fictives. Ici tu vas chercher de <strong>vraies données en ligne</strong> (pays, drapeau) grâce à une <strong>API</strong>.",
+                en: "Your cards show placeholder data. Here you'll fetch <strong>real online data</strong> (country, flag) using an <strong>API</strong>." },
       besoin: {
         fr: "Nos cartes affichent encore des tirets à la place du pays et de la météo. Pour obtenir de vraies données, il faut <strong>interroger un service en ligne</strong> — c'est exactement ce que fait une API.",
         en: "Our cards still show dashes instead of the country and weather. To get real data, we need to <strong>query an online service</strong> — that is exactly what an API does."

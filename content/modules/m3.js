@@ -3,6 +3,8 @@ export const m3 = {
   etapes: [
     {
       titre: { fr: "Variables et fonctions", en: "Variables and functions" },
+      rappel: { fr: "Ta page a une <strong>structure</strong> (HTML) et un <strong>style</strong> (CSS), mais elle ne réagit à rien. Ici tu fais tes premiers pas en <strong>JavaScript</strong> pour réagir aux actions de l'utilisateur.",
+                en: "Your page has <strong>structure</strong> (HTML) and <strong>style</strong> (CSS) but reacts to nothing. Here you take your first <strong>JavaScript</strong> steps to react to user actions." },
       besoin: {
         fr: "Avant de manipuler la page, il faut savoir stocker des valeurs et regrouper des instructions dans des fonctions réutilisables.",
         en: "Before manipulating the page, we need to know how to store values and group instructions into reusable functions."

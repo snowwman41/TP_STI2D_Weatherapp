@@ -29,65 +29,49 @@ export const m0 = {
       defiOptionnel: null
     },
     {
-      titre: { fr: "Les 3 fichiers du web", en: "The 3 web files" },
-      besoin: { fr: "Pour construire une page web, il nous faut trois fichiers qui jouent chacun un rôle.",
-                en: "To build a web page, we need three files, each with its own role." },
-      decouverte: { fr: "Séparer structure, style et comportement rend le code clair et réutilisable.",
-                    en: "Separating structure, style and behavior keeps code clear and reusable." },
-      explication: { fr: "<strong>HTML</strong> est le fichier central : c'est lui que le navigateur ouvre et <strong>affiche</strong>. Il définit la <strong>structure</strong> (le contenu) de la page. On lui <strong>relie</strong> ensuite deux fichiers : un <strong>CSS</strong> pour le <strong>style</strong> (l'apparence) et un <strong>JavaScript</strong> pour le <strong>comportement</strong> (l'interactivité). Image : HTML est le squelette, CSS les vêtements, JS les muscles.<br><br><strong>Où relier ces fichiers ?</strong> Le <code><link></code> du CSS va dans le <code><head></code>. Le <code><script></code> du JS se place <strong>tout à la fin</strong>, juste avant <code></body></code> : ainsi le HTML est déjà chargé quand le JavaScript s'exécute (sinon il chercherait des éléments qui n'existent pas encore).",
-                     en: "<strong>HTML</strong> is the central file: it's the one the browser opens and <strong>displays</strong>. It defines the page's <strong>structure</strong> (the content). You then <strong>link</strong> two files to it: a <strong>CSS</strong> file for <strong>style</strong> (looks) and a <strong>JavaScript</strong> file for <strong>behavior</strong> (interactivity). Picture it: HTML is the skeleton, CSS the clothes, JS the muscles.<br><br><strong>Where do you link them?</strong> The CSS <code><link></code> goes in the <code><head></code>. The JS <code><script></code> goes <strong>at the very end</strong>, just before <code></body></code>: that way the HTML is already loaded when the JavaScript runs (otherwise it would look for elements that don't exist yet)." },
+      titre: { fr: "C'est quoi le web ? C'est quoi HTML ?", en: "What is the web? What is HTML?" },
+      besoin: { fr: "Avant d'écrire la moindre ligne, posons les bases : de quoi est faite une page web, et quel est le rôle du HTML ?",
+                en: "Before writing a single line, let's lay the foundation: what is a web page made of, and what is HTML's role?" },
+      decouverte: { fr: "Une page web repose sur trois langages qui se partagent le travail : <strong>HTML</strong> pour la <strong>structure</strong> (le contenu), <strong>CSS</strong> pour le <strong>style</strong> (l'apparence) et <strong>JavaScript</strong> pour le <strong>comportement</strong> (l'interactivité). Image simple : HTML est le squelette, CSS les vêtements, JS les muscles. On commence par le HTML, la base de tout.",
+                    en: "A web page rests on three languages that share the work: <strong>HTML</strong> for <strong>structure</strong> (content), <strong>CSS</strong> for <strong>style</strong> (looks) and <strong>JavaScript</strong> for <strong>behavior</strong> (interactivity). Simple picture: HTML is the skeleton, CSS the clothes, JS the muscles. We start with HTML, the foundation of everything." },
+      explication: { fr: "Le HTML s'écrit avec des <strong>balises</strong>. Une balise <strong>entoure</strong> du contenu : une balise <strong>ouvrante</strong> <code>&lt;h1&gt;</code>, puis le contenu, puis une balise <strong>fermante</strong> <code>&lt;/h1&gt;</code> (la même, avec une barre oblique <code>/</code>). Par exemple, <code>&lt;h1&gt;Bonjour&lt;/h1&gt;</code> affiche le grand titre « Bonjour ». C'est tout le principe du HTML : on entoure du texte avec des balises pour lui donner un sens. Le CSS et le JavaScript viendront se brancher sur ce HTML plus tard.",
+                     en: "HTML is written with <strong>tags</strong>. A tag <strong>wraps</strong> content: an <strong>opening</strong> tag <code>&lt;h1&gt;</code>, then the content, then a <strong>closing</strong> tag <code>&lt;/h1&gt;</code> (the same one, with a slash <code>/</code>). For example, <code>&lt;h1&gt;Bonjour&lt;/h1&gt;</code> shows the big heading « Bonjour ». That's the whole idea of HTML: you wrap text with tags to give it meaning. CSS and JavaScript will plug into this HTML later." },
       illustration: null,
-      exemple: { code: "index.html   → structure\nstyle.css    → apparence\nscript.js    → comportement",
-                 langage: "text", commentaire: { fr: "Les trois fichiers de notre projet.", en: "The three files of our project." } },
+      exemple: {
+        code: "<h1>Bonjour</h1>\n<p>Ceci est un paragraphe.</p>",
+        langage: "html",
+        commentaire: { fr: "<code>&lt;h1&gt;</code> est un grand titre, <code>&lt;p&gt;</code> un paragraphe. Chaque balise s'ouvre puis se ferme.",
+                       en: "<code>&lt;h1&gt;</code> is a big heading, <code>&lt;p&gt;</code> a paragraph. Each tag opens then closes." }
+      },
       exercice: {
-        enonce: { fr: "Relie ce fichier HTML à un CSS et un JS : complète les deux lignes manquantes dans le <head> et avant </body>.",
-                  en: "Link this HTML to a CSS and JS file: complete the two missing lines in <head> and before </body>." },
-        fichiers: { html: "<!DOCTYPE html>\n<html>\n<head>\n  <!-- relie le CSS ici -->\n</head>\n<body>\n  <h1>Mon projet</h1>\n  <!-- relie le JS ici -->\n</body>\n</html>",
-                    css: "h1 { color: #0284c7; }",
-                    js: "console.log('JS branché !');" },
-        correction: { html: "<!DOCTYPE html>\n<html>\n<head>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <h1>Mon projet</h1>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
-                      css: "h1 { color: #0284c7; }",
-                      js: "console.log('JS branché !');" },
+        enonce: { fr: "Écris un titre avec la balise <code>&lt;h1&gt;</code> qui affiche « Ma première page ». Ensuite, complète le paragraphe en ajoutant la balise fermante <code>&lt;/p&gt;</code> qui manque.",
+                  en: "Write a heading with the <code>&lt;h1&gt;</code> tag showing « Ma première page ». Then complete the paragraph by adding the missing closing <code>&lt;/p&gt;</code> tag." },
+        fichiers: {
+          html: "<!-- Écris ici un titre h1 avec le texte : Ma première page -->\n\n<p>Bienvenue sur le web !"
+        },
+        correction: {
+          html: "<h1>Ma première page</h1>\n\n<p>Bienvenue sur le web !</p>"
+        },
         verification: [
-          { fichier: "html", contient: "<link", message: { fr: "Relie le fichier CSS avec une balise <link> dans le <head>.", en: "Link the CSS file with a <link> tag in the <head>." } },
-          { fichier: "html", contient: "href=\"style.css\"", message: { fr: "Le <link> doit pointer vers href=\"style.css\".", en: "The <link> must point to href=\"style.css\"." } },
-          { fichier: "html", contient: "<script", message: { fr: "Relie le fichier JS avec une balise <script> juste avant </body>.", en: "Link the JS file with a <script> tag just before </body>." } },
-          { fichier: "html", contient: "src=\"script.js\"", message: { fr: "Le <script> doit avoir src=\"script.js\".", en: "The <script> must have src=\"script.js\"." } }
+          { fichier: "html", contient: "<h1>", message: { fr: "Ajoute une balise ouvrante <h1>.", en: "Add an opening <h1> tag." } },
+          { fichier: "html", contient: "Ma première page", message: { fr: "Le titre doit contenir le texte « Ma première page ».", en: "The heading must contain « Ma première page »." } },
+          { fichier: "html", contient: "</h1>", message: { fr: "N'oublie pas de fermer le titre avec </h1>.", en: "Don't forget to close the heading with </h1>." } },
+          { fichier: "html", contient: "</p>", message: { fr: "Ajoute la balise fermante </p> à la fin du paragraphe.", en: "Add the closing </p> tag at the end of the paragraph." } }
         ]
       },
-      application: { fr: "Dans ton dossier <code>projet-eleve/</code>, tu retrouves exactement ces trois fichiers, déjà reliés. C'est ton point de départ.",
-                     en: "In your <code>projet-eleve/</code> folder you'll find exactly these three files, already linked. That's your starting point." },
+      application: null,
       quiz: [
-        { type: "qcm", question: { fr: "Quel fichier gère l'apparence ?", en: "Which file handles the looks?" },
-          options: [{ fr: "HTML", en: "HTML" }, { fr: "CSS", en: "CSS" }, { fr: "JavaScript", en: "JavaScript" }],
-          bonneReponse: 1, explication: { fr: "Le CSS s'occupe du style.", en: "CSS handles styling." } },
-        { type: "complete", question: { fr: "Quelle balise relie un fichier JS ? <…src=\"script.js\">", en: "Which tag links a JS file? <…src=\"script.js\">" },
-          bonneReponse: "script", explication: { fr: "<script src=\"…\"> charge le JavaScript.", en: "<script src=\"…\"> loads JavaScript." } },
-        { type: "qcm", question: { fr: "Où place-t-on le <code><script></code> du JavaScript ?", en: "Where do you put the JavaScript <code><script></code>?" },
-          options: [{ fr: "Dans le <code><head></code>, tout en haut", en: "In the <code><head></code>, at the top" },
-                    { fr: "Juste avant <code></body></code>, à la fin", en: "Just before <code></body></code>, at the end" },
-                    { fr: "N'importe où, ça ne change rien", en: "Anywhere, it makes no difference" }],
-          bonneReponse: 1, explication: { fr: "À la fin du <code><body></code>, le HTML est déjà chargé : le JS peut donc manipuler les éléments de la page.", en: "At the end of the <code><body></code>, the HTML is already loaded, so the JS can work with the page's elements." } }
-      ],
-      scoreMinimal: 1,
-      defiOptionnel: null
-    },
-    {
-      titre: { fr: "Comment le navigateur lit ta page", en: "How the browser reads your page" },
-      besoin: { fr: "Comprendre ce que fait le navigateur quand il ouvre ta page évite beaucoup d'erreurs plus tard.",
-                en: "Understanding what the browser does when it opens your page avoids many later mistakes." },
-      decouverte: { fr: "Le navigateur lit le HTML de haut en bas, applique le CSS, puis exécute le JS.",
-                    en: "The browser reads HTML top to bottom, applies CSS, then runs JS." },
-      explication: { fr: "Le navigateur transforme ton HTML en un <strong>arbre</strong> d'éléments (le DOM). Le CSS habille cet arbre, le JS peut le modifier. On reverra le DOM en détail bientôt.",
-                     en: "The browser turns your HTML into a <strong>tree</strong> of elements (the DOM). CSS dresses this tree, JS can change it. We'll revisit the DOM soon." },
-      illustration: "dom-tree",
-      exemple: null,
-      exercice: null,
-      application: { fr: "Ton projet est une page que le navigateur lira ainsi à chaque rechargement.",
-                     en: "Your project is a page the browser reads this way on every reload." },
-      quiz: [
-        { type: "vraifaux", question: { fr: "Le navigateur transforme le HTML en un arbre appelé le DOM.", en: "The browser turns HTML into a tree called the DOM." },
-          bonneReponse: true, explication: { fr: "Oui, c'est le Document Object Model.", en: "Yes — the Document Object Model." } }
+        { type: "qcm", question: { fr: "À quoi sert le HTML dans une page web ?", en: "What is HTML for in a web page?" },
+          options: [{ fr: "À définir la structure et le contenu", en: "To define the structure and content" },
+                    { fr: "À gérer uniquement les couleurs", en: "To handle only the colors" },
+                    { fr: "À rendre la page interactive", en: "To make the page interactive" }],
+          bonneReponse: 0,
+          explication: { fr: "Le HTML définit la structure et le contenu de la page. Le CSS s'occupe de l'apparence, et le JavaScript de l'interactivité.",
+                         en: "HTML defines the structure and content of the page. CSS handles the looks, and JavaScript the interactivity." } },
+        { type: "complete", question: { fr: "Quel caractère, placé devant le nom, transforme une balise ouvrante en balise <em>fermante</em> ? (ex : &lt;…h1&gt;)", en: "Which character, placed before the name, turns an opening tag into a <em>closing</em> tag? (e.g. &lt;…h1&gt;)" },
+          bonneReponse: "/",
+          explication: { fr: "Une balise fermante reprend le même nom précédé d'une barre oblique : <code>&lt;/h1&gt;</code>.",
+                         en: "A closing tag repeats the same name preceded by a slash: <code>&lt;/h1&gt;</code>." } }
       ],
       scoreMinimal: 1,
       defiOptionnel: null
@@ -103,7 +87,8 @@ export const m0 = {
         en: "<strong>The online editor</strong> lets you learn and experiment with each new concept, with instant feedback in the preview — no saving or browser needed. <strong>Notepad++</strong> is where you build your <em>real project</em> in the <code>projet-eleve/</code> folder: that is where <code>index.html</code>, <code>style.css</code>, and <code>script.js</code> truly come to life."
       },
       explication: {
-        fr: "La boucle de travail à retenir est simple : <strong>(1)</strong> tu apprends une notion en ligne dans l'éditeur de la plateforme, tu l'expérimentes ; <strong>(2)</strong> tu reportes ce que tu viens de pratiquer dans tes fichiers Notepad++ (<code>projet-eleve/</code>) ; <strong>(3)</strong> tu enregistres avec <kbd>Ctrl+S</kbd> ; <strong>(4)</strong> tu ouvres ou rafraîchis <code>index.html</code> dans le navigateur — soit par double-clic, soit via <code>serve.cmd</code> — et tu vois <em>ton</em> projet avancer. Pas « faire tout en ligne puis copier-coller à la fin » : module après module, ton vrai projet grandit en parallèle de ton apprentissage.<br><br>Pour démarrer, ouvre le dossier <code>projet-eleve/starter/</code> dans Notepad++ (Fichier → Ouvrir le dossier) et ouvre <code>index.html</code> dans le navigateur.",
+        fr: "La boucle de travail à retenir est simple : <strong>(1)</strong> tu apprends une notion en ligne dans l'éditeur de la plateforme, tu l'expérimentes ; <strong>(2)</strong> tu reportes ce que tu viens de pratiquer dans tes fichiers Notepad++ (<code>projet-eleve/</code>) ; <strong>(3)</strong> tu enregistres avec <kbd>Ctrl+S</kbd> ; <strong>(4)</strong> tu ouvres ou rafraîchis <code>index.html</code> dans le navigateur — soit par double-clic, soit via <code>serve.cmd</code> — et tu vois <em>ton</em> projet avancer. Pas « faire tout en ligne puis copier-coller à la fin » : module après module, ton vrai projet grandit en parallèle de ton apprentissage.<br><br>Pour démarrer, ouvre le dossier <code>projet-eleve/starter/</code> dans Notepad++ (Fichier → Ouvrir le dossier) et ouvre <code>index.html</code> dans le navigateur."
+,
         en: "The workflow to remember is simple: <strong>(1)</strong> you learn a concept online in the platform editor, you experiment; <strong>(2)</strong> you transfer what you just practised into your Notepad++ files (<code>projet-eleve/</code>); <strong>(3)</strong> you save with <kbd>Ctrl+S</kbd>; <strong>(4)</strong> you open or refresh <code>index.html</code> in the browser — either by double-clicking or via <code>serve.cmd</code> — and you watch <em>your</em> project grow. Not « do everything online then copy-paste at the end »: module by module, your real project grows alongside your learning.<br><br>To get started, open the <code>projet-eleve/starter/</code> folder in Notepad++ (File → Open Folder) and open <code>index.html</code> in the browser."
       },
       illustration: null,

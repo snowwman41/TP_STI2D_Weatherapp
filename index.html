@@ -11,7 +11,7 @@
 <body>
   <div class="app">
     <header class="topbar">
-      <button class="btn burger" id="burger" aria-label="Menu">☰</button>
+      <button class="btn burger" id="burger" aria-label="Menu" aria-controls="sidebar" aria-expanded="false">☰</button>
       <span class="brand">🌍 <span data-i18n="brand">Tableau de bord des villes</span></span>
       <div class="controls">
         <select id="lang" aria-label="Langue"><option value="fr">FR</option><option value="en">EN</option></select>
@@ -21,6 +21,7 @@
     </header>
     <nav class="sidebar" id="sidebar"></nav>
     <main class="content"><div class="content-inner" id="content"></div></main>
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
   </div>
   <script type="module" src="assets/js/main.js"></script>
 </body>

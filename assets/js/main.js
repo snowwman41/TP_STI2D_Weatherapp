@@ -21,13 +21,36 @@ function show(route) {
     gotoPrev: () => { const p = flatSteps[gi - 1]; if (p) navigate(p.module, p.etape); }
   });
   renderSidebar(route);
+  if (mqMobile.matches) closeSidebar();
   window.scrollTo(0, 0);
 }
 
 // Init
 initTheme(document.getElementById("theme-toggle"));
-document.getElementById("burger").addEventListener("click", () =>
-  document.getElementById("sidebar").classList.toggle("open"));
+// ── Tiroir mobile (sidebar) : burger, backdrop, fermeture au choix d'étape ──
+const sidebarEl = document.getElementById("sidebar");
+const backdropEl = document.getElementById("sidebar-backdrop");
+const burgerEl = document.getElementById("burger");
+const mqMobile = window.matchMedia("(max-width: 800px)");
+
+function setSidebar(open) {
+  sidebarEl.classList.toggle("open", open);
+  backdropEl.classList.toggle("open", open);
+  document.body.classList.toggle("sidebar-open", open);
+  burgerEl.setAttribute("aria-expanded", open ? "true" : "false");
+}
+const closeSidebar = () => setSidebar(false);
+
+burgerEl.addEventListener("click", () => setSidebar(!sidebarEl.classList.contains("open")));
+backdropEl.addEventListener("click", closeSidebar);
+// Choisir une étape (lien déverrouillé) referme le tiroir
+sidebarEl.addEventListener("click", (e) => {
+  const link = e.target.closest("a.step-link");
+  if (link && !link.classList.contains("locked")) closeSidebar();
+});
+// Échap referme le tiroir ; repasser en mode bureau le referme aussi (évite l'état coincé)
+window.addEventListener("keydown", (e) => { if (e.key === "Escape") closeSidebar(); });
+mqMobile.addEventListener("change", (e) => { if (!e.matches) closeSidebar(); });
 
 const langSel = document.getElementById("lang");
 langSel.value = getLang();

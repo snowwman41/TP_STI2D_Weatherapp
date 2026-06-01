@@ -4,6 +4,8 @@ export const m8 = {
     // ─── Étape 1 ────────────────────────────────────────────────────────────────
     {
       titre: { fr: "Une icône météo dynamique", en: "A dynamic weather icon" },
+      rappel: { fr: "Tu as construit l'application complète. Ces <strong>défis optionnels</strong> te permettent d'aller plus loin, à ton rythme — aucun n'est obligatoire.",
+                en: "You've built the complete app. These <strong>optional challenges</strong> let you go further at your own pace — none are required." },
       besoin: {
         fr: "L'API météo renvoie un champ <code>weather_code</code> (ex : <code>0</code> pour soleil, <code>61</code> pour pluie). Plutôt qu'afficher ce nombre brut, on peut le transformer en <strong>emoji expressif</strong> — ☀️, ⛅, 🌧️, ❄️, ⛈️ — pour rendre les cartes bien plus parlantes d'un seul coup d'œil !",
         en: "The weather API returns a <code>weather_code</code> field (e.g. <code>0</code> for clear sky, <code>61</code> for rain). Rather than displaying this raw number, we can turn it into an <strong>expressive emoji</strong> — ☀️, ⛅, 🌧️, ❄️, ⛈️ — to make the cards much more readable at a glance!"

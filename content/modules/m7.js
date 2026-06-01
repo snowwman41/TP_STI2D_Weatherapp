@@ -4,6 +4,8 @@ export const m7 = {
     // ─── Étape 1 ────────────────────────────────────────────────────────────────
     {
       titre: { fr: "Afficher l'heure locale", en: "Displaying the local time" },
+      rappel: { fr: "Ton application fonctionne ! Ici tu ajoutes les <strong>finitions</strong> : heure locale, sauvegarde des villes, mode sombre et petites animations.",
+                en: "Your app works! Here you add the <strong>finishing touches</strong>: local time, saving cities, dark mode and small animations." },
       besoin: {
         fr: "Chaque ville a son propre fuseau horaire. Afficher l'heure de Paris à Tokyo n'a aucun sens ! L'API de géocodage nous donne un champ <code>timezone</code> (ex : <code>\"Europe/Paris\"</code>) — utilisons-le pour afficher l'<strong>heure locale exacte</strong> de chaque ville.",
         en: "Every city has its own timezone. Showing Paris time in Tokyo makes no sense! The geocoding API gives us a <code>timezone</code> field (e.g. <code>\"Europe/Paris\"</code>) — let's use it to display the <strong>exact local time</strong> for each city."

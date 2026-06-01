@@ -3,6 +3,8 @@ export const m4 = {
   etapes: [
     {
       titre: { fr: "Garder les villes dans un tableau", en: "Keeping cities in an array" },
+      rappel: { fr: "Tu sais réagir à un clic et lire ce que l'utilisateur tape. Maintenant tu vas <strong>créer des éléments HTML depuis JavaScript</strong> pour afficher une carte par ville.",
+                en: "You can react to a click and read what the user types. Now you'll <strong>create HTML elements from JavaScript</strong> to show a card per city." },
       besoin: {
         fr: "Avant de créer des cartes visuelles, il faut <strong>mémoriser</strong> les villes ajoutées par l'utilisateur — un tableau JavaScript est l'outil idéal pour cela.",
         en: "Before creating visual cards, we need to <strong>remember</strong> the cities added by the user — a JavaScript array is the perfect tool for this."

@@ -3,6 +3,8 @@ export const m2 = {
   etapes: [
     {
       titre: { fr: "Cibler avec les sélecteurs", en: "Targeting with selectors" },
+      rappel: { fr: "Tu sais écrire la <strong>structure</strong> d'une page en HTML. Maintenant tu vas l'<strong>habiller</strong> avec le CSS : couleurs, espacements et mise en page.",
+                en: "You can write a page's HTML <strong>structure</strong>. Now you'll <strong>style</strong> it with CSS: colors, spacing and layout." },
       besoin: {
         fr: "Pour appliquer du style à un élément HTML, le CSS doit d'abord le <em>cibler</em>. Les sélecteurs sont les outils qui permettent de choisir quels éléments on veut styliser.",
         en: "To apply style to an HTML element, CSS must first <em>target</em> it. Selectors are the tools that let you choose which elements to style."
