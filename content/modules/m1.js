@@ -229,8 +229,8 @@ export const m1 = {
         ]
       },
       application: {
-        fr: "Dans ton dossier <code>projet-eleve/</code>, tu retrouveras ces trois fichiers déjà reliés — c'est ton point de départ pour le vrai projet.",
-        en: "In your <code>projet-eleve/</code> folder you'll find these three files already linked — that's your starting point for the real project."
+        fr: "Dans ton dossier <code>app_web_meteo/</code>, c'est à toi de relier tes trois fichiers : ajoute la balise <code>&lt;link&gt;</code> vers <code>style.css</code> dans le <code>&lt;head&gt;</code> et la balise <code>&lt;script&gt;</code> vers <code>script.js</code> juste avant <code>&lt;/body&gt;</code>. C'est ton point de départ pour le vrai projet.",
+        en: "In your <code>app_web_meteo/</code> folder, it's up to you to link your three files: add the <code>&lt;link&gt;</code> to <code>style.css</code> in the <code>&lt;head&gt;</code> and the <code>&lt;script&gt;</code> to <code>script.js</code> just before <code>&lt;/body&gt;</code>. That's your starting point for the real project."
       },
       quiz: [
         { type: "qcm", question: { fr: "Où place-t-on le <code>&lt;script&gt;</code> du JavaScript ?", en: "Where do you put the JavaScript <code>&lt;script&gt;</code>?" },
@@ -308,8 +308,8 @@ export const m1 = {
         ]
       },
       application: {
-        fr: "Tu viens de poser la structure HTML complète de ton projet dans <code>projet-eleve/index.html</code>. Les modules suivants vont habiller cette structure avec du CSS, puis lui donner vie avec JavaScript. <br><br>👉 <strong>Dans Notepad++ :</strong> ouvre <code>index.html</code> de ton dossier <code>projet-eleve/</code>, reporte-y ce que tu viens de pratiquer, enregistre (Ctrl+S), puis rafraîchis <code>index.html</code> dans le navigateur. Ton projet doit maintenant afficher l'en-tête, le champ et le bouton.",
-        en: "You've just laid the complete HTML structure of your project in <code>projet-eleve/index.html</code>. The next modules will style this structure with CSS, then bring it to life with JavaScript. <br><br>👉 <strong>In Notepad++:</strong> open <code>index.html</code> from your <code>projet-eleve/</code> folder, transfer what you just practised, save (Ctrl+S), then refresh <code>index.html</code> in the browser. Your project should now display the header, the input field and the button."
+        fr: "Tu viens de poser la structure HTML complète de ton projet dans <code>app_web_meteo/index.html</code>. Les modules suivants vont habiller cette structure avec du CSS, puis lui donner vie avec JavaScript. <br><br>👉 <strong>Dans Notepad++ :</strong> ouvre <code>index.html</code> de ton dossier <code>app_web_meteo/</code>, reporte-y ce que tu viens de pratiquer, enregistre (Ctrl+S), puis rafraîchis <code>index.html</code> dans le navigateur. Ton projet doit maintenant afficher l'en-tête, le champ et le bouton.",
+        en: "You've just laid the complete HTML structure of your project in <code>app_web_meteo/index.html</code>. The next modules will style this structure with CSS, then bring it to life with JavaScript. <br><br>👉 <strong>In Notepad++:</strong> open <code>index.html</code> from your <code>app_web_meteo/</code> folder, transfer what you just practised, save (Ctrl+S), then refresh <code>index.html</code> in the browser. Your project should now display the header, the input field and the button."
       },
       quiz: [
         {

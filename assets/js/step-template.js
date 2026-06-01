@@ -4,6 +4,7 @@ import { getIllustration } from "./illustrations.js";
 import { createEditor, buildPreviewDoc } from "./editor.js";
 import { renderQuiz } from "./quiz.js";
 import { verifyExercise } from "./verify.js";
+import { celebrate } from "./confetti.js";
 
 let currentEditor = null;
 
@@ -102,6 +103,8 @@ export function renderStep(container, step, ctx) {
       actions.appendChild(checkBtn);
       checkBtn.addEventListener("click", () => {
         const { passed, results } = verifyExercise(ex.verification, editor.getCode());
+        // On ne célèbre qu'au passage de faux → vrai, pas à chaque clic répété.
+        const nouveauSucces = passed && !exOK;
         fb.hidden = false;
         fb.className = "exo-feedback " + (passed ? "ok" : "ko");
         fb.innerHTML = passed
@@ -109,6 +112,11 @@ export function renderStep(container, step, ctx) {
           : results.map(r => `<div class="${r.ok ? "ok" : "ko"}">${r.ok ? "✓" : "✗"} ${richText(pick(r.message))}</div>`).join("");
         // Re-vérifie à CHAQUE clic : si le code redevient faux, l'étape se reverrouille.
         exOK = passed;
+        if (nouveauSucces) {
+          // Petit canon à confettis lancé depuis le bouton « Vérifier ».
+          const r = checkBtn.getBoundingClientRect();
+          celebrate(r.left + r.width / 2, r.top + r.height / 2);
+        }
         if (!passed) {
           // La correction n'apparaît qu'en cas d'erreur, comme une aide.
           solBox.hidden = false;
