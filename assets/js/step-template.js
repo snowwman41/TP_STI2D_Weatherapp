@@ -103,8 +103,6 @@ export function renderStep(container, step, ctx) {
       actions.appendChild(checkBtn);
       checkBtn.addEventListener("click", () => {
         const { passed, results } = verifyExercise(ex.verification, editor.getCode());
-        // On ne célèbre qu'au passage de faux → vrai, pas à chaque clic répété.
-        const nouveauSucces = passed && !exOK;
         fb.hidden = false;
         fb.className = "exo-feedback " + (passed ? "ok" : "ko");
         fb.innerHTML = passed
@@ -112,8 +110,8 @@ export function renderStep(container, step, ctx) {
           : results.map(r => `<div class="${r.ok ? "ok" : "ko"}">${r.ok ? "✓" : "✗"} ${richText(pick(r.message))}</div>`).join("");
         // Re-vérifie à CHAQUE clic : si le code redevient faux, l'étape se reverrouille.
         exOK = passed;
-        if (nouveauSucces) {
-          // Petit canon à confettis lancé depuis le bouton « Vérifier ».
+        if (passed) {
+          // Canon à confettis lancé depuis le bouton à chaque clic réussi.
           const r = checkBtn.getBoundingClientRect();
           celebrate(r.left + r.width / 2, r.top + r.height / 2);
         }

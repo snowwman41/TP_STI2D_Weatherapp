@@ -1,5 +1,6 @@
 import { pick, t } from "./i18n.js";
 import { richText } from "./sanitize.js";
+import { celebrate } from "./confetti.js";
 
 function correct(q, ans) {
   if (q.type === "complete")
@@ -40,7 +41,13 @@ export function renderQuiz(container, questions, seuil, onPass) {
     res.hidden = false;
     res.textContent = `${score.good}/${score.total} — ` + (didPass ? t("quizPassed") : t("quizFailed"));
     res.className = "qz-result " + (didPass ? "ok" : "ko");
-    if (didPass && !passed) { passed = true; validateBtn.disabled = true; onPass(score.ratio); }
+    if (didPass) {
+      // Confettis à chaque validation réussie (répétable).
+      const r = validateBtn.getBoundingClientRect();
+      celebrate(r.left + r.width / 2, r.top + r.height / 2);
+      // La complétion de l'étape ne se déclenche qu'une fois.
+      if (!passed) { passed = true; onPass(score.ratio); }
+    }
   });
 }
 

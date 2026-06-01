@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test confettis</title>
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 2rem; text-align: center; }
+    button { font-size: 1.1rem; padding: .7rem 1.4rem; margin: .4rem; cursor: pointer; }
+    #etat { margin-top: 1.5rem; font-size: 1rem; }
+    .reduce { color: #b91c1c; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Diagnostic confettis 🎉</h1>
+
+  <p>
+    <button id="normal">Tester (version du site)</button>
+    <button id="force">Forcer (ignore reduced-motion)</button>
+  </p>
+
+  <p id="etat"></p>
+
+  <script type="module">
+    import { celebrate } from "./assets/js/confetti.js";
+
+    // 1) Affiche si le système demande « moins d'animations ».
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.getElementById("etat").innerHTML = reduce
+      ? `<span class="reduce">⚠️ prefers-reduced-motion = ON</span> — c'est pour ça que tu ne vois rien : Windows/le navigateur a désactivé les animations.`
+      : `✅ prefers-reduced-motion = OFF — les confettis devraient s'afficher avec le bouton de gauche.`;
+
+    // 2) Bouton « version du site » : utilise celebrate() tel quel.
+    document.getElementById("normal").addEventListener("click", (e) => {
+      const r = e.target.getBoundingClientRect();
+      celebrate(r.left + r.width / 2, r.top + r.height / 2);
+    });
+
+    // 3) Bouton « forcer » : dessine un canon identique sans tenir compte de reduced-motion.
+    //    Sert juste à prouver que le rendu canvas fonctionne sur ta machine.
+    document.getElementById("force").addEventListener("click", (e) => {
+      const r = e.target.getBoundingClientRect();
+      forceConfetti(r.left + r.width / 2, r.top + r.height / 2);
+    });
+
+    function forceConfetti(x, y) {
+      const couleurs = ["#0284c7", "#22c55e", "#facc15", "#f97316", "#ec4899", "#a855f7"];
+      const canvas = document.createElement("canvas");
+      canvas.style.cssText = "position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9999";
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = innerWidth * dpr; canvas.height = innerHeight * dpr;
+      document.body.appendChild(canvas);
+      const ctx = canvas.getContext("2d"); ctx.scale(dpr, dpr);
+      const ps = Array.from({ length: 36 }, () => {
+        const a = -Math.PI / 2 + (Math.random() - 0.5) * 1.1, v = 6 + Math.random() * 6;
+        return { x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, s: 5 + Math.random() * 5,
+                 c: couleurs[(Math.random() * couleurs.length) | 0], rot: Math.random() * Math.PI,
+                 vr: (Math.random() - .5) * .3, vie: 1 };
+      });
+      (function frame() {
+        ctx.clearRect(0, 0, innerWidth, innerHeight); let alive = false;
+        for (const p of ps) { p.vx *= .99; p.vy = p.vy * .99 + .18; p.x += p.vx; p.y += p.vy;
+          p.rot += p.vr; p.vie -= .012; if (p.vie <= 0) continue; alive = true;
+          ctx.save(); ctx.globalAlpha = Math.max(0, p.vie); ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+          ctx.fillStyle = p.c; ctx.fillRect(-p.s / 2, -p.s / 2, p.s, p.s * .6); ctx.restore(); }
+        alive ? requestAnimationFrame(frame) : canvas.remove();
+      })();
+    }
+  </script>
+</body>
+</html>
